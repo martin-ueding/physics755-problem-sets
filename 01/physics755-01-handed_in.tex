@@ -1,6 +1,6 @@
 \documentclass[11pt, ngerman, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
 
-\usepackage[bibatend]{../header}
+\usepackage[bibatend, color]{../header}
 
 \usepackage{booktabs}
 
@@ -95,7 +95,7 @@ density is the four-gradient squared.
 
 Now we use
 \[
-    S = \int \dif^4 x \, \mathscr L
+    S = \int \dif t \, L
     \eqnsep
     L = \int \dif^3 x \, \mathscr L
 \]
@@ -109,7 +109,9 @@ $L$:
 
 The conjugate momenta are then:
 \[
-    \pi_i = \pd{L}{[\partial_i \phi]} = \partial^i \phi^*.
+    \pi_i = \pd{L}{[\partial_i \phi]} = \partial^i \phi^*
+    \eqnsep
+    \pi_i^* = \pd{L}{[\partial_i \phi^*]} = \partial^i \phi.
 \]
 
 % TODO Commutation relations.
@@ -128,6 +130,19 @@ m^2 \phi^* \phi} \\
     &= \int \dif^3 x \sbr{\vec\pi \cdot \vec\pi - \vnabla \phi^* \cdot
 \vnabla \phi + m^2 \phi^* \phi} \\
 \end{align*}
+
+\subsection{Fourier modes}
+
+\subsection{Symmetry}
+
+In all terms only $X^*X = |X|^2$ comes up. A constant phase factor would cancel
+out in those and therefore not change the Action, Lagrangian or the
+Hamiltonian. The field and its derivatives and therefore the coordinates would
+change. But the equations of motions would retain their form.
+
+\subsection{Conserved charge}
+
+\subsection{Two fields}
 
 \end{document}
 
