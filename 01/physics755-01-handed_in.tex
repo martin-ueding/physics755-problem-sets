@@ -60,7 +60,7 @@
     \begin{tabular}{rrr}
         problem number & achieved points & possible points \\
         \midrule
-        H 1.1 & & \punkte{0} \\
+        H 1.1 & & \punkte{10} \\
         \midrule
         total & & \arabic{totalpoints}
     \end{tabular}
@@ -79,6 +79,55 @@ Yes $\Box$ \hspace{2cm} No $\Box$
 
 \newpage
 
+\section{The complex scalar field}
+
+\subsection{Hamiltonian}
+
+We have given:
+\[
+    S = \int \dif^4 x \, \sbr{
+        \partial_\mu \phi^* \partial^\mu \phi - m^2 \phi^* \phi
+    }.
+\]
+The scoping of the $\partial$ is not perfectly clear, we assume that it will
+only act on the symbol directly after it. So that the first term in the action
+density is the four-gradient squared.
+
+Now we use
+\[
+    S = \int \dif^4 x \, \mathscr L
+    \eqnsep
+    L = \int \dif^3 x \, \mathscr L
+\]
+where $\mathscr L$ is the Lagrange density and obtain the Lagrange function
+$L$:
+\[
+    L = \int \dif^3 x \, \sbr{
+        \partial_\mu \phi^* \partial^\mu \phi - m^2 \phi^* \phi
+    }.
+\]
+
+The conjugate momenta are then:
+\[
+    \pi_i = \pd{L}{[\partial_i \phi]} = \partial^i \phi^*.
+\]
+
+% TODO Commutation relations.
+
+The Hamiltonian can then be obtained using a Legendre transformation:
+\begin{align*}
+    H
+    &= \int \dif^3 x \sbr{\pi_i \partial^i \phi - L(\phi, \partial \phi(\phi,
+\pi))} \\
+    &= \int \dif^3 x \sbr{\pi^{*i} \pi_i - \partial_i \phi^* \partial^i \phi +
+m^2 \phi^* \phi} \\
+    \intertext{%
+        Using the metric tensor $\eta^{ii} = -1$ one can write this as
+        three-vectors:
+    }
+    &= \int \dif^3 x \sbr{\vec\pi \cdot \vec\pi - \vnabla \phi^* \cdot
+\vnabla \phi + m^2 \phi^* \phi} \\
+\end{align*}
 
 \end{document}
 
