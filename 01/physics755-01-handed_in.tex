@@ -1,0 +1,85 @@
+\documentclass[11pt, ngerman, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+
+\usepackage{booktabs}
+
+\usepackage{tikz}
+
+\usepackage[tikz]{mdframed}
+\newmdtheoremenv[%
+    backgroundcolor=black!5,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+]{theorem}{Theorem}[section]
+
+\newmdenv[%
+    backgroundcolor=black!5,
+    frametitlebackgroundcolor=black!10,
+    roundcorner=5pt,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+    frametitle={Problem Statement},
+    frametitlerule=true,
+]{problem}
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{1}
+
+\subject{physics755 -- Quantum Field Theory}
+\ihead{physics755 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group Friday}
+\ofoot{Group Friday}
+
+
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem number & achieved points & possible points \\
+        \midrule
+        H 1.1 & & \punkte{0} \\
+        \midrule
+        total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\vspace{5ex}
+
+I, Martin Ueding, would like to scan and upload the problem sets with your
+corrections to my website \href{http://martin-ueding.de}{martin-ueding.de}.
+There, the original problem set as well as the reviewed one will be licensed
+under the “\href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative
+Commons Attribution-ShareAlike 4.0 International License}”. Is that okay with
+you?
+
+Yes $\Box$ \hspace{2cm} No $\Box$
+
+\newpage
+
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
