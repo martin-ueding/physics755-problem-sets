@@ -1,27 +1,9 @@
 \documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
 
 \usepackage[bibatend, color]{../header}
+\usepackage{../my-boxes}
 
 \usepackage{booktabs}
-
-\usepackage{tikz}
-
-\usepackage[tikz]{mdframed}
-\newmdtheoremenv[%
-    backgroundcolor=black!5,
-    innertopmargin=\topskip,
-    splittopskip=\topskip,
-]{theorem}{Theorem}[section]
-
-\newmdenv[%
-    backgroundcolor=black!5,
-    frametitlebackgroundcolor=black!10,
-    roundcorner=5pt,
-    innertopmargin=\topskip,
-    splittopskip=\topskip,
-    frametitle={Problem Statement},
-    frametitlerule=true,
-]{problem}
 
 \hypersetup{
     pdftitle=
@@ -40,8 +22,6 @@
 
 \publishers{Group Friday -- Robert Lauktien}
 \ofoot{Group Friday -- Robert Lauktien}
-
-
 
 \author{
     Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
@@ -318,6 +298,35 @@ classical Klein-Gordon equation \parencite[(2.7)]{Peskin/QFT/1995} and the
 quantum mechanical one \parencite[(2.45)]{Peskin/QFT/1995}.
 
 \subsection{Fourier modes}
+
+\paragraph{Expand into Fourier modes}
+
+I will go along the lines of \textcite[§\,2.3]{Peskin/QFT/1995} here. The
+expansion of $\phi$ and $\pi$ into Fourier modes is formally given by:
+\[
+    \phi(\vec x, t) = \int \frac{\dif^3p}{[2\piup]^2} \exp(\iup \vec p \vec x)
+    \phi(\vec p, t).
+\]
+This is just the back-transform from the momentum space into spatial space (is
+that even a word?). The real task is to find a representation for $\phi(\vec p,
+t)$. In momentum space, the Klein-Gordon equation looks just like the equation
+of the harmonic oscillator \parencite[(2.21)]{Peskin/QFT/1995}. The field and
+the momentum can then be written with ladder operators in analogy and the
+harmonic oscillator
+\parencite[(2.23)]{Peskin/QFT/1995}:
+\[
+    \phi = \frac{1}{2 \omega} [a + a^\dagger]
+    \eqnsep
+    p = - \iup \sqrt{\frac{\omega}{2}} [a - a^\dagger]
+    \eqnsep
+    \omega := \sqrt{|\vec p|^2 + m^2}.
+\]
+
+\begin{question}
+    Why can I do this? Is it because the Hamiltonian looks like the one from
+    the harmonic oscillator and one now thinks about the Klein-Gordan field as
+    a field made up of an infinite number of harmonic oscillators?
+\end{question}
 
 \subsection{Symmetry}
 
