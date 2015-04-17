@@ -85,7 +85,7 @@ Yes $\Box$ \hspace{2cm} No $\Box$
 
 \paragraph{Conjugate momenta}
 
-I have given:
+I have given the following action:
 \[
     S = \int \dif^4 x \, \sbr{
         \partial_\mu \phi^* \partial^\mu \phi - m^2 \phi^* \phi
@@ -138,14 +138,14 @@ Now one can insert the momenta and yield
     \sbr{\phi(x, t), \dot\phi^*(y, t)} = \iup \delta_{ab} \delta(x - y) \\
     \sbr{\phi^*(x, t), \dot\phi(y, t)} = \iup \delta_{ab} \delta(x - y)
 \end{gather*}
-by also setting $\phi_a = \phi$ and $\phi_b = \phi^*$
+by also setting $\phi_a := \phi$ and $\phi_b := \phi^*$
 \parencite[(13.2.4)]{Schwabl/Quantenmechanik_fuer_Fortgeschrittene/2008}.
 
 \paragraph{Hamiltonian}
 
 The Hamiltonian can then be obtained using a Legendre transformation. I have
 not an explicit recipe for the complex valued case since
-\textcite[Chapter~2]{Peskin/QFT/1995} only cover the real Klein-Gordon Field
+\textcite[Chapter~2]{Peskin/QFT/1995} only cover the real Klein-Gordon field
 and \textcite[Chapter~13.2]{Schwabl/Quantenmechanik_fuer_Fortgeschrittene/2008}
 does not give the Hamiltonian of the complex Klein-Gordon field. I figured out
 a way that gives the correct result. Please tell me whether it is the correct
@@ -200,10 +200,62 @@ With this, I can find the Hamiltonian:
         The first term in the inner bracket is just $\pi^* \pi$ and cancels out
         part of the first summand. I am left with
     }
-    &= \int \dif^3 x \sbr{ \pi^* \pi + \vnabla \phi^* \cdot
-    \vnabla \phi + m^2 \phi^* \phi}.
+    &= \int \dif^3 x \sbr{ \pi^* \pi + \vnabla \phi^* \cdot \vnabla \phi + m^2 \phi^* \phi}.
 \end{align*}
 This is exactly the Hamiltonian given in Equation~(7) on the problem set.
+
+\paragraph{Heisenberg equation of motion}
+
+Now that the Hamiltonian is derived, one can use the time evolution in the
+Heisenberg picture to get the equations of motion for the two fields. This is
+plugging in into
+\(
+    \iup \dot O = [H, O]
+\)
+for given operator $O$ \parencite[(2.44)]{Peskin/QFT/1995}. I can insert $O =
+\phi$ and $O = \pi$ to get the Hamiltonian equations of motions. I will start
+with the $\phi(\vec x, t)$.
+\begin{align*}
+    \iup \dot\phi(\vec x, t)
+    &= \sbr{\phi(\vec x, t), H} \\
+    \intertext{%
+        I insert the Hamiltonian. The integration has to be done over a
+        different variable, I use $x'$. All the functions in the Hamiltonian
+        have arguments $(\vec x', t)$ which I omitted to fit this onto a single
+        line.
+    }
+    &= \sbr{\phi(\vec x, t),
+        \int \dif^3 x' \sbr{ \pi^* \pi + \vnabla \phi^* \cdot \vnabla \phi + m^2 \phi^* \phi}
+    } \\
+    \intertext{%
+        The integration of $\vec x'$ does not involve $\vec x$ at all, so I can
+        use the linearity of the integral and move it out of the commutator. I
+        now have three individual ones I can work with independently.
+    }
+    &= \int \dif^3 x' \sbr{
+        \sbr{\phi(\vec x, t), \pi^* \pi}
+        + \sbr{\phi(\vec x, t), \vnabla \phi^* \cdot \vnabla \phi}
+        + m^2 \sbr{\phi(\vec x, t), \phi^* \phi}
+    }
+    \intertext{%
+        (1) In the first term, $\phi$ commutes with $\pi^*$, so I can move this
+        out of the commutator. (2) The $\phi$ commute with each other freely,
+        so this commutator is just zero. (3) $\phi$ commutes with itself at any
+        time, so this is also zero. What remains is
+    }
+    &= \int \dif^3 x' \, \pi^* \sbr{\phi(\vec x, t), \pi(\vec x', t)}.
+    \intertext{%
+        Using the commutation relations that I copied earlier, this can be
+        written as
+    }
+    &= \int \dif^3 x' \, \pi^*(\vec x', t) \, \iup \, \deltaup(\vec x - \vec x')
+    \intertext{%
+        Now I perform the integration and obtain
+    }
+    &= \iup \pi^*(\vec x, t).
+\end{align*}
+This looks similar to the treatment of the real Klein-Gordon field by
+\textcite[25]{Peskin/QFT/1995}.
 
 \subsection{Fourier modes}
 
