@@ -397,6 +397,14 @@ The same thing can then be done for the momentum densities as well:
 
 \paragraph{Hamilton operator in ladder operators}
 
+\newcommand\Lad{a_{\vec p}^\dagger}
+\newcommand\Lam{a_{-\vec p}}
+\newcommand\La{a_{\vec p}}
+\newcommand\Lbd{b_{\vec p}^\dagger}
+\newcommand\Lbmd{b_{-\vec p}^\dagger}
+\newcommand\Lbm{b_{- \vec p}}
+\newcommand\Lb{b_{\vec p}}
+
 The next step is to take those four expressions derived here and build up the
 Hamilton operator with them. The last version that I had for the Hamiltonian
 was the following:
@@ -423,7 +431,7 @@ was the following:
         + a_{\vec p}^\dagger
     } \exp(\iup \vec p \vec x)
         \cdot
-        \vnabla 
+        \vnabla
     \int \frac{\dif^3p'}{[2\piup]^3}
     \frac{1}{\sqrt{2 \omega_{\vec p'}}} \sbr{
         a_{-\vec p'}
@@ -441,7 +449,7 @@ was the following:
         a_{-\vec p'}
         + b_{\vec p'}^\dagger
     } \exp(\iup \vec p' \vec x)
-    \\&\qquad
+    \\&\quad
     \bigg]
     \intertext{%
         Now I can bring terms together and make the whole thing more compact.
@@ -449,39 +457,160 @@ was the following:
     &= \int \dif^3 x \, \bigg[
     \\&\qquad
     - \int \frac{\dif^3p \,\dif^3p'}{[2\piup]^6}
-    \sqrt{\frac{\omega_{\vec p}\omega_{\vec p'}}{4}}
+    \frac{\sqrt{\omega_{\vec p}\omega_{\vec p'}}}2
     \exp\del{\iup [\vec p+\vec p'] \vec x}
     \sbr{b_{- \vec p} - a_{\vec p}^\dagger}
     \sbr{a_{- \vec p'} - b_{\vec p'}^\dagger}
     \\&\qquad
-        + \vnabla
-    \int \frac{\dif^3p}{[2\piup]^3}
-    \frac{1}{\sqrt{2 \omega_{\vec p}}} \sbr{
+    +
+    \int \frac{\dif^3p \, \dif^3p'}{[2\piup]^6}
+    \frac{1}{2 \sqrt{\omega_{\vec p} \omega_{\vec p'}}}
+    \sbr{
         b_{-\vec p}
         + a_{\vec p}^\dagger
-    } \exp(\iup \vec p \vec x)
-        \cdot
-        \vnabla 
-    \int \frac{\dif^3p'}{[2\piup]^3}
-    \frac{1}{\sqrt{2 \omega_{\vec p'}}} \sbr{
+    }
+    \sbr{
         a_{-\vec p'}
         + b_{\vec p'}^\dagger
-    } \exp(\iup \vec p' \vec x)
+    }
+    \vnabla
+    \exp(\iup \vec p \vec x)
+        \cdot
+    \vnabla
+    \exp(\iup \vec p' \vec x)
     \\&\qquad
         + m^2
-    \int \frac{\dif^3p}{[2\piup]^3}
-    \frac{1}{\sqrt{2 \omega_{\vec p}}} \sbr{
+    \int \frac{\dif^3p \, \dif^3p'}{[2\piup]^6}
+    \frac{1}{2 \sqrt{\omega_{\vec p} \omega_{\vec p'}}}
+    \sbr{
         b_{-\vec p}
         + a_{\vec p}^\dagger
-    } \exp(\iup \vec p \vec x)
-    \int \frac{\dif^3p'}{[2\piup]^3}
-    \frac{1}{\sqrt{2 \omega_{\vec p'}}} \sbr{
+    }
+    \sbr{
         a_{-\vec p'}
         + b_{\vec p'}^\dagger
-    } \exp(\iup \vec p' \vec x)
+    } \exp\del{\iup [\vec p + \vec p'] \vec x}
+    \\&\quad
+    \bigg]
+    \intertext{%
+        I can now let the $\vnabla$ act on the exponential to give me a $\vec
+        p$ and $\vec p'$ respectively. The integration over the momentum is the
+        same in each summand, so I can pull this out front as well. After the
+        differentiation, the exponentials are the same in every term as well,
+        so I gather those in the first line as well.
+    }
+    &= \int \dif^3 x \,
+    \frac{\dif^3p \,\dif^3p'}{[2\piup]^6} \,
+    \exp\del{\iup [\vec p+\vec p'] \vec x}
+    \bigg[
+    \\&\qquad
+    -
+    \frac{\sqrt{\omega_{\vec p}\omega_{\vec p'}}}2
+    \sbr{b_{- \vec p} - a_{\vec p}^\dagger}
+    \sbr{a_{- \vec p'} - b_{\vec p'}^\dagger}
+    \\&\qquad
+    +
+    \frac{1}{2 \sqrt{\omega_{\vec p} \omega_{\vec p'}}}
+    [\iup \vec p \cdot \iup \vec p']
+    \sbr{ b_{-\vec p} + a_{\vec p}^\dagger }
+    \sbr{ a_{-\vec p'} + b_{\vec p'}^\dagger }
+    \\&\qquad
+    + m^2
+    \frac{1}{2 \sqrt{\omega_{\vec p} \omega_{\vec p'}}}
+    \sbr{ b_{-\vec p} + a_{\vec p}^\dagger }
+    \sbr{ a_{-\vec p'} + b_{\vec p'}^\dagger }
+    \\&\quad
+    \bigg]
+    \intertext{%
+        Now the second and third summand share a lot and I can factor that out
+        again.
+    }
+    &= \int \dif^3 x \,
+    \frac{\dif^3p \,\dif^3p'}{[2\piup]^6} \,
+    \exp\del{\iup [\vec p+\vec p'] \vec x}
+    \bigg[
+    \\&\qquad
+    -
+    \frac{\sqrt{\omega_{\vec p}\omega_{\vec p'}}}2
+    \sbr{b_{- \vec p} - a_{\vec p}^\dagger}
+    \sbr{a_{- \vec p'} - b_{\vec p'}^\dagger}
+    \\&\qquad
+    +
+    \frac{- \vec p \vec p' + m^2}{2 \sqrt{\omega_{\vec p} \omega_{\vec p'}}}
+    \sbr{ b_{-\vec p} + a_{\vec p}^\dagger }
+    \sbr{ a_{-\vec p'} + b_{\vec p'}^\dagger }
     \\&\qquad
     \bigg]
+    \intertext{%
+        Now that looks a lot like the formula by
+        \textcite[(2.31)]{Peskin/QFT/1995}, just that I have a factor 2 more
+        then they do. I am not sure how I or they got that, but in case
+        something is off by a factor of two later on, this is where it started.
+        There is only one function that depends on $\vec x$, and that is the
+        exponential. That integration will give me a $\deltaup(\vec p + \vec
+        p')$. I can then carry out the integration over $\vec p'$ to eliminate
+        it by applying $\vec p' \to - \vec p$.
+    }
+    &= \int \frac{\dif^3p}{[2\piup]^3} \,
+    \sbr{
+        -
+        \frac{\omega_{\vec p}}2
+        \sbr{b_{- \vec p} - a_{\vec p}^\dagger}
+        \sbr{a_{\vec p} - b_{-\vec p}^\dagger}
+        +
+        \frac{p^2 + m^2}{2 \omega_{\vec p}}
+        \sbr{ b_{-\vec p} + a_{\vec p}^\dagger }
+        \sbr{ a_{\vec p} + b_{-\vec p}^\dagger }
+    }
+    \intertext{%
+        The definition was $\omega_{\vec p}^2 = p^2 + m^2$. The fraction will
+        then simplify and both of the fractions can be factored out. I change
+        the order of the two summands to get rid of that additional minus
+        sign.
+    }
+    &= \int \frac{\dif^3p}{[2\piup]^3} \,
+    \frac{\omega_{\vec p}}2
+    \sbr{
+        \sbr{\Lbm + \Lad}
+        \sbr{\La + \Lbmd}
+        -
+        \sbr{\Lbm - \Lad}
+        \sbr{\La - \Lbmd}
+    }
+    \intertext{%
+        Since I do not see a shorter way, I expand all those products of the
+        ladder operators. While doing that, I am careful not to commute
+        anything.
+    }
+    &= \int \frac{\dif^3p}{[2\piup]^3} \,
+    \frac{\omega_{\vec p}}2
+    \sbr{
+        \Lbm\La + \Lbm\Lbmd + \Lad\La + \Lad\Lbmd
+        - \sbr{
+            \Lbm\La - \Lbm \Lbmd - \Lad\La + \Lad\Lbmd
+        }
+    }
+    \intertext{%
+        I factor out the sign and see about the remaining ones.
+    }
+    &= \int \frac{\dif^3p}{[2\piup]^3} \, \omega_{\vec p}
+    \sbr{ \Lbm\Lbmd + \Lad\La }
+    \intertext{%
+        I am not sure about this, but I think I can remove the minus sign
+        taking the hermitian conjugate of the ladder operators $b$.
+    }
+    &= \int \frac{\dif^3p}{[2\piup]^3} \, \omega_{\vec p}
+    \sbr{\Lad\La + \Lbd\Lb}
 \end{align*}
+Now the whole thing is symmetric in $a$ and $b$ which is nice. There is no zero
+point energy like the real Klein-Gordan field seems to have
+\parencite[(2.31)]{Peskin/QFT/1995}.
+
+\paragraph{Two sets of particles}
+
+The Hamiltonian contains two sets of ladder operators, $a$ and $b$. Those
+independently create particles with the same momentum $\vec p$, mass $m$ and
+energy $\omega_{\vec p}$.
 
 \subsection{Symmetry}
 
