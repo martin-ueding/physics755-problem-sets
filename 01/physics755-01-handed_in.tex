@@ -1,4 +1,4 @@
-\documentclass[11pt, ngerman, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
 
 \usepackage[bibatend, color]{../header}
 
@@ -38,8 +38,8 @@
 
 \title{Problem Set \arabic{problemset}}
 
-\publishers{Group Friday}
-\ofoot{Group Friday}
+\publishers{Group Friday -- Robert Lauktien}
+\ofoot{Group Friday -- Robert Lauktien}
 
 
 
@@ -83,17 +83,24 @@ Yes $\Box$ \hspace{2cm} No $\Box$
 
 \subsection{Hamiltonian}
 
-We have given:
+\paragraph{Conjugate momenta}
+
+I have given:
 \[
     S = \int \dif^4 x \, \sbr{
         \partial_\mu \phi^* \partial^\mu \phi - m^2 \phi^* \phi
     }.
 \]
-The scoping of the $\partial$ is not perfectly clear, we assume that it will
+The scoping of the $\partial$ is not perfectly clear, I assume that it will
 only act on the symbol directly after it. So that the first term in the action
-density is the four-gradient squared.
+density is the four-gradient squared. I will use GR notation for that:
+\[
+    S = \int \dif^4 x \, \sbr{
+        \phi^*_{,\mu} \phi^{,\mu} - m^2 \phi^* \phi
+    }.
+\]
 
-Now we use
+Now I use
 \[
     S = \int \dif t \, L
     \eqnsep
@@ -103,33 +110,100 @@ where $\mathscr L$ is the Lagrange density and obtain the Lagrange function
 $L$:
 \[
     L = \int \dif^3 x \, \sbr{
-        \partial_\mu \phi^* \partial^\mu \phi - m^2 \phi^* \phi
+        \phi^*_{,\mu} \phi^{,\mu} - m^2 \phi^* \phi
     }.
 \]
 
-The conjugate momenta are then:
+The conjugate momentum densities are then:
 \[
-    \pi_i = \pd{L}{[\partial_i \phi]} = \partial^i \phi^*
+    \pi = \pd{L}{\dot \phi} = \dot \phi^{*}
     \eqnsep
-    \pi_i^* = \pd{L}{[\partial_i \phi^*]} = \partial^i \phi.
+    \pi^* = \pd{L}{\dot \phi^*} = \dot \phi.
 \]
 
-% TODO Commutation relations.
+\paragraph{Commutation relations}
 
-The Hamiltonian can then be obtained using a Legendre transformation:
+The commutation relations are chosen in a certain way to quantize the theory. I
+do not think there is anything one can do to derive them right here. The
+relations are, with $a$ and $b$ labelling multiple fields
+\parencite[(12.3.1)]{Schwabl/Quantenmechanik_fuer_Fortgeschrittene/2008}:
+\begin{gather*}
+    \sbr{\phi_a(x, t), \pi_b(y, t)} = \iup \delta_{ab} \delta(x - y) \\
+    \sbr{\phi_a(x, t), \phi_b(y, t)} = 0 \\
+    \sbr{\pi_a(x, t), \pi_b(y, t)} = 0
+\end{gather*}
+
+Now one can insert the momenta and yield
+\begin{gather*}
+    \sbr{\phi(x, t), \dot\phi^*(y, t)} = \iup \delta_{ab} \delta(x - y) \\
+    \sbr{\phi^*(x, t), \dot\phi(y, t)} = \iup \delta_{ab} \delta(x - y)
+\end{gather*}
+by also setting $\phi_a = \phi$ and $\phi_b = \phi^*$
+\parencite[(13.2.4)]{Schwabl/Quantenmechanik_fuer_Fortgeschrittene/2008}.
+
+\paragraph{Hamiltonian}
+
+The Hamiltonian can then be obtained using a Legendre transformation. I have
+not an explicit recipe for the complex valued case since
+\textcite[Chapter~2]{Peskin/QFT/1995} only cover the real Klein-Gordon Field
+and \textcite[Chapter~13.2]{Schwabl/Quantenmechanik_fuer_Fortgeschrittene/2008}
+does not give the Hamiltonian of the complex Klein-Gordon field. I figured out
+a way that gives the correct result. Please tell me whether it is the correct
+reasoning.
+
+The Legendre transformation in classical mechanics is
+\[
+    H = \pi_i \dot q^i - L.
+\]
+The $i$ denote the finite number of degrees of freedom. In a field theory, the
+degrees of freedoms are infinite, and therefore one has $q_i \to q(x)$ and $x$
+labels the degrees of freedom. Now $q(x)$ is the \emph{one} field in
+consideration. There is a momentum $\pi(x)$ which also has the same degrees of
+freedom. There still has to be a sum over all the degrees of freedom, which is
+now done by integration over $x$.
+\[
+    H = \int \dif x \, \pi(x) \dot q(x) - L.
+\]
+
+Here we have two fields, $\phi$ and $\phi^*$. Therefore, there are multiple
+terms in the Hamiltonian. The equation looks really similar:
+\[
+    H = \int \dif x \, \pi_a(x) \dot \phi^a(x) - L.
+\]
+Here, the index $a$ numbers the different fields ($a = 1, 2$) like you (R.\,L.)
+did in the exercise class on 2015-04-17. So the index summation is over the
+different fields. The summing over $i$ is now an integral over $x$.
+
+With this, I can find the Hamiltonian:
 \begin{align*}
     H
-    &= \int \dif^3 x \sbr{\pi_i \partial^i \phi - L(\phi, \partial \phi(\phi,
-\pi))} \\
-    &= \int \dif^3 x \sbr{\pi^{*i} \pi_i - \partial_i \phi^* \partial^i \phi +
-m^2 \phi^* \phi} \\
+    &= \int \dif^3 x \sbr{\pi \dot \phi + \pi^* \dot\phi^* - \mathscr L(\phi, \dif \phi(\phi,
+    \pi))} \\
     \intertext{%
-        Using the metric tensor $\eta^{ii} = -1$ one can write this as
-        three-vectors:
+        Before I insert $\mathscr L$, I will replace the time derivative of the
+        fields with the canonical momentum density. This will also make the
+        first two summands equal, since the momenta commute.
     }
-    &= \int \dif^3 x \sbr{\vec\pi \cdot \vec\pi - \vnabla \phi^* \cdot
-\vnabla \phi + m^2 \phi^* \phi} \\
+    &= \int \dif^3 x \sbr{2 \pi^* \pi - \mathscr L} \\
+    \intertext{%
+        Now I expand $\mathscr L$.
+    }
+    &= \int \dif^3 x \sbr{2 \pi^* \pi - \phi^*_{,\mu} \phi^{,\mu} +
+    m^2 \phi^* \phi} \\
+    \intertext{%
+        Using the metric tensor $\eta^{ii} = -1$ one can separate time and
+        spatial components:
+    }
+    &= \int \dif^3 x \sbr{2 \pi^* \pi - \sbr{\dot \phi^* \dot \phi - \vnabla \phi^* \cdot
+    \vnabla \phi} + m^2 \phi^* \phi} \\
+    \intertext{%
+        The first term in the inner bracket is just $\pi^* \pi$ and cancels out
+        part of the first summand. I am left with
+    }
+    &= \int \dif^3 x \sbr{ \pi^* \pi + \vnabla \phi^* \cdot
+    \vnabla \phi + m^2 \phi^* \phi}.
 \end{align*}
+This is exactly the Hamiltonian given in Equation~(7) on the problem set.
 
 \subsection{Fourier modes}
 
