@@ -304,7 +304,7 @@ quantum mechanical one \parencite[(2.45)]{Peskin/QFT/1995}.
 I will go along the lines of \textcite[§\,2.3]{Peskin/QFT/1995} here. The
 expansion of $\phi$ and $\pi$ into Fourier modes is formally given by:
 \[
-    \phi(\vec x, t) = \int \frac{\dif^3p}{[2\piup]^2} \exp(\iup \vec p \vec x)
+    \phi(\vec x, t) = \int \frac{\dif^3p}{[2\piup]^3} \exp(\iup \vec p \vec x)
     \phi(\vec p, t).
 \]
 This is just the back-transform from the momentum space into spatial space (is
@@ -325,8 +325,163 @@ harmonic oscillator
 \begin{question}
     Why can I do this? Is it because the Hamiltonian looks like the one from
     the harmonic oscillator and one now thinks about the Klein-Gordan field as
-    a field made up of an infinite number of harmonic oscillators?
+    a field made up of an infinite number of harmonic oscillators? Is that why
+    \textcite[(2.25)]{Peskin/QFT/1995} then use $a_{\vec p}$ next, because that
+    creates another harmonic oscillator with momentum $\vec p$?
 \end{question}
+
+I repeat the expansion of the field into Fourier modes:
+\begin{align*}
+    \phi(\vec x, t)
+    &= \int \frac{\dif^3p}{[2\piup]^3} \exp(\iup \vec p \vec x) \phi(\vec p, t).
+    \intertext{%
+        Now I insert the ladder operators. I have not understood why the last
+        exponential has a minus sign in it. It looks like the second summand is
+        the Hermitean conjugate of the first one. This makes $\phi$
+        self-adjoint and therefore real. \textcite[§\,2.3]{Peskin/QFT/1995}
+        cover the real Klein-Gordon field, so I am not sure whether this is
+        correct here as well. According to
+        \textcite[§\,13.2]{Schwabl/Quantenmechanik_fuer_Fortgeschrittene/2008}
+        this is not correct here and I have to use independent operators for
+        creation and annihilation. The complex conjugate field will then have
+        the order reversed. I will use the notation and call the second set of
+        ladder operators $b$. \textcite{Peskin/QFT/1995} in contrast to
+        \textcite{Schwabl/Quantenmechanik_fuer_Fortgeschrittene/2008} have the
+        minus sign at different positions as well. I will stick with the latter
+        one since that really is for the relativistic Klein-Gordan field.
+    }
+    \phi(\vec x, t)
+    &= \int \frac{\dif^3p}{[2\piup]^3}
+    \frac{1}{\sqrt{2 \omega_{\vec p}}} \sbr{
+        a_{\vec p} \exp(- \iup \vec p \vec x)
+        + b_{\vec p}^\dagger \exp(\iup \vec p \vec x)
+    }
+    \intertext{%
+        Since the integral is symmetric in $\vec p$, one can factor out the
+        exponential by using $-\vec p$ in those parts.
+    }
+    \phi(\vec x, t)
+    &= \int \frac{\dif^3p}{[2\piup]^3}
+    \frac{1}{\sqrt{2 \omega_{\vec p}}} \sbr{
+        a_{-\vec p}
+        + b_{\vec p}^\dagger
+    } \exp(\iup \vec p \vec x)
+    \intertext{%
+        The complex conjugate, or rather the Hermitian conjugate of this
+        expression can now be computed to give the other part.
+    }
+    \phi^*(\vec x, t)
+    &= \int \frac{\dif^3p}{[2\piup]^3}
+    \frac{1}{\sqrt{2 \omega_{\vec p}}} \sbr{
+        b_{-\vec p}
+        + a_{\vec p}^\dagger
+    } \exp(\iup \vec p \vec x)
+\end{align*}
+
+The same thing can then be done for the momentum densities as well:
+\begin{align*}
+    \pi(\vec x, t)
+    &= - \iup \int \frac{\dif^3p}{[2\piup]^3} \sqrt{\frac{\omega_{\vec p}}{2}}
+    \sbr{a_{- \vec p} - b_{\vec p}^\dagger} \exp(\iup \vec p \vec x) \\
+    \pi^*(\vec x, t)
+    &= - \iup \int \frac{\dif^3p}{[2\piup]^3} \sqrt{\frac{\omega_{\vec p}}{2}}
+    \sbr{b_{- \vec p} - a_{\vec p}^\dagger} \exp(\iup \vec p \vec x)
+\end{align*}
+
+\begin{small}
+    The real number constant $\piup$ and the momentum density $\pi$ can be told
+    apart since the former is in upright font whereas the latter is in italic
+    font. This is done according to ISO standard 80000-2
+    \parencite{iso_80000-2:2009}.
+\end{small}
+
+\paragraph{Hamilton operator in ladder operators}
+
+The next step is to take those four expressions derived here and build up the
+Hamilton operator with them. The last version that I had for the Hamiltonian
+was the following:
+\begin{align*}
+    H
+    &= \int \dif^3 x \sbr{\pi^* \pi + \vnabla \phi^* \cdot \vnabla \phi + m^2 \phi^* \phi}.
+    \intertext{%
+        Now I insert all the four expressions into there. It is crucial to
+        choose different integration variables in the products since those are
+        independent of each other. In the following I just replaced everything
+        with the Fourier expansions, nothing is reordered yet.
+    }
+    &= \int \dif^3 x \, \bigg[
+    \\&\qquad
+    \iup \int \frac{\dif^3p}{[2\piup]^3} \sqrt{\frac{\omega_{\vec p}}{2}}
+    \sbr{b_{- \vec p} - a_{\vec p}^\dagger} \exp(\iup \vec p \vec x)
+    \iup \int \frac{\dif^3p'}{[2\piup]^3} \sqrt{\frac{\omega_{\vec p'}}{2}}
+    \sbr{a_{- \vec p'} - b_{\vec p'}^\dagger} \exp(\iup \vec p' \vec x)
+    \\&\qquad
+        + \vnabla
+\int \frac{\dif^3p}{[2\piup]^3}
+    \frac{1}{\sqrt{2 \omega_{\vec p}}} \sbr{
+        b_{-\vec p}
+        + a_{\vec p}^\dagger
+    } \exp(\iup \vec p \vec x)
+        \cdot
+        \vnabla 
+    \int \frac{\dif^3p'}{[2\piup]^3}
+    \frac{1}{\sqrt{2 \omega_{\vec p'}}} \sbr{
+        a_{-\vec p'}
+        + b_{\vec p'}^\dagger
+    } \exp(\iup \vec p' \vec x)
+    \\&\qquad
+        + m^2
+    \int \frac{\dif^3p}{[2\piup]^3}
+    \frac{1}{\sqrt{2 \omega_{\vec p}}} \sbr{
+        b_{-\vec p}
+        + a_{\vec p}^\dagger
+    } \exp(\iup \vec p \vec x)
+    \int \frac{\dif^3p'}{[2\piup]^3}
+    \frac{1}{\sqrt{2 \omega_{\vec p'}}} \sbr{
+        a_{-\vec p'}
+        + b_{\vec p'}^\dagger
+    } \exp(\iup \vec p' \vec x)
+    \\&\qquad
+    \bigg]
+    \intertext{%
+        Now I can bring terms together and make the whole thing more compact.
+    }
+    &= \int \dif^3 x \, \bigg[
+    \\&\qquad
+    - \int \frac{\dif^3p \,\dif^3p'}{[2\piup]^6}
+    \sqrt{\frac{\omega_{\vec p}\omega_{\vec p'}}{4}}
+    \exp\del{\iup [\vec p+\vec p'] \vec x}
+    \sbr{b_{- \vec p} - a_{\vec p}^\dagger}
+    \sbr{a_{- \vec p'} - b_{\vec p'}^\dagger}
+    \\&\qquad
+        + \vnabla
+    \int \frac{\dif^3p}{[2\piup]^3}
+    \frac{1}{\sqrt{2 \omega_{\vec p}}} \sbr{
+        b_{-\vec p}
+        + a_{\vec p}^\dagger
+    } \exp(\iup \vec p \vec x)
+        \cdot
+        \vnabla 
+    \int \frac{\dif^3p'}{[2\piup]^3}
+    \frac{1}{\sqrt{2 \omega_{\vec p'}}} \sbr{
+        a_{-\vec p'}
+        + b_{\vec p'}^\dagger
+    } \exp(\iup \vec p' \vec x)
+    \\&\qquad
+        + m^2
+    \int \frac{\dif^3p}{[2\piup]^3}
+    \frac{1}{\sqrt{2 \omega_{\vec p}}} \sbr{
+        b_{-\vec p}
+        + a_{\vec p}^\dagger
+    } \exp(\iup \vec p \vec x)
+    \int \frac{\dif^3p'}{[2\piup]^3}
+    \frac{1}{\sqrt{2 \omega_{\vec p'}}} \sbr{
+        a_{-\vec p'}
+        + b_{\vec p'}^\dagger
+    } \exp(\iup \vec p' \vec x)
+    \\&\qquad
+    \bigg]
+\end{align*}
 
 \subsection{Symmetry}
 
