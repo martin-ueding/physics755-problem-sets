@@ -204,7 +204,7 @@ With this, I can find the Hamiltonian:
 \end{align*}
 This is exactly the Hamiltonian given in Equation~(7) on the problem set.
 
-\paragraph{Heisenberg equation of motion}
+\paragraph{Heisenberg equations of motion}
 
 Now that the Hamiltonian is derived, one can use the time evolution in the
 Heisenberg picture to get the equations of motion for the two fields. This is
@@ -255,14 +255,74 @@ with the $\phi(\vec x, t)$.
     &= \iup \pi^*(\vec x, t).
 \end{align*}
 This looks similar to the treatment of the real Klein-Gordon field by
-\textcite[25]{Peskin/QFT/1995}.
+\textcite[25]{Peskin/QFT/1995}. The time evolution of the complex conjugate
+$\phi^*$ is given by $\pi(\vec x, t)$ as this whole derivation can be complex
+conjugated ($H^* = H$).
+
+Now I need to perform an analogue calculation for $\dot\pi$:
+\begin{align*}
+    \iup \dot\pi(\vec x, t)
+    &= \sbr{\pi(\vec x, t), } \\
+    &= \sbr{\pi(\vec x, t),
+        \int \dif^3 x' \sbr{ \pi^* \pi + \vnabla \phi^* \cdot \vnabla \phi + m^2 \phi^* \phi}
+    } \\
+    \intertext{%
+        Again I move the integration out of the commutator and yield three
+        independent ones:
+    }
+    &= \int \dif^3 x' \sbr{
+        \sbr{\pi(\vec x, t), \pi^* \pi}
+        + \sbr{\pi(\vec x, t), \vnabla \phi^* \cdot \vnabla \phi}
+        + m^2 \sbr{\pi(\vec x, t), \phi^* \phi}
+    }
+    \intertext{%
+        The commutators are now different from the previous case with $\phi$.
+        (1) This commutator is zero, since the momentum density commutes with
+        itself at any point in time. (2) This will need partial integration to
+        isolate $\phi$ which does not commute with $\pi$. (3) The last term is
+        like the first term of the previous derivation.
+    }
+    &= \eval{\vnabla \phi^* \sbr{\pi(\vec x, t), \phi}}_{\vec x' = \partial
+\R^3} + \int \dif^3 x' \sbr{
+        - \laplace \phi^* \sbr{\pi(\vec x, t), \phi}
+        + m^2 \phi^* \sbr{\pi(\vec x, t), \phi(\vec x', t)}
+    }
+    \intertext{%
+        (1) The surface term in front will vanish on the boundary at infinity
+        because everything is assumed to be normalizable and must therefore
+        decay faster than $1/\sqrt r$. I will drop that term. (2) The
+        commutator is the negative of the commutation relation given before.
+        (3) That term is now the same as the second term and I will factor that
+        out.
+    }
+    &= \int \dif^3 x' \sbr{\laplace \phi^* - m^2 \phi^*}
+    \sbr{\phi(\vec x, t), \pi(\vec x, t)}
+    \intertext{%
+        That last remaining commutator gives a $\deltaup$-distribution again. I
+        integrate over it to remove the $\vec x'$ and I obtain
+    }
+    &= [\laplace - m^2]\phi^*(\vec x, t)
+\end{align*}
+This also looks similar to the results of \textcite[25]{Peskin/QFT/1995}.
+
+\paragraph{Klein-Gordon equation}
+
+Both of those results have to be combined to give the equation of motion for
+the field $\phi$. Taking the time derivative of the first equation and
+inserting the second yields
+\[
+    \ddot \phi(\vec x, t) = [\laplace - m^2] \phi(\vec x, t).
+\]
+as well as the complex conjugate of this equation. This indeed is the
+classical Klein-Gordon equation \parencite[(2.7)]{Peskin/QFT/1995} and the
+quantum mechanical one \parencite[(2.45)]{Peskin/QFT/1995}.
 
 \subsection{Fourier modes}
 
 \subsection{Symmetry}
 
 In all terms only $X^*X = |X|^2$ comes up. A constant phase factor would cancel
-out in those and therefore not change the Action, Lagrangian or the
+out in those and therefore not change the action, Lagrangian or the
 Hamiltonian. The field and its derivatives and therefore the coordinates would
 change. But the equations of motions would retain their form.
 
