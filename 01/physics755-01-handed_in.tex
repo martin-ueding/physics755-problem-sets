@@ -66,40 +66,40 @@ Yes $\Box$ \hspace{2cm} No $\Box$
 \paragraph{Conjugate momenta}
 
 I have given the following action:
-\[
+\begin{equation}
     S = \int \dif^4 x \, \sbr{
         \partial_\mu \phi^* \partial^\mu \phi - m^2 \phi^* \phi
     }.
-\]
+\end{equation}
 The scoping of the $\partial$ is not perfectly clear, I assume that it will
 only act on the symbol directly after it. So that the first term in the action
 density is the four-gradient squared. I will use GR notation for that:
-\[
+\begin{equation}
     S = \int \dif^4 x \, \sbr{
         \phi^*_{,\mu} \phi^{,\mu} - m^2 \phi^* \phi
     }.
-\]
+\end{equation}
 
 Now I use
-\[
+\begin{equation}
     S = \int \dif t \, L
     \eqnsep
     L = \int \dif^3 x \, \mathscr L
-\]
+\end{equation}
 where $\mathscr L$ is the Lagrange density and obtain the Lagrange function
 $L$:
-\[
+\begin{equation}
     L = \int \dif^3 x \, \sbr{
         \phi^*_{,\mu} \phi^{,\mu} - m^2 \phi^* \phi
     }.
-\]
+\end{equation}
 
 The conjugate momentum densities are then:
-\[
+\begin{equation}
     \pi = \pd{L}{\dot \phi} = \dot \phi^{*}
     \eqnsep
     \pi^* = \pd{L}{\dot \phi^*} = \dot \phi.
-\]
+\end{equation}
 
 \paragraph{Commutation relations}
 
@@ -132,30 +132,30 @@ a way that gives the correct result. Please tell me whether it is the correct
 reasoning.
 
 The Legendre transformation in classical mechanics is
-\[
+\begin{equation}
     H = \pi_i \dot q^i - L.
-\]
+\end{equation}
 The $i$ denote the finite number of degrees of freedom. In a field theory, the
 degrees of freedoms are infinite, and therefore one has $q_i \to q(x)$ and $x$
 labels the degrees of freedom. Now $q(x)$ is the \emph{one} field in
 consideration. There is a momentum $\pi(x)$ which also has the same degrees of
 freedom. There still has to be a sum over all the degrees of freedom, which is
 now done by integration over $x$.
-\[
+\begin{equation}
     H = \int \dif x \, \pi(x) \dot q(x) - L.
-\]
+\end{equation}
 
 Here we have two fields, $\phi$ and $\phi^*$. Therefore, there are multiple
 terms in the Hamiltonian. The equation looks really similar:
-\[
+\begin{equation}
     H = \int \dif x \, \pi_a(x) \dot \phi^a(x) - L.
-\]
+\end{equation}
 Here, the index $a$ numbers the different fields ($a = 1, 2$) like you (R.\,L.)
 did in the exercise class on 2015-04-17. So the index summation is over the
 different fields. The summing over $i$ is now an integral over $x$.
 
 With this, I can find the Hamiltonian:
-\begin{align*}
+\begin{align}
     H
     &= \int \dif^3 x \sbr{\pi \dot \phi + \pi^* \dot\phi^* - \mathscr L(\phi, \dif \phi(\phi,
     \pi))} \\
@@ -181,7 +181,7 @@ With this, I can find the Hamiltonian:
         part of the first summand. I am left with
     }
     &= \int \dif^3 x \sbr{ \pi^* \pi + \vnabla \phi^* \cdot \vnabla \phi + m^2 \phi^* \phi}.
-\end{align*}
+\end{align}
 This is exactly the Hamiltonian given in Equation~(7) on the problem set.
 
 \paragraph{Heisenberg equations of motion}
@@ -195,7 +195,7 @@ plugging in into
 for given operator $O$ \parencite[(2.44)]{Peskin/QFT/1995}. I can insert $O =
 \phi$ and $O = \pi$ to get the Hamiltonian equations of motions. I will start
 with the $\phi(\vec x, t)$.
-\begin{align*}
+\begin{align}
     \iup \dot\phi(\vec x, t)
     &= \sbr{\phi(\vec x, t), H} \\
     \intertext{%
@@ -233,14 +233,14 @@ with the $\phi(\vec x, t)$.
         Now I perform the integration and obtain
     }
     &= \iup \pi^*(\vec x, t).
-\end{align*}
+\end{align}
 This looks similar to the treatment of the real Klein-Gordon field by
 \textcite[25]{Peskin/QFT/1995}. The time evolution of the complex conjugate
 $\phi^*$ is given by $\pi(\vec x, t)$ as this whole derivation can be complex
 conjugated ($H^* = H$).
 
 Now I need to perform an analogue calculation for $\dot\pi$:
-\begin{align*}
+\begin{align}
     \iup \dot\pi(\vec x, t)
     &= \sbr{\pi(\vec x, t), } \\
     &= \sbr{\pi(\vec x, t),
@@ -282,7 +282,7 @@ Now I need to perform an analogue calculation for $\dot\pi$:
         integrate over it to remove the $\vec x'$ and I obtain
     }
     &= [\laplace - m^2]\phi^*(\vec x, t).
-\end{align*}
+\end{align}
 This also looks similar to the results of \textcite[25]{Peskin/QFT/1995}.
 
 \paragraph{Klein-Gordon equation}
@@ -290,9 +290,9 @@ This also looks similar to the results of \textcite[25]{Peskin/QFT/1995}.
 Both of those results have to be combined to give the equation of motion for
 the field $\phi$. Taking the time derivative of the first equation and
 inserting the second yields
-\[
+\begin{equation}
     \ddot \phi(\vec x, t) = [\laplace - m^2] \phi(\vec x, t).
-\]
+\end{equation}
 as well as the complex conjugate of this equation. This indeed is the
 classical Klein-Gordon equation \parencite[(2.7)]{Peskin/QFT/1995} and the
 quantum mechanical one \parencite[(2.45)]{Peskin/QFT/1995}.
@@ -303,10 +303,10 @@ quantum mechanical one \parencite[(2.45)]{Peskin/QFT/1995}.
 
 I will go along the lines of \textcite[§\,2.3]{Peskin/QFT/1995} here. The
 expansion of $\phi$ and $\pi$ into Fourier modes is formally given by:
-\[
+\begin{equation}
     \phi(\vec x, t) = \int \frac{\dif^3p}{[2\piup]^3} \exp(\iup \vec p \vec x)
     \phi(\vec p, t).
-\]
+\end{equation}
 This is just the back-transform from the momentum space into spatial space (is
 that even a word?). The real task is to find a representation for $\phi(\vec p,
 t)$. In momentum space, the Klein-Gordon equation looks just like the equation
@@ -314,13 +314,13 @@ of the harmonic oscillator \parencite[(2.21)]{Peskin/QFT/1995}. The field and
 the momentum can then be written with ladder operators in analogy and the
 harmonic oscillator
 \parencite[(2.23)]{Peskin/QFT/1995}:
-\[
+\begin{equation}
     \phi = \frac{1}{2 \omega} [a + a^\dagger]
     \eqnsep
     p = - \iup \sqrt{\frac{\omega}{2}} [a - a^\dagger]
     \eqnsep
     \omega := \sqrt{|\vec p|^2 + m^2}.
-\]
+\end{equation}
 
 \begin{question}
     Why can I do this? Is it because the Hamiltonian looks like the one from
@@ -331,7 +331,7 @@ harmonic oscillator
 \end{question}
 
 I repeat the expansion of the field into Fourier modes:
-\begin{align*}
+\begin{align}
     \phi(\vec x, t)
     &= \int \frac{\dif^3p}{[2\piup]^3} \exp(\iup \vec p \vec x) \phi(\vec p, t).
     \intertext{%
@@ -360,6 +360,7 @@ I repeat the expansion of the field into Fourier modes:
         Since the integral is symmetric in $\vec p$, one can factor out the
         exponential by using $-\vec p$ in those parts.
     }
+    \label{eq:fourier-phi}
     \phi(\vec x, t)
     &= \int \frac{\dif^3p}{[2\piup]^3}
     \frac{1}{\sqrt{2 \omega_{\vec p}}} \sbr{
@@ -370,23 +371,26 @@ I repeat the expansion of the field into Fourier modes:
         The complex conjugate, or rather the Hermitian conjugate of this
         expression can now be computed to give the other part.
     }
+    \label{eq:fourier-phi-cc}
     \phi^*(\vec x, t)
     &= \int \frac{\dif^3p}{[2\piup]^3}
     \frac{1}{\sqrt{2 \omega_{\vec p}}} \sbr{
         b_{-\vec p}
         + a_{\vec p}^\dagger
     } \exp(\iup \vec p \vec x)
-\end{align*}
+\end{align}
 
 The same thing can then be done for the momentum densities as well:
-\begin{align*}
+\begin{align}
+    \label{eq:fourier-pi}
     \pi(\vec x, t)
     &= - \iup \int \frac{\dif^3p}{[2\piup]^3} \sqrt{\frac{\omega_{\vec p}}{2}}
     \sbr{a_{- \vec p} - b_{\vec p}^\dagger} \exp(\iup \vec p \vec x) \\
+    \label{eq:fourier-pi-cc}
     \pi^*(\vec x, t)
     &= - \iup \int \frac{\dif^3p}{[2\piup]^3} \sqrt{\frac{\omega_{\vec p}}{2}}
     \sbr{b_{- \vec p} - a_{\vec p}^\dagger} \exp(\iup \vec p \vec x)
-\end{align*}
+\end{align}
 
 \begin{small}
     The real number constant $\piup$ and the momentum density $\pi$ can be told
@@ -398,6 +402,7 @@ The same thing can then be done for the momentum densities as well:
 \paragraph{Hamilton operator in ladder operators}
 
 \newcommand\Lad{a_{\vec p}^\dagger}
+\newcommand\Lamd{a_{-\vec p}^\dagger}
 \newcommand\Lam{a_{-\vec p}}
 \newcommand\La{a_{\vec p}}
 \newcommand\Lbd{b_{\vec p}^\dagger}
@@ -408,7 +413,7 @@ The same thing can then be done for the momentum densities as well:
 The next step is to take those four expressions derived here and build up the
 Hamilton operator with them. The last version that I had for the Hamiltonian
 was the following:
-\begin{align*}
+\begin{align}
     H
     &= \int \dif^3 x \sbr{\pi^* \pi + \vnabla \phi^* \cdot \vnabla \phi + m^2 \phi^* \phi}.
     \intertext{%
@@ -417,13 +422,16 @@ was the following:
         independent of each other. In the following I just replaced everything
         with the Fourier expansions, nothing is reordered yet.
     }
+    \nonumber
     &= \int \dif^3 x \, \bigg[
     \\&\qquad
+    \nonumber
     \iup \int \frac{\dif^3p}{[2\piup]^3} \sqrt{\frac{\omega_{\vec p}}{2}}
     \sbr{b_{- \vec p} - a_{\vec p}^\dagger} \exp(\iup \vec p \vec x)
     \iup \int \frac{\dif^3p'}{[2\piup]^3} \sqrt{\frac{\omega_{\vec p'}}{2}}
     \sbr{a_{- \vec p'} - b_{\vec p'}^\dagger} \exp(\iup \vec p' \vec x)
     \\&\qquad
+    \nonumber
         + \vnabla
 \int \frac{\dif^3p}{[2\piup]^3}
     \frac{1}{\sqrt{2 \omega_{\vec p}}} \sbr{
@@ -438,6 +446,7 @@ was the following:
         + b_{\vec p'}^\dagger
     } \exp(\iup \vec p' \vec x)
     \\&\qquad
+    \nonumber
         + m^2
     \int \frac{\dif^3p}{[2\piup]^3}
     \frac{1}{\sqrt{2 \omega_{\vec p}}} \sbr{
@@ -454,14 +463,15 @@ was the following:
     \intertext{%
         Now I can bring terms together and make the whole thing more compact.
     }
+    \nonumber
     &= \int \dif^3 x \, \bigg[
-    \\&\qquad
+    \\\nonumber&\qquad
     - \int \frac{\dif^3p \,\dif^3p'}{[2\piup]^6}
     \frac{\sqrt{\omega_{\vec p}\omega_{\vec p'}}}2
     \exp\del{\iup [\vec p+\vec p'] \vec x}
     \sbr{b_{- \vec p} - a_{\vec p}^\dagger}
     \sbr{a_{- \vec p'} - b_{\vec p'}^\dagger}
-    \\&\qquad
+    \\\nonumber&\qquad
     +
     \int \frac{\dif^3p \, \dif^3p'}{[2\piup]^6}
     \frac{1}{2 \sqrt{\omega_{\vec p} \omega_{\vec p'}}}
@@ -478,7 +488,7 @@ was the following:
         \cdot
     \vnabla
     \exp(\iup \vec p' \vec x)
-    \\&\qquad
+    \\\nonumber&\qquad
         + m^2
     \int \frac{\dif^3p \, \dif^3p'}{[2\piup]^6}
     \frac{1}{2 \sqrt{\omega_{\vec p} \omega_{\vec p'}}}
@@ -499,22 +509,23 @@ was the following:
         differentiation, the exponentials are the same in every term as well,
         so I gather those in the first line as well.
     }
+    \nonumber
     &= \int \dif^3 x \,
     \frac{\dif^3p \,\dif^3p'}{[2\piup]^6} \,
     \exp\del{\iup [\vec p+\vec p'] \vec x}
     \bigg[
-    \\&\qquad
+    \\\nonumber&\qquad
     -
     \frac{\sqrt{\omega_{\vec p}\omega_{\vec p'}}}2
     \sbr{b_{- \vec p} - a_{\vec p}^\dagger}
     \sbr{a_{- \vec p'} - b_{\vec p'}^\dagger}
-    \\&\qquad
+    \\\nonumber&\qquad
     +
     \frac{1}{2 \sqrt{\omega_{\vec p} \omega_{\vec p'}}}
     [\iup \vec p \cdot \iup \vec p']
     \sbr{ b_{-\vec p} + a_{\vec p}^\dagger }
     \sbr{ a_{-\vec p'} + b_{\vec p'}^\dagger }
-    \\&\qquad
+    \\\nonumber&\qquad
     + m^2
     \frac{1}{2 \sqrt{\omega_{\vec p} \omega_{\vec p'}}}
     \sbr{ b_{-\vec p} + a_{\vec p}^\dagger }
@@ -525,31 +536,33 @@ was the following:
         Now the second and third summand share a lot and I can factor that out
         again.
     }
+    \nonumber
     &= \int \dif^3 x \,
     \frac{\dif^3p \,\dif^3p'}{[2\piup]^6} \,
     \exp\del{\iup [\vec p+\vec p'] \vec x}
     \bigg[
-    \\&\qquad
+    \\\nonumber&\qquad
     -
     \frac{\sqrt{\omega_{\vec p}\omega_{\vec p'}}}2
     \sbr{b_{- \vec p} - a_{\vec p}^\dagger}
     \sbr{a_{- \vec p'} - b_{\vec p'}^\dagger}
-    \\&\qquad
+    \\\nonumber&\qquad
     +
     \frac{- \vec p \vec p' + m^2}{2 \sqrt{\omega_{\vec p} \omega_{\vec p'}}}
     \sbr{ b_{-\vec p} + a_{\vec p}^\dagger }
     \sbr{ a_{-\vec p'} + b_{\vec p'}^\dagger }
-    \\&\qquad
+    \\&\quad
     \bigg]
     \intertext{%
         Now that looks a lot like the formula by
         \textcite[(2.31)]{Peskin/QFT/1995}, just that I have a factor 2 more
         then they do. I am not sure how I or they got that, but in case
         something is off by a factor of two later on, this is where it started.
-        There is only one function that depends on $\vec x$, and that is the
-        exponential. That integration will give me a $\deltaup(\vec p + \vec
-        p')$. I can then carry out the integration over $\vec p'$ to eliminate
-        it by applying $\vec p' \to - \vec p$.
+        Maybe it is the factor $1/2$ they have in their Lagrange density of the
+        real Klein-Gordon field. There is only one function that depends on
+        $\vec x$, and that is the exponential. That integration will give me a
+        $\deltaup(\vec p + \vec p')$. I can then carry out the integration over
+        $\vec p'$ to eliminate it by applying $\vec p' \to - \vec p$.
     }
     &= \int \frac{\dif^3p}{[2\piup]^3} \,
     \sbr{
@@ -601,7 +614,7 @@ was the following:
     }
     &= \int \frac{\dif^3p}{[2\piup]^3} \, \omega_{\vec p}
     \sbr{\Lad\La + \Lbd\Lb}
-\end{align*}
+\end{align}
 Now the whole thing is symmetric in $a$ and $b$ which is nice. There is no zero
 point energy like the real Klein-Gordan field seems to have
 \parencite[(2.31)]{Peskin/QFT/1995}.
@@ -614,12 +627,220 @@ energy $\omega_{\vec p}$.
 
 \subsection{Symmetry}
 
-In all terms only $X^*X = |X|^2$ comes up. A constant phase factor would cancel
-out in those and therefore not change the action, Lagrangian or the
-Hamiltonian. The field and its derivatives and therefore the coordinates would
-change. But the equations of motions would retain their form.
+\paragraph{Global symmetry}
+
+In all terms only $X^*X = |X|^2$ comes up, where $X = \phi, \dot\phi, \pi$. A
+constant phase factor would cancel out in those and therefore not change the
+action, Lagrangian or the Hamiltonian. The field and its derivatives and
+therefore the coordinates would change. But the equations of motions would
+retain their form.
+
+This can also be shown explicitly using Noether's theorem. The infinitesimal
+version of the transformation is given by
+\begin{equation}
+    \phi \to \tilde\phi = \phi + \iup \alpha \phi + \mathrm O(\alpha^2).
+\end{equation}
+The Lagrangian density then transforms like this:
+\begin{align}
+    \mathscr L
+    &= \phi^*_{,\mu} \phi^{,\mu} - m^2 \phi^* \phi
+    \intertext{%
+        Now I replace $\phi$ with $\tilde\phi$.
+    }
+    &= [1+\iup\alpha] \tilde\phi^*_{,\mu} [1 - \iup\alpha] \tilde\phi^{,\mu} -
+    m^2 [1 + \iup\alpha] \phi^* [1 - \iup\alpha] \phi + \mathrm O(\alpha^2) \\
+    &= [1+\alpha^2] \tilde\phi^*_{,\mu}  \tilde\phi^{,\mu} -
+    m^2 [1 + \alpha^2] \phi^* \phi + \mathrm O(\alpha^2)
+    \intertext{%
+        The $\alpha^2$ terms can be put into the Landau symbol like this:
+    }
+    &= \tilde\phi^*_{,\mu}  \tilde\phi^{,\mu} - m^2 \phi^* \phi + \mathrm O(\alpha^2)
+\end{align}
+The Lagrangian density has not changed in first order, just like argued in the
+in the first paragraph.
+
+\paragraph{Conserved quantity}
+
+Using this, I can compute the conserved current. Since the Lagrangian density
+is unchanged, $\mathscr J = 0$ (that is a script $J$) That is the Noether
+current, right? The conserved current $j$ then is:
+\begin{equation}
+    j^\mu =
+    \pd{\mathscr L}{\phi_{,\mu}} \iup \phi
+    - \pd{\mathscr L}{\phi_{,\mu}^*} \iup \phi^*
+    = \iup
+    \sbr{
+        \pd{\mathscr L}{\phi_{,\mu}} \phi
+        - \pd{\mathscr L}{\phi_{,\mu}^*} \phi^*
+    }
+\end{equation}
+There are two terms because I have to independent fields that I have to take
+account. The minus comes from the complex conjugation of the $\iup$.
+
+\paragraph{Conserved charge}
+
+The zeroth component of the conserved current density, $j^0$ is the charge
+density. The spatial integral over this charge is the total charge:
+\begin{equation}
+    Q = \int \dif^3 x \, j^0.
+\end{equation}
+Here the charge density is given by:
+\begin{equation}
+    j^\mu
+    = \iup
+    \sbr{
+        \pd{\mathscr L}{\dot\phi} \phi
+        - \pd{\mathscr L}{\dot\phi^*} \phi^*
+    }
+    = \iup \sbr{ \pi \phi - \pi^* \phi^* }
+\end{equation}
+From this, the conserved charge is
+\begin{equation}
+    \label{eq:mein-Q}
+    Q = \iup \int \dif^3 x \sbr{ \pi \phi - \pi^* \phi^* },
+\end{equation}
+which differs by a factor of $-2$ from Equation~(8) on the problem set. Also
+the order of $\pi$ and $\phi$ is different. Those two do not commute, both
+would give a $\iup\deltaup(x)$, except that the complex conjugates would give
+a $-\iup\deltaup(x)$. Those do not cancel.
+
+\begin{question}
+    How do I derive the conserved charge given in Equation~(8) on the problem
+    set?
+\end{question}
 
 \subsection{Conserved charge}
+
+For some reason my conserved charge, Equation~\eqref{eq:mein-Q}, differs from
+the one given on the problem set. I will continue to use the one from the
+problem set. The conserved charge given is
+\begin{align}
+    Q
+    &= \int \dif^3 x \, \frac\iup2 \sbr{\phi^* \pi^* - \pi\phi}
+    \intertext{%
+        Now I can insert the expansions of the field and momentum density in
+        terms of ladder operators from Equations~\eqref{eq:fourier-phi},
+        \eqref{eq:fourier-phi-cc}, \eqref{eq:fourier-pi} and
+        \eqref{eq:fourier-pi-cc}.
+    }
+    \nonumber
+    &= \frac12 \int \dif^3 x \,
+    \int \frac{\dif^3p \, \dif^3 p'}{[2\piup]^6}
+    \sqrt{\frac{\omega_{\vec p'}}{\omega_{\vec p}}}
+    \exp\del{\iup [\vec p + \vec p'] \vec x} \\
+    %
+    &\qquad \times
+    \sbr{
+        \sbr{b_{-\vec p} + a_{\vec p}^\dagger}
+        \sbr{b_{-\vec p'} - a_{\vec p'}^\dagger}
+        -
+        \sbr{a_{-\vec p'} - b_{\vec p'}^\dagger}
+        \sbr{a_{-\vec p} + b_{\vec p}^\dagger}
+    }
+    \intertext{%
+        The integration over $\vec x$ again yields a $\deltaup(\vec p + \vec
+        p')$-distribution that sets $\vec p' := - \vec p$.
+    }
+    &= \frac12
+    \int \frac{\dif^3p}{[2\piup]^3}
+    \sbr{
+        \sbr{b_{-\vec p} + a_{\vec p}^\dagger}
+        \sbr{b_{\vec p} - a_{-\vec p}^\dagger}
+        -
+        \sbr{a_{\vec p} - b_{-\vec p}^\dagger}
+        \sbr{a_{-\vec p} + b_{\vec p}^\dagger}
+    }
+    \intertext{%
+        Now I have to compute the products of all that again, just like in the
+        derivation of the Hamiltonian.
+    }
+    &= \frac12
+    \int \frac{\dif^3p}{[2\piup]^3}
+    \sbr{
+        \Lbm \Lb - \Lbm \Lamd + \Lad \Lb - \Lad \Lamd
+        -
+        \sbr{
+            \La \Lam + \La \Lbd - \Lbmd \Lam - \Lbmd \Lbd
+        }
+    } \\
+    \intertext{%
+        I factor out the minus sign.
+    }
+    &= \frac12
+    \int \frac{\dif^3p}{[2\piup]^3}
+    \sbr{
+        \Lbm \Lb - \Lbm \Lamd + \Lad \Lb - \Lad \Lamd
+        -
+        \La \Lam - \La \Lbd + \Lbmd \Lam + \Lbmd \Lbd
+    }
+    \intertext{%
+        I sort the terms and commute $a$ with $b$.
+    }
+    &= \frac12
+    \int \frac{\dif^3p}{[2\piup]^3}
+    \sbr{
+        - \La \Lam
+        - \La \Lbd
+        - \Lad \Lamd
+        + \Lad \Lb
+        + \Lam \Lbmd
+        - \Lamd \Lbm
+        + \Lbmd \Lbd
+        + \Lbm \Lb
+    }
+    \intertext{%
+        The bounds of the integration is symmetric, so I can move the minus
+        sign in the $\vec p$ to the last term or remove it completely.
+    }
+    &= \frac12
+    \int \frac{\dif^3p}{[2\piup]^3}
+    \sbr{
+        - \La \Lam
+        - \Lad \Lamd
+        + \Lad \Lb
+        - \Lad \Lb
+        + \La \Lbd
+        - \La \Lbd
+        + \Lbd \Lbmd
+        + \Lb \Lbm
+    }
+    \intertext{%
+        The mixed term vanish now.
+    }
+    &= \frac12
+    \int \frac{\dif^3p}{[2\piup]^3}
+    \sbr{
+        - \La \Lam
+        - \Lad \Lamd
+        + \Lbd \Lbmd
+        + \Lb \Lbm
+    }
+    \intertext{%
+        Now there is nothing I directly see to go on. However, if $a_{- \vec p}
+        = a_{\vec p}^\dagger$, then I could further simplify it. It makes sense
+        somewhat: Creating a particle with opposite wavenumber is the same as
+        removing one particle with the actual wavenumber. So I can do this?
+    }
+    &= \frac12
+    \int \frac{\dif^3p}{[2\piup]^3}
+    \sbr{
+        - \La \Lad
+        - \Lad \La
+        + \Lbd \Lb
+        + \Lb \Lbd
+    } \\
+    \intertext{%
+        I shifted the minus sign in the momentum from one operator to the other
+        with the argument of the symmetric integration bounds. If I had shifted
+        them in another way around before, I would now be done and have
+    }
+    &= \int \frac{\dif^3p}{[2\piup]^3}
+    \sbr{ - n_{a \vec p} + n_{b \vec p} }.
+\end{align}
+$n$ is the occupation number operator $a^\dagger a$. That means that the
+particles $a$ have charge $-1$ and the particles $b$ have charge $1$. I could
+have chosen the signs differently and arrived at the charges the other way
+around as well.
 
 \subsection{Two fields}
 
