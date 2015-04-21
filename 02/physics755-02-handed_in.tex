@@ -149,6 +149,163 @@ In SO(3) we have $p = 3$ and $q = 0$. Therefore the metric tensor is trivial
 with $\eta = \tens 1_3$. The matrices have three degrees of freedom which
 correspond to say the Euler angles.
 
+\section{Generators for Lorentz group}
+
+\paragraph{Corresponding generators}
+
+I am a little puzzled by this problem. It introduces the $\tens m$ as well as
+the $\tens L$ which seem to be the exact same things. So to me it seems $\tens
+m_{[\mu\nu]} = \tens L_{[\mu\nu]}$, or with indices it is $L_{[\mu\nu]}{}^i{}_j
+= m_{[\mu\nu]}{}^i{}_j$.
+
+\paragraph{Commutation relation}
+
+The first step is to write the $\tens L$ as $\tens m$, nothing fancy if the
+above identification is correct.
+\begin{align*}
+    \sbr{\tens L_{\mu\nu}, \tens L_{\rho\sigma}}^\alpha{}_\beta
+    &= \sbr{\tens m_{\mu\nu}, \tens m_{\rho\sigma}}^\alpha{}_\beta
+    \intertext{%
+        Then I can write out the matrix multiplication from the commutator.
+    }
+    &= m_{\mu\nu}{}^\alpha{}_\gamma m_{\rho\sigma}{}^\gamma{}_\beta
+    - m_{\rho\sigma}{}^\alpha{}_\gamma m_{\mu\nu}{}^\gamma{}_\beta
+    \intertext{%
+        This still fits one one line, so the solution is to expand the $m$ as
+        well in terms of its definition. For that, I will use my idempotent
+        version of the antisymmetrization bracket. This causes the factor of 4
+        in front of everything.
+    }
+    &= 4 \iup
+    \sbr{
+        \deltaup^\alpha_{[\mu} \eta_{\nu]\gamma}
+        \deltaup^\gamma_{[\rho} \eta_{\sigma]\beta}
+        -
+        \deltaup^\alpha_{[\rho} \eta_{\sigma]\gamma}
+        \deltaup^\gamma_{[\mu} \eta_{\nu]\beta}
+    }
+    \intertext{%
+        Now I can execute the middle Kronecker symbol.
+    }
+    &= 4 \iup
+    \sbr{
+        \deltaup^\alpha_{[\mu} \eta_{\nu][\rho} \eta_{\sigma]\beta}
+        -
+        \deltaup^\alpha_{[\rho} \eta_{\sigma][\mu} \eta_{\nu]\beta}
+    }
+    \intertext{%
+        Here comes the point where I have to expand the antisymmetrization
+        brackets again. I start with the second bracket.
+    }
+    &= 2 \iup
+    \sbr{
+        \deltaup^\alpha_{[\mu} \eta_{\nu]\rho} \eta_{\sigma\beta}
+        - \deltaup^\alpha_{[\mu} \eta_{\nu]\sigma} \eta_{\rho\beta}
+        - \deltaup^\alpha_{[\rho} \eta_{\sigma]\mu} \eta_{\nu\beta}
+        + \deltaup^\alpha_{[\rho} \eta_{\sigma]\nu} \eta_{\mu\beta}
+    }
+    \intertext{%
+        And then the first bracket as well.
+    }
+    &= \iup \,
+    \Big[
+          \deltaup^\alpha_{\mu} \eta_{\nu\rho} \eta_{\sigma\beta}
+        - \deltaup^\alpha_{\nu} \eta_{\mu\rho} \eta_{\sigma\beta}
+        %
+        - \deltaup^\alpha_{\mu} \eta_{\nu\sigma} \eta_{\rho\beta}
+        + \deltaup^\alpha_{\nu} \eta_{\mu\sigma} \eta_{\rho\beta}
+        %
+    \\&\qquad
+        - \deltaup^\alpha_{\rho} \eta_{\sigma\mu} \eta_{\nu\beta}
+        + \deltaup^\alpha_{\sigma} \eta_{\rho\mu} \eta_{\nu\beta}
+        %
+        + \deltaup^\alpha_{\rho} \eta_{\sigma\nu} \eta_{\mu\beta}
+        - \deltaup^\alpha_{\sigma} \eta_{\rho\nu} \eta_{\mu\beta}
+    \Big]
+    \intertext{%
+        Now I switch the two $\tens \eta$ in each term.
+    }
+    &= \iup \,
+    \Big[
+          \deltaup^\alpha_{\mu} \eta_{\sigma\beta} \eta_{\nu\rho}
+        - \deltaup^\alpha_{\nu} \eta_{\sigma\beta} \eta_{\mu\rho}
+        %
+        - \deltaup^\alpha_{\mu} \eta_{\rho\beta} \eta_{\nu\sigma}
+        + \deltaup^\alpha_{\nu} \eta_{\rho\beta} \eta_{\mu\sigma}
+        %
+    \\&\qquad
+        - \deltaup^\alpha_{\rho} \eta_{\nu\beta} \eta_{\sigma\mu}
+        + \deltaup^\alpha_{\sigma} \eta_{\nu\beta} \eta_{\rho\mu}
+        %
+        + \deltaup^\alpha_{\rho} \eta_{\mu\beta} \eta_{\sigma\nu}
+        - \deltaup^\alpha_{\sigma} \eta_{\mu\beta} \eta_{\rho\nu}
+    \Big]
+    \intertext{%
+        Now those terms need to be regrouped by the indices in the last
+        $\tens\eta$. The metric tensor is symmetric, so the order of the
+        indices there does not make a difference.
+    }
+    &= \iup \,
+    \Big[
+          \deltaup^\alpha_{\mu} \eta_{\sigma\beta} \eta_{\nu\rho}
+        - \deltaup^\alpha_{\sigma} \eta_{\mu\beta} \eta_{\rho\nu}
+        + \deltaup^\alpha_{\sigma} \eta_{\nu\beta} \eta_{\rho\mu}
+        - \deltaup^\alpha_{\nu} \eta_{\sigma\beta} \eta_{\mu\rho}
+    \\&\qquad
+        + \deltaup^\alpha_{\nu} \eta_{\rho\beta} \eta_{\mu\sigma}
+        - \deltaup^\alpha_{\rho} \eta_{\nu\beta} \eta_{\sigma\mu}
+        + \deltaup^\alpha_{\rho} \eta_{\mu\beta} \eta_{\sigma\nu}
+        - \deltaup^\alpha_{\mu} \eta_{\rho\beta} \eta_{\nu\sigma}
+    \Big]
+    \intertext{%
+        Now I can use the antisymmetrization bracket again for the first terms.
+    }
+    &= 2 \iup
+    \sbr{
+        \deltaup^\alpha_{[\mu} \eta_{\sigma]\beta} \eta_{\nu\rho}
+        + \deltaup^\alpha_{[\sigma} \eta_{\nu]\beta} \eta_{\rho\mu}
+        + \deltaup^\alpha_{[\nu} \eta_{\rho]\beta} \eta_{\mu\sigma}
+        + \deltaup^\alpha_{[\rho} \eta_{\mu]\beta} \eta_{\sigma\nu}
+    }
+    \intertext{%
+        Next is the recognition of the $\tens m$ and from there the $\tens L$.
+        The first two factors always have the indices $\alpha$ and $\beta$. So
+        I can pull those indices out.
+    }
+    &= \iup
+    \sbr{
+        \tens m_{[\mu\sigma]} \eta_{\nu\rho}
+        + \tens m_{[\sigma\nu]} \eta_{\rho\mu}
+        + \tens m_{[\nu\rho]} \eta_{\mu\sigma}
+        + \tens m_{[\rho\mu]} \eta_{\sigma\nu}
+    }^\alpha{}_\beta
+    \intertext{%
+        And since the $L$ and $m$ are the same, I can replace those as well. At
+        the same step, I move the metric tensor in front of the generator.
+    }
+    &= \iup
+    \sbr{
+          \eta_{\nu\rho}   \tens L_{[\mu\sigma]}
+        + \eta_{\rho\mu}   \tens L_{[\sigma\nu]}
+        + \eta_{\mu\sigma} \tens L_{[\nu\rho]}  
+        + \eta_{\sigma\nu} \tens L_{[\rho\mu]}  
+    }^\alpha{}_\beta
+    \intertext{%
+        In order to match the exact notation on the problem set, I will switch
+        indices. The metric tensor is symmetric and the generator is
+        antisymmetric.
+    }
+    &= \iup
+    \sbr{
+          \eta_{\nu\rho}   \tens L_{[\mu\sigma]}
+        - \eta_{\mu\rho}   \tens L_{[\nu\sigma]}
+        - \eta_{\nu\sigma} \tens L_{[\mu\rho]}  
+        + \eta_{\mu\sigma} \tens L_{[\nu\rho]}  
+    }^\alpha{}_\beta
+\end{align*}
+If one removes the indices $\alpha$ and $\beta$ on both sides, this is exactly
+Equation~(13) on the problem set.
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
