@@ -1,0 +1,154 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend, color]{../header}
+\usepackage{../my-boxes}
+
+\usepackage{booktabs}
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{2}
+
+\subject{physics755 -- Quantum Field Theory}
+\ihead{physics755 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\publishers{Group Friday -- Robert Lauktien}
+\ofoot{Group Friday -- Robert Lauktien}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem & achieved points & possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{10} \\
+        \midrule
+        total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\section{Poincaré algebra}
+\label{homework:1}
+
+\subsection{Generators of SO(1, 3) and SO(3)}
+
+The $m^\mu{}_\nu$ and $t^i{}_j$ are the generators in the Physicist's
+convention of hermitian generators since the Taylor expansion contains an
+imaginary unit.
+
+Orthogonal transformations from SO(1, 3), which are Lorentz transformations or
+from SO(3), which are rotations in three dimensions, have to leave the metric
+tensor $\eta$ invariant. I will solve this for the general case of
+$\mathrm{SO}(p, q)$ and relate that to both special cases. The metric of
+interest in those spaces has signature $(p, q)$, that means $p$ positive and
+$q$ negative eigenvalues. Since we are only concerned with special relativity
+here, the metric tensor always has the special form
+\[
+    \tens \eta = \diag(\underbrace{1, \ldots, 1}_\text{$p$ times},
+    \underbrace{-1, \ldots, -1}_\text{$q$ times}).
+\]
+
+Let $\tens A$ be the transformation matrix. Then the invariance of the metric
+is written in index notation as
+\begin{align*}
+    \eta_{ab}
+    &= \eta_{ij} [A\inv]^i{}_a [A\inv]^j{}_b.
+    \intertext{%
+        The transformation can now be written in terms of a generator
+        expression with the generators $\tens T_k$ of the group.
+    }
+    &= \eta_{ij} \exp\del{-\iup \epsilon^k \tens T_k}^i{}_a
+    \exp\del{-\iup \epsilon^k \tens T_k}^j{}_b
+    \intertext{%
+        In the first order of $\vec \epsilon$, this can be linearized to give a
+        form like the one given in the problem statement. For those orthogonal
+        groups, there are multiple generators. Here it suffices to look at one
+        of those generators since they all have the same properties. Linear
+        combinations are still generators, the generators form a vector space.
+        This vector space is the tangent space of the group manifold around the
+        identity element. The problem statement basically has $\epsilon \tens m
+        = \epsilon^k \tens T_k$. I will now just look at one of the generators
+        $\tens T$ without an index.
+    }
+    &= \eta_{ij} \sbr{\deltaup^i_a - \iup \epsilon T^i{}_a}
+    \sbr{\deltaup^j_b - \iup \epsilon T^j{}_b} + \mathrm O(\epsilon^2)
+    \intertext{%
+        Then I can expand those brackets. I will drop the fourth summand since
+        it is of second order already.
+    }
+    &= \eta_{ij} \deltaup^i_a \deltaup^j_b - \iup \epsilon \eta_{ij} 
+    \sbr{T^i{}_a \deltaup^j_b + \deltaup^i_a T^j{}_b}
+    + \mathrm O(\epsilon^2)
+    \intertext{%
+        I will clean up the indices.
+    }
+    &= \eta_{ab} - \iup \epsilon \sbr{\eta_{ib} T^i{}_a + \eta_{aj} T^j{}_b}
+\end{align*}
+This equation now leads to a shorter one:
+\begin{align*}
+    \eta_{ib} T^i{}_a + \eta_{aj} T^j{}_b &= 0.
+    \intertext{%
+        I can even pull down the index and write this as:
+    }
+    T_{ba} + T_{ab} &= 0.
+\end{align*}
+
+Using the (anti)symmetrization notation by
+\textcite{penrose-road_to_reality} in the idenpotent form, this can be
+written even shorter as:
+\[
+    T_{(ab)} = 0
+    \iff
+    \frac1{2!} \sbr{T_{ab} + T_{ba}} = 0.
+\]
+The left side can be read as “the symmetric part of $\tens T$ is zero”. That
+means that $\tens T$ is completely antisymmetric, which is what the other
+equations have been saying all along.
+
+Generators are generally without a trace, which is automatically fulfilled by
+an antisymmetric tensor. Together with
+\[
+    \det(\exp(\tens A)) = \exp(\tr(\tens A))
+\]
+the vanishing trace also means that the determinant is unity, which is required
+by a special Lorentz transformation.
+
+So the requirement for the tensors $\tens m$ and $\tens t$ are that they are
+antisymmetric when written with all lower indices. Since they also have to be
+hermitian, they must be purely imaginary.
+
+\paragraph{Lorentz transformation}
+
+For SO(1, 3) we have $\eta = \diag(1, -1, -1, -1)$ and a $4\times 4$ matrix
+$\tens m$. Since it is antisymmetric and purely imaginary, there are 6 degrees
+of freedom, which corresponds to the three rotations and the three
+pseudorotations (boosts).
+
+\paragraph{Rotation}
+
+In SO(3) we have $p = 3$ and $q = 0$. Therefore the metric tensor is trivial
+with $\eta = \tens 1_3$. The matrices have three degrees of freedom which
+correspond to say the Euler angles.
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
