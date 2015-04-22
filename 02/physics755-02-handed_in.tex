@@ -584,6 +584,202 @@ more sense here.
 \paragraph{Closing of algebra}
 
 % TODO
+\emph{(Missing)}
+
+\subsection{Commutators with Pauli-Lubanski vector}
+
+\paragraph{First one}
+
+\begin{align*}
+    [W^\lambda, L^{\mu\nu}]
+    &= \frac12 \epsilon^{\lambda\sigma\alpha\beta} [L_{\alpha\beta}
+    P_\sigma, L^{\mu\nu}]
+    \intertext{%
+        I now use the commutator identity $[AB, C] = A[B, C] + [A, C]B$.
+    }
+    &= \frac12 \epsilon^{\lambda\sigma\alpha\beta}
+    \sbr{
+        L_{\alpha\beta} [P_\sigma, L^{\mu\nu}]
+        +
+        [L_{\alpha\beta}, L^{\mu\nu}] P_\sigma
+    }
+\end{align*}
+
+% TODO
+
+\paragraph{Second one}
+
+I first expand the Pauli-Lubanski vector by its definition.
+\begin{align*}
+    [W^\lambda, P^\sigma]
+    &= \frac12 \epsilon^{\lambda\rho\mu\nu} [L_{\mu\nu} P_\rho, P_\sigma]
+    \intertext{%
+        The components of $\tens P$ commute with each other, as shown before.
+        Therefore I can move that out to the back of the expression.
+    }
+    &= \frac12 \epsilon^{\lambda\rho\mu\nu} [L_{\mu\nu}, P_\sigma] P_\rho
+    \intertext{%
+        Now I can recognize the commutator from the previous problem.
+    }
+    &= - \iup \frac12 \epsilon^{\lambda\rho\mu\nu} m_{\mu\nu}{}^\alpha{}_\sigma P_\rho
+    \intertext{%
+        Then I expand the $\tens m$.
+    }
+    &= - \iup \epsilon^{\lambda\rho\mu\nu} \deltaup^\alpha_{[\mu}
+    \eta_{\nu]\sigma} P_\alpha P_\rho
+    \intertext{%
+        The Levi-Civita symbol antisymmetrizes in the indices $\mu$ and $\nu$
+        already, so I can drop the antisymmetrization bracket.
+    }
+    &= - \iup \epsilon^{\lambda\rho\mu\nu} \deltaup^\alpha_{\mu}
+    \eta_{\nu\sigma} P_\alpha P_\rho
+    \intertext{%
+        I execute the Kronecker symbol.
+    }
+    &= - \iup \epsilon^{\lambda\rho\mu\nu}
+    \eta_{\nu\sigma} P_{\mu} P_\rho
+    \intertext{%
+        The expression is antisymmetrized by the Levi-Civita symbol in $\mu$
+        and $\rho$, but the $\tens P$ at the end are symmetric in those
+        indices. The complete expression is therefore zero.
+    }
+    &= 0
+\end{align*}
+
+\paragraph{Third one}
+
+\begin{align*}
+    [W^\lambda, W^\sigma]
+    &= [\epsilon^{\lambda\rho\mu\nu} L_{\mu\nu} P_\rho, W^\sigma]
+    \intertext{%
+        I pull out the scalar.
+    }
+    &= \epsilon^{\lambda\rho\mu\nu} [L_{\mu\nu} P_\rho, W^\sigma]
+    \intertext{%
+        As shown just before this commutator, the $\tens P$ commutes with the
+        $\tens W$. This can be moved to the end then.
+    }
+    &= \epsilon^{\lambda\rho\mu\nu} [L_{\mu\nu}, W^\sigma] P_\rho
+    \intertext{%
+        Now I can apply the first commutation relation.
+    }
+    &= 2 \iup \epsilon^{\lambda\rho\mu\nu} W^{[\mu} \eta^{\nu] \sigma} P_\rho
+    \intertext{%
+        The Levi-Civita symbol already antisymmetrizes $\mu$ and $\nu$, so I
+        drop the extra bracket.
+    }
+    &= \iup \epsilon^{\lambda\rho\mu\nu} W^{\mu} \eta^{\nu \sigma} P_\rho
+    \intertext{%
+        Now I can contract over $\nu$.
+    }
+    &= \iup \epsilon^{\lambda\rho\mu\sigma} W^{\mu} P_\rho
+\end{align*}
+The dummy indices have to be renamed, but this is the same expression as given
+on the problem set.
+
+\subsection{Casimir operators}
+
+In order to show that $P^2$ and $W^2$ are Casimir operators, I show that the
+commutator with every operator is zero.
+
+\paragraph{$P^2$ with $P$}
+
+Since the components of $P$ commute with each other, this is trivially the
+case:
+\[
+    [P^\mu P_\mu, P_\alpha] = 0.
+\]
+
+\paragraph{$P^2$ with $W$}
+
+The components of $P$ commute with the components of $W$, so this equally
+trivially is
+\[
+    [P^\mu P_\mu, W^\alpha] = 0.
+\]
+
+\paragraph{$P^2$ with $L$}
+
+\begin{align*}
+    [P^\mu P_\mu, L_{\lambda\rho}]
+    &= P^\mu [P_\mu, L_{\lambda\rho}] + [P^\mu, L_{\lambda\rho}] P_\mu
+    \intertext{%
+        I move indices up and down within the contraction.
+    }
+    &= P^\mu [P_\mu, L_{\lambda\rho}] + [P_\mu, L_{\lambda\rho}] P^\mu
+    \intertext{%
+        Now I expand the $L$. The $m$ commute with the $P$.
+    }
+    &= \iup m_{\lambda\rho}{}^\alpha{}_\mu [P^\mu P_\alpha + P_\alpha P^\mu]
+    \intertext{%
+        The $P$ commute with each other.
+    }
+    &= 2 \iup m_{\lambda\rho}{}^\alpha{}_\mu P^\mu P_\alpha
+    \intertext{%
+        Then I expand the $m$.
+    }
+    &= 4 \iup \deltaup^\alpha_{[\lambda} \eta_{\rho]\mu} P^\mu P_\alpha
+    \intertext{%
+        Now I execute the Kronecker symbol. I also use the metric tensor to
+        lower the index on the first $P$.
+    }
+    &= 4 \iup P_{[\lambda} P_{\rho]}
+    \intertext{%
+        It can be seen clearly that the antisymmetric part of this symmetric
+        tensor product $\tens P \otimes \tens P$.
+    }
+    &= 0
+\end{align*}
+
+\paragraph{$W^2$ with $P$}
+
+The components of $W$ of $P$ commute with each other, so we have
+\[
+    [W^\mu W_\mu, P_\lambda] = 0.
+\]
+
+\paragraph{$W^2$ with $W$}
+
+\begin{align*}
+    [W^\mu W_\mu, W^\lambda]
+    &= W_\mu [W^\mu, W^\lambda] + [W^\mu, W^\lambda] W_\mu
+    \intertext{%
+        Then I expand the $W^\mu$ inside the commutator.
+    }
+    &= \iup \epsilon^{\mu\lambda\alpha\beta}
+    [W_\mu W_\alpha P_\beta + W_\alpha P_\beta W_\mu]
+    \intertext{%
+        This is symmetric in $\alpha$ and $\beta$ since the $W$ and $P$
+        commute. It is antisymmetric in those indices because of the
+        Levi-Civita symbol. Therefore, the whole expression is zero.
+    }
+    &= 0
+\end{align*}
+
+\paragraph{$W^2$ with $L$}
+
+\begin{align*}
+    [W^\mu W_\mu, L_{\lambda\sigma}]
+    &= W^\mu [W_\mu, L_{\lambda\sigma}] + [W_\mu, L_{\lambda\sigma}] W^\mu
+    \intertext{%
+        Now I can insert the already computed commutator of a single $W$ with
+        $L$.
+    }
+    &= 2 \iup
+    \sbr{
+        W^\mu W^{[\sigma} \eta^{\lambda]\mu}
+        + W^{[\sigma} \eta^{\lambda]\mu} W^\mu
+    }
+    \intertext{%
+        Then I contract over $\mu$.
+    }
+    &= 2 \iup \sbr{ W^{[\lambda} W^{\sigma]} + W^{[\sigma} W^{\lambda]} }
+    \intertext{%
+        I switch the indices in the second summand.
+    }
+    &= 2 \iup \sbr{ W^{[\lambda} W^{\sigma]} - W^{[\lambda} W^{\sigma]} } \\
+    &= 0
+\end{align*}
 
 \end{document}
 
