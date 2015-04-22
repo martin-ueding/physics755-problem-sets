@@ -323,6 +323,203 @@ This looks very similar to the desired commutator of the $L_i$.
 
 \paragraph{Commutation relation of the $\tens L$}
 
+Now that I have the commutation of the matrix generators, I can compute the
+commutator of the generators on functions.
+\begin{align*}
+    [L_i, L_j]
+    &= \sbr{
+        \iup m_i{}^\mu{}_\nu x^\nu \partial_\mu,
+        \iup m_j{}^\alpha{}_\beta x^\beta \partial_\alpha
+    }
+    \intertext{%
+        As a first step, I remove the two imaginary units and change the order
+        in the commutator.
+    }
+    &= \sbr{
+        m_i{}^\alpha{}_\beta x^\beta \partial_\alpha,
+        m_j{}^\mu{}_\nu x^\nu \partial_\mu
+    }
+    \intertext{%
+        Then I can write it out in full.
+    }
+    &= m_i{}^\alpha{}_\beta x^\beta \partial_\alpha
+    m_j{}^\mu{}_\nu x^\nu \partial_\mu
+    -
+    m_j{}^\mu{}_\nu x^\nu \partial_\mu
+    m_i{}^\alpha{}_\beta x^\beta \partial_\alpha
+   \intertext{%
+       The $\tens m$ can be pulled in front of the $\tens x$ and $\tens
+       \partial$ since those do not depend on each other.
+   }
+   &= m_i{}^\alpha{}_\beta
+   m_j{}^\mu{}_\nu
+   x^\beta \partial_\alpha
+   x^\nu \partial_\mu
+   -
+   m_j{}^\mu{}_\nu
+   m_i{}^\alpha{}_\beta
+   x^\nu \partial_\mu
+   x^\beta \partial_\alpha
+   \intertext{%
+       Next I can rename the Greek indices since they are all summed over.
+   }
+   &= m_i{}^\alpha{}_\beta
+   m_j{}^\mu{}_\nu
+   x^\beta \partial_\alpha
+   x^\nu \partial_\mu
+   -
+   m_j{}^\alpha{}_\beta
+   m_i{}^\mu{}_\nu
+   x^\beta \partial_\alpha
+   x^\nu \partial_\mu
+   \intertext{%
+       Then I can factor out the $\tens x$ and $\tens \partial$.
+   }
+   &=
+   \sbr{
+       m_i{}^\alpha{}_\beta
+       m_j{}^\mu{}_\nu
+       -
+       m_j{}^\alpha{}_\beta
+       m_i{}^\mu{}_\nu
+   }
+   x^\beta \partial_\alpha
+   x^\nu \partial_\mu
+   \intertext{%
+       The partial derivatives act on a function $f(\tens x)$. One has to keep
+       that in mind then computing the commutator. So
+       \[
+           \partial_\alpha
+           x^\nu \partial_\mu
+           f(\tens x)
+           =
+           [\partial_\alpha
+           x^\nu] \partial_\mu
+           f(\tens x)
+           +
+           x^\nu \partial_\alpha \partial_\mu
+           f(\tens x)
+           =
+           \deltaup_\alpha^\nu \partial_\mu
+           f(\tens x)
+           +
+           x^\nu \partial_\alpha \partial_\mu
+           f(\tens x)
+           = \sbr{
+               \deltaup_\alpha^\nu
+               f(\tens x)
+               +
+               x^\nu \partial_\alpha
+           } \partial_\mu
+           f(\tens x).
+       \]
+       I use this for the last three factors now.
+   }
+   &= \sbr{
+       m_i{}^\alpha{}_\beta
+       m_j{}^\mu{}_\nu
+       -
+       m_j{}^\alpha{}_\beta
+       m_i{}^\mu{}_\nu
+   }
+   x^\beta
+   \sbr{\deltaup_\alpha^\nu + x^\nu \partial_\alpha} \partial_\mu
+   \intertext{%
+       Then I expand the second bracket and apply the Kronecker symbol.
+   }
+   &=
+   \sbr{
+       m_i{}^\nu{}_\beta
+       m_j{}^\mu{}_\nu
+       -
+       m_j{}^\nu{}_\beta
+       m_i{}^\mu{}_\nu
+   }
+   x^\beta \partial_\mu
+   +
+   \sbr{
+       m_i{}^\alpha{}_\beta
+       m_j{}^\mu{}_\nu
+       -
+       m_j{}^\alpha{}_\beta
+       m_i{}^\mu{}_\nu
+   }
+   x^\beta
+   x^\nu \partial_\alpha \partial_\mu
+   \intertext{%
+       The second bracket is antisymmetric in $i$ and $j$ but symmetric in
+       $(\alpha, \mu)$ and $(\beta\nu)$. Therefore, the second summand is just
+       zero. Only the first summand remains.
+   }
+   &=
+   \sbr{
+       m_i{}^\nu{}_\beta
+       m_j{}^\mu{}_\nu
+       -
+       m_j{}^\nu{}_\beta
+       m_i{}^\mu{}_\nu
+   }
+   x^\beta \partial_\mu
+   \intertext{%
+       I switch both of the $\tens m$ in pairs such that the commutator
+       gets removed.
+   }
+   &=
+   \sbr{
+       m_j{}^\mu{}_\nu
+       m_i{}^\nu{}_\beta
+       -
+       m_i{}^\mu{}_\nu
+       m_j{}^\nu{}_\beta
+   }
+   x^\beta \partial_\mu
+   \intertext{%
+       This is the commutator that I have derived previously. I just have to
+        expand the indices a bit. I set $i = \mu\nu$ and $j = \rho\sigma$ and
+        rename the other indices such that there is no clash in them.
+   }
+   &=
+   \sbr{
+       m_{\rho\sigma}{}^\alpha{}_\gamma
+       m_{\mu\nu}{}^\gamma{}_\beta
+       -
+       m_{\mu\nu}{}^\alpha{}_\gamma
+       m_{\rho\sigma}{}^\gamma{}_\beta
+   }
+   x^\beta \partial_\alpha
+   \intertext{%
+       Now I can write this as the commutator.
+   }
+   &=
+   \sbr{\tens m_{\rho\sigma}{}, \tens m_{\mu\nu}{}}^\alpha{}_\beta
+   x^\beta \partial_\alpha
+   \intertext{%
+       The commutator was computed before, I just insert the result now. I just
+       need to add the minus sign again since the order in the commutator is
+       not the same here.
+   }
+   &= - \iup
+   \sbr{
+       \eta_{\nu\rho}   \tens m_{[\mu\sigma]}
+       - \eta_{\mu\rho}   \tens m_{[\nu\sigma]}
+       - \eta_{\nu\sigma} \tens m_{[\mu\rho]}  
+       + \eta_{\mu\sigma} \tens m_{[\nu\rho]}  
+   }^\alpha{}_\beta
+   x^\beta \partial_\alpha
+   \intertext{%
+       Now I can take the contraction with the vector and the partial
+       derivative into every single term and obtain the $L_{\mu\nu}$ again.
+   }
+   &= -
+   \sbr{
+         \eta_{\nu\rho}   L_{[\mu\sigma]}
+       - \eta_{\mu\rho}   L_{[\nu\sigma]}
+       - \eta_{\nu\sigma} L_{[\mu\rho]}  
+       + \eta_{\mu\sigma} L_{[\nu\rho]}  
+   }
+\end{align*}
+I am now missing an imaginary unit, though.
+
 \subsection{Translations}
 
 \paragraph{Translation generators}
@@ -384,7 +581,9 @@ Now that looks like
 or $- \iup m_{\mu\nu}{}^\alpha{}_\lambda P_\alpha$. I am not sure which makes
 more sense here.
 
-% TODO Closing of algebra.
+\paragraph{Closing of algebra}
+
+% TODO
 
 \end{document}
 
