@@ -178,16 +178,13 @@ To get the whole generator I need to contract it with $\partial_\mu$:
 \]
 Those are the generators in the representation on functions.
 
-\paragraph{Commutation relation}
+\paragraph{Commutation relation of the $m$}
 
-The first step is to write the $\tens L$ as $\tens m$, nothing fancy if the
-above identification is correct.
+The first step is to work out the commutation relation of the $\tens m_i$. This
+commutator has two free indices because $\tens m_i$ are tensors of valence (1,
+1). I can write out the matrix multiplication from the commutator:
 \begin{align*}
-    \sbr{\tens L_{\mu\nu}, \tens L_{\rho\sigma}}^\alpha{}_\beta
-    &= \sbr{\tens m_{\mu\nu}, \tens m_{\rho\sigma}}^\alpha{}_\beta
-    \intertext{%
-        Then I can write out the matrix multiplication from the commutator.
-    }
+    \sbr{\tens m_{\mu\nu}, \tens m_{\rho\sigma}}^\alpha{}_\beta
     &= m_{\mu\nu}{}^\alpha{}_\gamma m_{\rho\sigma}{}^\gamma{}_\beta
     - m_{\rho\sigma}{}^\alpha{}_\gamma m_{\mu\nu}{}^\gamma{}_\beta
     \intertext{%
@@ -288,9 +285,8 @@ above identification is correct.
         + \deltaup^\alpha_{[\rho} \eta_{\mu]\beta} \eta_{\sigma\nu}
     }
     \intertext{%
-        Next is the recognition of the $\tens m$ and from there the $\tens L$.
-        The first two factors always have the indices $\alpha$ and $\beta$. So
-        I can pull those indices out.
+        Next is the recognition of the $\tens m$. The first two factors always
+        have the indices $\alpha$ and $\beta$. So I can pull those indices out.
     }
     &= \iup
     \sbr{
@@ -300,31 +296,32 @@ above identification is correct.
         + \tens m_{[\rho\mu]} \eta_{\sigma\nu}
     }^\alpha{}_\beta
     \intertext{%
-        And since the $L$ and $m$ are the same, I can replace those as well. At
-        the same step, I move the metric tensor in front of the generator.
+        I move the metric tensor in front of the generator.
     }
     &= \iup
     \sbr{
-          \eta_{\nu\rho}   \tens L_{[\mu\sigma]}
-        + \eta_{\rho\mu}   \tens L_{[\sigma\nu]}
-        + \eta_{\mu\sigma} \tens L_{[\nu\rho]}  
-        + \eta_{\sigma\nu} \tens L_{[\rho\mu]}  
+          \eta_{\nu\rho}   \tens m_{[\mu\sigma]}
+        + \eta_{\rho\mu}   \tens m_{[\sigma\nu]}
+        + \eta_{\mu\sigma} \tens m_{[\nu\rho]}  
+        + \eta_{\sigma\nu} \tens m_{[\rho\mu]}  
     }^\alpha{}_\beta
     \intertext{%
         In order to match the exact notation on the problem set, I will switch
         indices. The metric tensor is symmetric and the generator is
-        antisymmetric.
+        antisymmetric. I copied the right hand side as a reminder as well.
     }
+    \sbr{\tens m_{\mu\nu}, \tens m_{\rho\sigma}}^\alpha{}_\beta
     &= \iup
     \sbr{
-          \eta_{\nu\rho}   \tens L_{[\mu\sigma]}
-        - \eta_{\mu\rho}   \tens L_{[\nu\sigma]}
-        - \eta_{\nu\sigma} \tens L_{[\mu\rho]}  
-        + \eta_{\mu\sigma} \tens L_{[\nu\rho]}  
+          \eta_{\nu\rho}   \tens m_{[\mu\sigma]}
+        - \eta_{\mu\rho}   \tens m_{[\nu\sigma]}
+        - \eta_{\nu\sigma} \tens m_{[\mu\rho]}  
+        + \eta_{\mu\sigma} \tens m_{[\nu\rho]}  
     }^\alpha{}_\beta
 \end{align*}
-If one removes the indices $\alpha$ and $\beta$ on both sides, this is exactly
-Equation~(13) on the problem set.
+This looks very similar to the desired commutator of the $L_i$.
+
+\paragraph{Commutation relation of the $\tens L$}
 
 \subsection{Translations}
 
@@ -353,10 +350,41 @@ differentiable functions commute.
 \begin{align*}
     [L_{\mu\nu}, P_\lambda]
     &= \sbr{
-    - m_{\mu\nu}{}^\alpha{}_\beta x^\beta \partial_\alpha, \iup
-    \partial_\lambda
+    - m_{\mu\nu}{}^\alpha{}_\beta x^\beta \partial_\alpha,
+    \iup \partial_\lambda
     }
+    \intertext{%
+        The generators $\tens m_i$ do not depend on $\tens x$ an can therefore
+        be moved out of the commutator together with all constants.
+    }
+    &= - \iup m_{\mu\nu}{}^\alpha{}_\beta \sbr{
+        x^\beta \partial_\alpha, \partial_\lambda
+    }
+    \intertext{%
+        The partial derivatives commute anyway, so that can be moved out of the
+        commutator as well.
+    }
+    &= - \iup m_{\mu\nu}{}^\alpha{}_\beta \sbr{
+        x^\beta, \partial_\lambda
+    } \partial_\alpha
+    \intertext{%
+        That commutator is well known by now, it is $\iup
+        \deltaup^\beta_\lambda$.
+    }
+    &= m_{\mu\nu}{}^\alpha{}_\beta \deltaup^\beta_\lambda \partial_\alpha
+    \intertext{%
+        Then the indices can be contracted easily.
+    }
+    &= m_{\mu\nu}{}^\alpha{}_\lambda \partial_\alpha
 \end{align*}
+Now that looks like
+\[
+    \pd{L_{\mu\nu}}{x^\lambda}
+\]
+or $- \iup m_{\mu\nu}{}^\alpha{}_\lambda P_\alpha$. I am not sure which makes
+more sense here.
+
+% TODO Closing of algebra.
 
 \end{document}
 
