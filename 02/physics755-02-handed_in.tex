@@ -306,6 +306,38 @@ above identification is correct.
 If one removes the indices $\alpha$ and $\beta$ on both sides, this is exactly
 Equation~(13) on the problem set.
 
+\subsection{Translations}
+
+\paragraph{Translation generators}
+
+Using Equation~(11), this is a direct application. The transformation is
+\[
+    x'^\mu = x^\mu + a^\mu
+\]
+where $\{a^\mu\}$ are the four parameters of this transformation. The
+differential operators for the transformation are then simply:
+\[
+    P_\lambda
+    = \iup \pd{x'^\mu}{a^\lambda} \partial_\mu
+    = \iup \deltaup^\mu_\lambda \partial_\mu
+    = \iup \partial_\lambda.
+\]
+
+\paragraph{Momentum commutators}
+
+The commutators $[P_\mu, P_\nu]$ are zero because the partial derivatives of
+differentiable functions commute.
+
+\paragraph{Lorentz and momentum commutator}
+
+\begin{align*}
+    [L_{\mu\nu}, P_\lambda]
+    &= \sbr{
+    - m_{\mu\nu}{}^\alpha{}_\beta x^\beta \partial_\alpha, \iup
+    \partial_\lambda
+    }
+\end{align*}
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
