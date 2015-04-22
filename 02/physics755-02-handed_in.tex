@@ -149,14 +149,34 @@ In SO(3) we have $p = 3$ and $q = 0$. Therefore the metric tensor is trivial
 with $\eta = \tens 1_3$. The matrices have three degrees of freedom which
 correspond to say the Euler angles.
 
-\section{Generators for Lorentz group}
+\subsection{Generators for Lorentz group}
 
 \paragraph{Corresponding generators}
 
-I am a little puzzled by this problem. It introduces the $\tens m$ as well as
-the $\tens L$ which seem to be the exact same things. So to me it seems $\tens
-m_{[\mu\nu]} = \tens L_{[\mu\nu]}$, or with indices it is $L_{[\mu\nu]}{}^i{}_j
-= m_{[\mu\nu]}{}^i{}_j$.
+The generators $\tens m_i$, where $i$ could also be a more complex index like
+$\rho\sigma$, are the generators of the matrix representation of the Lorentz
+group. Those $\tens m_i$ act on $\tens x$ to produce $\tens x'$. The $L_i$ that
+are asked for are the generators of the functional representation of the same
+group. They are connected by the Taylor expansion given in Equation~(11) on the
+problem set.
+
+Looking at the infinetesimal transformation of the $\tens x$ I have already
+given that in the first part of the problem. I amended the formula with an
+index $i$ to sum over multiple generators. The transformation then is given by
+\[
+    x'^\mu = x^\mu + \iup \epsilon^i m_i{}^\mu{}_\nu x^\nu.
+\]
+Here, the $\tens m_i$ act as the generators of the Lorentz transformations. Now
+I take the derivative with respect to the parameter $\epsilon^i$:
+\[
+    \pd{x'^\mu}{\epsilon^i} = \iup m_i{}^\mu{}_\nu x^\nu.
+\]
+To get the whole generator I need to contract it with $\partial_\mu$:
+\[
+    L_i = \pd{x'^\mu}{\epsilon^i} \partial_\mu
+    = \iup m_i{}^\mu{}_\nu x^\nu \partial_\mu.
+\]
+Those are the generators in the representation on functions.
 
 \paragraph{Commutation relation}
 
