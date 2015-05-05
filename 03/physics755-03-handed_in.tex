@@ -1,0 +1,112 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+\usepackage{../my-boxes}
+
+\usepackage{booktabs}
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{3}
+
+\subject{physics755 -- Quantum Field Theory}
+\ihead{physics755 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\newcommand\thegroup{Group Tuesday -- Ripunjay Acharya}
+
+\publishers{\thegroup}
+\ofoot{\thegroup}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+    \and
+    Oleg Hamm
+}
+\ifoot{Martin Ueding}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem & achieved points & possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{10} \\
+        \midrule
+        total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\section{Lorentz algebra 2}
+\label{homework:1}
+
+\subsection{Rotations and boosts}
+
+The generators were derived on the previous problem set. They are:
+\[
+    J_{\rho\sigma} = x_{[\sigma} \partial_{\rho]}
+\]
+where we have used the antisymmetrization notation in the non-idempotent form
+since that seems to be used in this class. This uses the Mathematician's
+convention of real antisymmetric generators. To get the Physicists's notation,
+we add $-\iup$ to the generators and $\iup$ into the exponential map.
+\[
+    J_{\rho\sigma} = \iup x_{[\rho} \partial_{\sigma]}
+\]
+Then $L^3$ is given by $\iup x_{[1} \partial_{2]}$. We can now write a finite
+transformation:
+\begin{align*}
+    \Phi'(x) &= \exp(- \iup \Theta L^3) \, \Phi(x)
+    \intertext{%
+        We insert the generator.
+    }
+    &= \exp\del{\Theta x_{[1} \partial_{2]}} \, \Phi(x)
+    \intertext{%
+        Next we expand the antisymmetrization bracket.
+    }
+    &= \exp\del{\Theta [x_1 \partial_2 - x_2 \partial_1]} \, \Phi(x)
+    \intertext{%
+        So far, the generator is a scalar operator and act on functions. We
+        want to convert it into a matrix representation that acts on the
+        four-vectors. We can now write the generator as a matrix.
+    }
+    &= \exp\del{\Theta
+    \begin{pmatrix}
+        0 & 0 & 0 & 0 \\
+        0 & 0 & -x & 0 \\
+        0 & y & 0 & 0 \\
+        0 & 0 & 0 & 0
+    \end{pmatrix}
+    \cdot \vec\partial
+    } \, \Phi(x) \\
+    \intertext{%
+        One can think about this matrix term as something that originates from
+        a chain rule. So calling the matrix $\tens A \cdot \vec x$, so
+        $\tens A$ only contains $-1$ and $1$, we can write this as
+    }
+    &= \exp\del{\Theta
+    \sbr{\pd{[\Theta \tens A \vec x]^\mu}{\Theta}}_{\Theta=0}
+    \partial_\mu
+    } \, \Phi(x) \\
+    \intertext{%
+        From here, the Taylor series can be seen.
+    }
+    &= \Phi(\tens A(\theta) \vec x)
+\end{align*}
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
