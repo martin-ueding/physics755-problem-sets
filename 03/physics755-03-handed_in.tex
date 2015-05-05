@@ -44,7 +44,7 @@
     \begin{tabular}{rrr}
         problem & achieved points & possible points \\
         \midrule
-        \nameref{homework:1} & & \punkte{10} \\
+        \nameref{homework:1} & & \punkte{15} \\
         \midrule
         total & & \arabic{totalpoints}
     \end{tabular}
@@ -54,6 +54,8 @@
 \label{homework:1}
 
 \subsection{Rotations and boosts}
+
+\paragraph{Rotation}
 
 The generators were derived on the previous problem set. They are:
 \[
@@ -66,46 +68,122 @@ we add $-\iup$ to the generators and $\iup$ into the exponential map.
 \[
     J_{\rho\sigma} = \iup x_{[\rho} \partial_{\sigma]}
 \]
-Then $L^3$ is given by $\iup x_{[1} \partial_{2]}$. We can now write a finite
-transformation:
+Then $L^3$ is given by $\iup x_{[1} \partial_{2]}$. We found it easier to start
+with the representation on $\vec x'$ and show that the generator of that
+passive transformation is the same as the one given here. So we start with the
+rotation $\tens R(\Theta)$ around the $x^3$-axis:
 \begin{align*}
-    \Phi'(x) &= \exp(- \iup \Theta L^3) \, \Phi(x)
+    \Phi(x') &= \Phi\del{\tens R^{-1}(\Theta) \cdot \vec x}
     \intertext{%
-        We insert the generator.
+        Then we can expand this around $\Theta = 0$.
     }
-    &= \exp\del{\Theta x_{[1} \partial_{2]}} \, \Phi(x)
+    &= \sum_{n=0}^\infty \frac{1}{n!} \odx{n}{\Phi}{\Theta}(\vec x) \Theta^n
     \intertext{%
-        Next we expand the antisymmetrization bracket.
+        Next we write this in operator form,
     }
-    &= \exp\del{\Theta [x_1 \partial_2 - x_2 \partial_1]} \, \Phi(x)
+    &= \sum_{n=0}^\infty \frac{1}{n!} \Theta^n \odx{n}{}{\Theta} \Phi(\vec x),
     \intertext{%
-        So far, the generator is a scalar operator and act on functions. We
-        want to convert it into a matrix representation that acts on the
-        four-vectors. We can now write the generator as a matrix.
+        and then as an exponential:
     }
-    &= \exp\del{\Theta
-    \begin{pmatrix}
-        0 & 0 & 0 & 0 \\
-        0 & 0 & -x & 0 \\
-        0 & y & 0 & 0 \\
-        0 & 0 & 0 & 0
-    \end{pmatrix}
-    \cdot \vec\partial
-    } \, \Phi(x) \\
-    \intertext{%
-        One can think about this matrix term as something that originates from
-        a chain rule. So calling the matrix $\tens A \cdot \vec x$, so
-        $\tens A$ only contains $-1$ and $1$, we can write this as
-    }
-    &= \exp\del{\Theta
-    \sbr{\pd{[\Theta \tens A \vec x]^\mu}{\Theta}}_{\Theta=0}
-    \partial_\mu
-    } \, \Phi(x) \\
-    \intertext{%
-        From here, the Taylor series can be seen.
-    }
-    &= \Phi(\tens A(\theta) \vec x)
+    &= \exp\del{\Theta \od{}{\Theta}} \Phi(\vec x),
 \end{align*}
+We see that the (Physicist's) generator is given by
+\begin{align*}
+    T &= - \iup \od{}\Theta.
+    \intertext{%
+        Now we need to apply the chain rule for this expression.
+    }
+    &= - \iup \od{x'^\mu}{\Theta}(0) \pd{}{x'^\mu}
+\end{align*}
+The $\vec x'$ is given by
+\[
+    \vec x' = \tens R^{-1}(\Theta) \cdot \vec x.
+\]
+The explicit form of this inverse passive transformation looks like the active
+rotation around the $x^3$-axis:
+\[
+    \tens R^{-1}(\Theta) =
+    \begin{pmatrix}
+        1 & & & \\
+          & \cos(\Theta) & -\sin(\Theta) & \\
+          & \sin(\Theta) & \cos(\Theta) & \\
+          & & & 1 \\
+    \end{pmatrix}.
+\]
+The derivative with respect to $\Theta$ at $\Theta = 0$ is then given by
+\[
+    \pd{\tens R^{-1}}\Theta (0) =
+    \begin{pmatrix}
+        0 & & & \\
+          & 0 & -1 & \\
+          & 1 & 0 & \\
+          & & & 0 \\
+    \end{pmatrix}.
+\]
+Contracting this derivative of $\tens R$ with $\vec x$ to give the derivative
+of $\vec x'$ gives
+\[
+    \od{x'^\mu}{\Theta} (0) =
+    \begin{pmatrix}
+        0 \\ -x^2 \\ x^1 \\ 0
+    \end{pmatrix}.
+\]
+As a last step with put that into the generator expression:
+\[
+    T = - \iup \od{x'^\mu}{\Theta}(0) \pd{}{x'^\mu}
+    = - \iup 
+    \begin{pmatrix}
+        0 \\ -x^2 \\ x^1 \\ 0
+    \end{pmatrix}^\mu \partial_\mu
+    = - \iup \sbr{ x^1 \partial_2 - x^2 \partial_1}
+    = \iup \sbr{ x_1 \partial_2 - x_2 \partial_1}.
+\]
+This is the same generator, so the transformation should be the same.
+
+\paragraph{Boost}
+
+We have
+\[
+    K^3 = J^{03} = \iup x_{[0} \partial_{3]} =  \iup \sbr{x_0 \partial_3 - x_3
+    \partial_0}
+\]
+for the generator in the functional representation.
+
+The same derivation as above can be applied to the boost as well. The general
+inverse passive boost is given by:
+\[
+    \tens B(\eta) =
+    \begin{pmatrix}
+        \cosh(\eta) & & & -\sinh(\eta) \\
+                    & 1 & & \\
+                    & & 1 & \\
+        -\sinh(\eta) & & & \cosh(\eta)
+    \end{pmatrix}
+    .
+\]
+From this, the generator of the matrix is given by:
+\[
+    - \iup
+    \begin{pmatrix}
+        0 & & & -1 \\
+          & 0 & & \\
+          & & 0 & \\
+        -1 & & & 0
+    \end{pmatrix}.
+\]
+Contracting that with $x^\mu$ we get:
+\[
+    \begin{pmatrix}
+        -x^3 \\ 0 \\ 0 \\ -x^0
+    \end{pmatrix}.
+\]
+And contracting that with $\vec \partial$ we get
+\[
+    \iup [x^0 \partial_3 + x^3 \partial_0]
+    = 
+    \iup [x_0 \partial_3 - x_3 \partial_0].
+\]
+So this checks out.
 
 \end{document}
 
