@@ -439,6 +439,75 @@ group. We therefore have for the left and right-handed spinors:
     \beta\cdot\vec J_+} \,\psi_\text R
 \]
 
+\subsection{Connection of left and right-handed transformations}
+
+\paragraph{First identity}
+
+Show that $\sigma^2 \sigma^i \sigma^2 = - \sigma^{i*}$.
+
+% TODO
+
+\paragraph{Second identity}
+
+Show that $\sigma^2 \Lambda_\text L^* \sigma^2 = \Lambda_\text R$. This
+$\Lambda_\text L$ is the result from the previous subsection:
+\[
+    \Lambda_\text L = \exp\del{-\iup \vec\Theta \cdot \vec J_- + \vec\beta
+    \cdot \vec J_-}
+\]
+We now show the identity:
+\begin{align*}
+    \sigma^2 \Lambda_\text L^* \sigma^2
+    &= \sigma^2 \exp\del{-\iup \vec\Theta \cdot \vec J_- + \vec\beta
+    \cdot \vec J_-}^* \sigma^2
+    \intertext{%
+        We insert $\vec J_- = \vec \sigma / 2$.
+    }
+    &= \sigma^2 \exp\del{\iup \vec\Theta \cdot \frac{\vec\sigma^*}{2} +
+    \vec\beta \cdot \frac{\vec\sigma^*}{2}} \sigma^2
+    \intertext{%
+        We write the exponential as a power series.
+    }
+    &= \sum_{n=0}^\infty \frac{1}{n!} \sigma^2 \sbr{\iup \vec\Theta \cdot
+    \frac{\vec\sigma^*}{2} +
+    \vec\beta \cdot \frac{\vec\sigma^*}{2}}^n \sigma^2
+    \intertext{%
+        We factor out the Pauli matrices.
+    }
+    &= \sum_{n=0}^\infty \frac{1}{n!} \sigma^2 \sbr{\sbr{\iup \vec\Theta +
+    \vec\beta} \cdot \frac{\vec\sigma^*}{2}}^n \sigma^2
+    \intertext{%
+        Now we make it a bit more complicated and write the power with a
+        product sign. In order to stay out of trouble with $n = 0$, we split
+        this off.
+    }
+    &= \tens 1_2 + \sum_{n=1}^\infty \frac{1}{n!} \sigma^2 \sbr{\prod_{k = 1}^n
+    \sbr{\iup \vec\Theta + \vec\beta} \cdot \frac{\vec\sigma^*}{2}} \sigma^2
+    \intertext{%
+        Since all the Pauli matrices are their own inverses, one can just add
+        $\sigma^2\sigma^2$ to every factor. This means that we can extend the
+        scope of the product. All the intermediate $\sigma^2$ will cancel each
+        other pairwise.
+    }
+    &= \tens 1_2 + \sum_{n=1}^\infty \frac{1}{n!} \prod_{k = 1}^n \sigma^2 
+    \sbr{\iup \vec\Theta + \vec\beta} \cdot \frac{\vec\sigma^*}{2} \sigma^2
+    \intertext{%
+        However, we can now use the first relation on each summand in the
+        scalar product. Therefore we get
+    }
+    &= \tens 1_2 + \sum_{n=1}^\infty \frac{1}{n!} \prod_{k = 1}^n
+    \sbr{-\iup \vec\Theta - \vec\beta} \cdot \frac{\vec\sigma}{2}.
+    \intertext{%
+        One can write the product as a plain power again, add the $n = 0$ case
+        back to the sum and write it as an exponential.
+    }
+    &= \exp\del{\sbr{-i \vec\Theta - \vec\beta} \cdot \frac{\vec \sigma}{2}}
+    \intertext{%
+        This is
+    }
+    &= \Lambda_\text R.
+\end{align*}
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
