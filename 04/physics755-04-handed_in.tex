@@ -187,8 +187,6 @@ So this checks out.
 
 \subsection{Commutators}
 
-\paragraph{Commutations among $L^i$}
-
 The definition of the $L^i$ is
 \[
     L^i = \frac12 \epsilon^{ijk} J_{jk}.
@@ -199,6 +197,102 @@ which in components is
     \epsilon_{ijk} L^k = P_{ij}.
 \]
 
+We are not sure how many indices we may use. We think that it is not possible
+to show this without indices at all. We will use the commutator $[x^i,
+\partial_j] = \deltaup^i_j$ instead of the full commutator of the $J$ that is
+given on the problem set.
+
+\paragraph{Commutations among $L^i$}
+
+\begin{align*}
+    \sbr{L^i, L^a}
+    &= \epsilon^{ijk} \epsilon^{abc} \sbr{x_j \partial_k, x_b \partial_c}
+    \intertext{%
+        Now we can use the commutator identity to split this.
+    }
+    &= \epsilon^{ijk} \epsilon^{abc} \sbr{
+        x_j \sbr{\partial_k, x_b \partial_c}
+        + \sbr{x_j, x_b \partial_c} \partial_k
+    }
+    \intertext{%
+        We need to split this up again, so we flip the signs in order to use
+        the same identity.
+    }
+    &= - \epsilon^{ijk} \epsilon^{abc} \sbr{
+        x_j \sbr{x_b \partial_c, \partial_k}
+        + \sbr{x_b \partial_c, x_j} \partial_k
+    }
+    \intertext{%
+        We expand again.
+    }
+    &= - \epsilon^{ijk} \epsilon^{abc} \sbr{
+        x_j x_b \sbr{\partial_c, \partial_k}
+        + x_j \sbr{x_b, \partial_k} \partial_c
+        + x_b \sbr{\partial_c, x_j} \partial_k
+        + \sbr{x_b, x_j} \partial_k \partial_c
+    }
+    \intertext{%
+        We use the commutator of $\vec x$ and $\vec \partial$ mentioned above.
+    }
+    &= - \epsilon^{ijk} \epsilon^{abc} \sbr{
+        x_j \deltaup_{bk} \partial_c
+        - x_b \deltaup_{cj} \partial_k
+    }
+    \intertext{%
+        We absorb the minus sign in the ordering within the bracket.
+    }
+    &= \epsilon^{ijk} \epsilon^{abc} \sbr{
+        x_b \deltaup_{cj} \partial_k
+        - x_j \deltaup_{bk} \partial_c
+    }
+    \intertext{%
+        Then we factor out.
+    }
+    &= \epsilon^{ijk} \epsilon^{abc} x_b \deltaup_{cj} \partial_k
+    - \epsilon^{ijk} \epsilon^{abc} x_j \deltaup_{bk} \partial_c
+    \intertext{%
+        Next we can apply the Kronecker symbol.
+    }
+    &= \epsilon^{ijk} \epsilon^{ab}{}_j x_b \partial_k
+    - \epsilon^{ijk} \epsilon^a{}_k{}^c x_j \partial_c
+    \intertext{%
+        We reorder the indices such that the last indices are contracted.
+    }
+    &= \epsilon^{kij} \epsilon^{ab}{}_j x_b \partial_k
+    - \epsilon^{ijk} \epsilon^{ca}{}_k x_j \partial_c
+    \intertext{%
+        Then we can contract the two Levi-Civita symbols.
+    }
+    &= \sbr{\deltaup^{ka} \deltaup^{ib} - \deltaup^{kb} \deltaup^{ia}}
+    x_b \partial_k
+    - \sbr{\deltaup^{ic} \deltaup^{ja} - \deltaup^{ia} \deltaup^{jc}}
+    x_j \partial_c
+    \intertext{%
+        Then we get four terms.
+    }
+    &= \deltaup^{ka} \deltaup^{ib} x_b \partial_k
+    - \deltaup^{kb} \deltaup^{ia} x_b \partial_k
+    - \deltaup^{ic} \deltaup^{ja} x_j \partial_c
+    + \deltaup^{ia} \deltaup^{jc} x_j \partial_c
+    \intertext{%
+        And then we can contract those.
+    }
+    &= x_i \partial_a
+    - \deltaup^{ia} x_f \partial_f
+    - x_a \partial_i
+    + \deltaup^{ia} x_f \partial_f
+    \intertext{%
+        The second and third term cancel, the remainder then is just
+    }
+    &= x^{[i} \partial^{a]}.
+    \intertext{%
+        And we can write this as
+    }
+    &= - \iup \epsilon^{iak} L^k.
+\end{align*}
+The structure constant should be just $\epsilon_{ijk}$, not with a minus sign
+to match the algebra $\mathfrak{su}(2)$.
+
 \paragraph{Commutations among $K^i$}
 
 \paragraph{Commutations among $J_+^i$}
@@ -206,6 +300,87 @@ which in components is
 \paragraph{Commutations among $J_-^i$}
 
 \paragraph{Commutation of $J_+^i$ and $J_-^i$}
+
+\begin{align*}
+    \sbr{\vec J_+, \vec J_-}^i
+    &= \sbr{\vec L + \iup \vec K, \vec L - \iup \vec K}^i
+    \intertext{%
+        We use the bilinearity of the commutator.
+    }
+    &= \sbr{\vec L, \vec L}^i
+    + \sbr{\vec L, - \iup \vec K}^i
+    + \sbr{\iup \vec K, \vec L}^i
+    + \sbr{\iup \vec K, - \iup \vec K}^i
+    \intertext{%
+        Then we extract the factors to the front.
+    }
+    &= \sbr{\vec L, \vec L}^i
+    - \iup \sbr{\vec L, \vec K}^i
+    + \iup \sbr{\vec K, \vec L}^i
+    + \sbr{\vec K,\vec K}^i
+    \intertext{%
+        The second and first term are the same, so we can join them together.
+        The first and last commutator contain the exact same element on the
+        left and right side, so they are zero.
+    }
+    &= - 2 \iup \sbr{\vec L, \vec K}^i
+    \intertext{%
+        Now we can expand the definitions.
+    }
+    &= 2 \iup \sbr{\frac12 \epsilon^{ijk} P_{jk}, P^{0i}}
+    \intertext{%
+        We also expand the $P$.
+    }
+    &= 2 \iup \sbr{\frac12 \epsilon^{ijk} x_{[j} \partial_{k]}, x^{[0}
+    \partial^{i]}}
+    \intertext{%
+        The Levi-Civita symbol acting on the antisymmetric tensor in the first
+        argument gives a factor of 2. We expand the second argument
+    }
+    &= 2 \iup \epsilon^{ijk} \sbr{x_{j} \partial_{k}, x^{0} \partial^{i} - x^i
+    \partial^0}
+    \intertext{%
+        Now use the bilinearity again.
+    }
+    &= 2 \iup \epsilon^{ijk} \sbr{
+        \sbr{x_{j} \partial_{k}, x^{0} \partial^{i}}
+        - \sbr{x_{j} \partial_{k}, \partial^0 x^i}
+    }
+    \intertext{%
+        Since there is only one time like component in each term, we can pull
+        that out of the commutator.
+    }
+    &= 2 \iup \epsilon^{ijk} \sbr{
+        \sbr{x_{j} \partial_{k}, \partial^{i}} x^{0}
+        - \sbr{x_{j} \partial_{k}, x^i} \partial^0
+    }
+    \intertext{%
+        Then we can also pull out the $\partial_k$ in the first term and the
+        $x_j$ in the second.
+    }
+    &= 2 \iup \epsilon^{ijk} \sbr{
+        \sbr{x_{j}, \partial^{i}} \partial_{k} x^{0}
+        - x_{j} \sbr{\partial_{k}, x^i} \partial^0
+    }
+    \intertext{%
+        The commutators are simple, we now have:
+    }
+    &= 2 \iup \epsilon^{ijk} \sbr{
+        \deltaup^i_j \partial_{k} x^{0} + x_{j} \deltaup^i_k \partial^0
+    }.
+    \intertext{%
+        We can now replace the indices $j$ and $k$ with $i$ in each term. There
+        is no summation on the $i$s!
+    }
+    &= 2 \iup \epsilon^{iik} \deltaup^i_j x^{0}
+    + 2 \iup \epsilon^{iji} x_{j} \partial^0
+    \intertext{%
+        Since the Levi-Civita symbol is antisymmetric and the index $i$ appears
+        twice, this is just zero.
+    }
+    &= 0
+\end{align*}
+Therefore $\vec J_+$ and $\vec J_-$ commute.
 
 \end{document}
 
