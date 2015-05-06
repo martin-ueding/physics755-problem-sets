@@ -388,6 +388,57 @@ to match the algebra $\mathfrak{su}(2)$.
 \end{align*}
 Therefore $\vec J_+$ and $\vec J_-$ commute.
 
+\subsection{Left and right-handed spinors}
+
+\paragraph{Dimension}
+
+Using the given formula, the dimension is
+\[
+    \sbr{2 \cdot \frac12 + 1} [2 \cdot 0 + 1] = 2 \cdot 1 = 2.
+\]
+Those matrices act on vectors from $\C^2$, which has 2 (complex) dimensions.
+
+\paragraph{Action on left/right-handed spinor}
+
+For a simple scalar field we had the Lorentz transformation given in
+Equation~(4) on the problem set:
+\[
+    \Phi \mapsto \exp(- \iup \vec \Theta \cdot \vec L - \iup \vec \beta \cdot
+    \vec K) \, \Phi
+\]
+Using the definitions of $\vec J_+$ and $\vec J_-$, we can rewrite $\vec L$ and
+$\vec K$ in terms of those:
+\[
+    \vec L = \vec J_+ + \vec J_-
+    \eqnsep
+    \vec K = \frac1\iup \sbr{\vec J_+ - \vec J_-}
+\]
+This lets us rewrite the mapping.
+\begin{align*}
+    \Phi
+    &\mapsto
+    \exp(- \iup \vec \Theta \cdot \vec L - \iup \vec \beta \cdot
+    \vec K) \, \Phi \\
+    &= \exp\del{-\iup \vec\Theta\cdot\sbr{\vec J_+ + \vec J_-} - \vec
+    \beta\cdot\sbr{\vec J_+ - \vec J_-}} \, \Phi \\
+    \intertext{%
+        We have shown earlier that the $\vec J_+$ and $\vec J_-$ commute with
+        each other. This allows us to split the exponent into two parts.
+    }
+    &= \exp\del{-\iup \vec\Theta\cdot\vec J_+ - \vec \beta\cdot\vec J_+}
+    \exp\del{-\iup \vec\Theta\cdot\vec J_- + \vec \beta\cdot \vec J_-}
+    \, \Phi
+\end{align*}
+There are two parts here, belonging to different representations of the Lorentz
+group. We therefore have for the left and right-handed spinors:
+\[
+    \psi_\text L \mapsto \exp\del{-\iup \vec\Theta\cdot\vec J_- + \vec
+    \beta\cdot \vec J_-} \,\psi_\text L
+    \eqnsep
+    \psi_\text R \mapsto \exp\del{-\iup \vec\Theta\cdot\vec J_+ - \vec
+    \beta\cdot\vec J_+} \,\psi_\text R
+\]
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
