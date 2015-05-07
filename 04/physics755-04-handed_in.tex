@@ -710,6 +710,75 @@ other $\mu$ we can write
     &= x^n.
 \end{align*}
 
+\subsection{Linear map}
+
+\paragraph{First identity}
+
+We start with the relation that we have to show.
+\begin{align*}
+    A \bar\sigma_\mu A^\dagger &= \bar\sigma_\nu \Lambda^\nu{}_\mu
+    \intertext{%
+        Then we premultiply with $\sigma^\lambda$.
+    }
+    \sigma^\lambda A \bar\sigma_\mu A^\dagger &= \sigma^\lambda \bar\sigma_\nu
+    \Lambda^\nu{}_\mu
+    \intertext{%
+        Now we take the trace of both sides. This turns out matrix equation
+        into a scalar equation and we loose information. This is probably a bad
+        thing, although we get the right result in the end. This means that
+        there is only probable cause, not a rigid proof.
+    }
+    \tr\del{\sigma^\lambda A \bar\sigma_\mu A^\dagger} &=
+    \tr\del{\sigma^\lambda \bar\sigma_\nu \Lambda^\nu{}_\mu}
+    \intertext{%
+        The left hand side is the definition of $\Lambda$.
+    }
+    \Lambda^\lambda{}_\mu &=
+    \tr\del{\sigma^\lambda \bar\sigma_\nu \Lambda^\nu{}_\mu}
+    \intertext{%
+        We split up the temporal and spatial parts again. We explicitly write
+        out the minus sign in the spatial parts of $\bar\sigma$ instead of
+        fiddling with the raising of the indices. Taking the trace is enough of
+        sketchy tricks for one derivation. We will still use $\lambda \sim l$
+        and $\nu \sim n$ for the spatial parts of those indices, though. The
+        four cases that we have are:
+        \[
+            \sigma^0 \sigma_0 = \tens 1_2
+            \eqnsep
+            - \sigma^0 \sigma_n = - \sigma_n
+            \eqnsep
+            \sigma^l \sigma_0 = \sigma^l
+            \eqnsep
+            - \sigma^l \sigma_n = - \iup \epsilon_{lnk} \sigma^k + \deltaup^l_n \tens
+            1_2.
+        \]
+        Taking the trace only leaves the first or the last term. We therefore have:
+    }
+    \Lambda^\lambda{}_\mu &=
+    \tr\del{\sbr{\deltaup^{\lambda0} \deltaup^{\nu0} + \deltaup^{ln}} \tens 1_2
+    \Lambda^\nu{}_\mu}
+    \intertext{%
+        This then is the desired result,
+    }
+    \Lambda^\lambda{}_\mu &=
+    \deltaup^\lambda_\nu \Lambda^\nu{}_\mu,
+    \intertext{%
+        which is a true statement:
+    }
+    \Lambda^\lambda{}_\mu &=
+    \Lambda^\lambda{}_\mu.
+\end{align*}
+
+\paragraph{Second identity}
+
+%We can do this one quicker by assuming that the first identity holds.
+%\begin{align*}
+%    A \bar\sigma_\mu A^\dagger &= \bar\sigma_\nu \Lambda^\nu{}_\mu
+%\end{align*}
+
+% TODO
+\emph{Missing}
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
