@@ -296,14 +296,17 @@ to match the algebra $\mathfrak{su}(2)$.
 \paragraph{Commutations among $K^i$}
 
 % TODO
+\emph{Missing}
 
 \paragraph{Commutations among $J_+^i$}
 
 % TODO
+\emph{Missing}
 
 \paragraph{Commutations among $J_-^i$}
 
 % TODO
+\emph{Missing}
 
 \paragraph{Commutation of $J_+^i$ and $J_-^i$}
 
@@ -506,6 +509,73 @@ We now show the identity:
         This is
     }
     &= \vec \Lambda_\text R.
+\end{align*}
+
+\paragraph{Left-handed spinor}
+
+The transformation of a left-handed spinor is given by
+\begin{align*}
+    \psi_\text L &\mapsto \vec\Lambda_\text L \psi_\text L.
+    \intertext{%
+        We complex conjugate the whole mapping.
+    }
+    \psi_\text L^* &\mapsto \vec\Lambda_\text L^* \psi_\text L^*
+    \intertext{%
+        Now we premultiply with $\iup \tens\sigma^2$.
+    }
+    \iup\tens\sigma^2 \psi_\text L^* &\mapsto \iup\tens\sigma^2 \vec\Lambda_\text L^* \psi_\text L^*
+    \intertext{%
+        Since $\tens\sigma^2 \tens\sigma^2 = \tens 1_2$, we can add those
+        between the transformation and the spinor.
+    }
+    \iup\tens\sigma^2 \psi_\text L^* &\mapsto \iup\tens\sigma^2 \vec\Lambda_\text L^*
+    \tens\sigma^2 \tens\sigma^2 \psi_\text L^*
+    \intertext{%
+        Then we use the second identity that we have shown in this subsection.
+        The $\iup$ commutes with everything, so we move it to the right
+        position.
+    }
+    \iup\tens\sigma^2 \psi_\text L^* &\mapsto \vec\Lambda_\text R
+    \tens\sigma^2 \iup \psi_\text L^*
+    \intertext{%
+        Now one can see the definition of that $\psi_\text L^c$.
+    }
+    \psi_\text L^c &\mapsto \vec\Lambda_\text R \psi_\text L^c
+\end{align*}
+
+\begin{small}
+    We do not know what that “$c$” stands for. If it is derived from some word,
+    it should have been upright in the previous and following parts.
+\end{small}
+
+\paragraph{Right-handed spinor}
+
+This one is very similar to the left-handed one.
+\begin{align*}
+    \psi_\text R &\mapsto \Lambda_\text R \psi_R
+    \intertext{%
+        We use the second identity in reverse.
+    }
+    \psi_\text R &\mapsto \sigma^2 \Lambda_\text L^* \sigma^2 \psi_R
+    \intertext{%
+        Then we premultiply with $- \iup \sigma^2$.
+    }
+    - \iup \sigma^2 \psi_\text R &\mapsto - \iup \Lambda_\text L^* \sigma^2 \psi_R
+    \intertext{%
+        We complex conjugate the mapping.
+    }
+    \iup \sigma^{2*} \psi_\text R^* &\mapsto \iup \Lambda_\text L \sigma^{2*}
+    \psi_R^*
+    \intertext{%
+        The complex conjugate of $\sigma^2$ is just the negative since it is
+        purely imaginary.
+    }
+    - \iup \sigma^{2} \psi_\text R^* &\mapsto - \iup \Lambda_\text L \sigma^{2}
+    \psi_R^*
+    \intertext{%
+        And now we can identify $\psi_\text R^c$ like we did before.
+    }
+    \psi_\text R^c &\mapsto \Lambda_\text L \psi_R^c
 \end{align*}
 
 \end{document}
