@@ -552,30 +552,162 @@ The transformation of a left-handed spinor is given by
 
 This one is very similar to the left-handed one.
 \begin{align*}
-    \psi_\text R &\mapsto \Lambda_\text R \psi_R
+    \psi_\text R &\mapsto \Lambda_\text R \psi_\text R
     \intertext{%
         We use the second identity in reverse.
     }
-    \psi_\text R &\mapsto \sigma^2 \Lambda_\text L^* \sigma^2 \psi_R
+    \psi_\text R &\mapsto \sigma^2 \Lambda_\text L^* \sigma^2 \psi_\text R
     \intertext{%
         Then we premultiply with $- \iup \sigma^2$.
     }
-    - \iup \sigma^2 \psi_\text R &\mapsto - \iup \Lambda_\text L^* \sigma^2 \psi_R
+    - \iup \sigma^2 \psi_\text R &\mapsto - \iup \Lambda_\text L^* \sigma^2
+    \psi_\text R
     \intertext{%
         We complex conjugate the mapping.
     }
     \iup \sigma^{2*} \psi_\text R^* &\mapsto \iup \Lambda_\text L \sigma^{2*}
-    \psi_R^*
+    \psi_\text R^*
     \intertext{%
         The complex conjugate of $\sigma^2$ is just the negative since it is
         purely imaginary.
     }
     - \iup \sigma^{2} \psi_\text R^* &\mapsto - \iup \Lambda_\text L \sigma^{2}
-    \psi_R^*
+    \psi_\text R^*
     \intertext{%
         And now we can identify $\psi_\text R^c$ like we did before.
     }
-    \psi_\text R^c &\mapsto \Lambda_\text L \psi_R^c
+    \psi_\text R^c &\mapsto \Lambda_\text L \psi_\text R^c
+\end{align*}
+
+\subsection{Hermitian matrices and four-vectors}
+
+\paragraph{Determinant}
+
+The determinant is shown quickly:
+\begin{align*}
+    \det(\tens x) &= \sbr{x^0 + x^3} \sbr{x^0 - x^3} - \sbr{x^1 + \iup x^2}
+    \sbr{x^1 - \iup x^2} \\
+    &= [x^0]^2 - [x^3]^2 - [x^1]^2 - [x^2]^2 \\
+    &= [x^0]^2 - [x^1]^2 - [x^2]^2 - [x^3]^2 \\
+    &= \diag(1, -1, -1, -1)_{\mu\nu} x^\mu x^\nu
+    \intertext{%
+        And assuming that we use the metric with signature $-2$, this is
+    }
+    &= \eta_{\mu\nu} x^\mu x^\nu.
+\end{align*}
+
+\paragraph{Symmetric part}
+
+We have to show that the symmetric part of $\sigma \otimes \bar\sigma$ is given
+by the twice metric tensor:
+\begin{align*}
+    \sigma^\mu \bar\sigma^\nu + \sigma^\nu \bar\sigma^\mu &= 2 \eta^{\mu\nu}
+    \tens 1_2
+    \intertext{%
+        We lower the index $\nu$.
+    }
+    \sigma^\mu \bar\sigma_\nu + \sigma_\nu \bar\sigma^\mu &= 2 \deltaup^\mu_\nu
+    \tens 1_2
+    \intertext{%
+        The following hurts a bit, but using the metric with signature $-2$ we
+        can raise the index $\nu$ on again and converting the $\bar\sigma$ into
+        $\sigma$ in that process. We just shift the minus sign around. The
+        index positions on the left and right do not match any more.
+    }
+    \sigma^\mu \sigma^\nu + \sigma^\nu \sigma^\mu &= 2 \deltaup^\mu_\nu
+    \tens 1_2
+\end{align*}
+This now is the anticommutation relation of the Pauli matrices. Since $\sigma^i
+\sigma^i = \tens 1_2$, the $\mu = \nu$ parts have to hold. If $\mu$ and $\nu$
+are different, the product is antisymmetric, so nothing is left. This is
+evident in the product of the Pauli matrices:
+\[
+    \sigma_i \sigma_j = \iup \epsilon_{ijk} \sigma_k + \deltaup_{ij} \tens 1_2.
+\]
+
+\paragraph{Trace}
+
+\begin{align*}
+    \tr\del{\sigma^\mu \bar\sigma_\nu} &= 2 \delta^\mu_\nu \\
+    \intertext{%
+        First we raise the index of the $\bar\sigma$ and remove the bar.
+    }
+    \tr\del{\sigma^\mu \sigma^\nu} &= 2 \delta^\mu_\nu \\
+    \intertext{%
+        To compute the product, we have to look at temporal and spatial parts
+        separately. We write this in the following way: Summands with Latin
+        indices apply when $\mu$ and $\nu$ are not zero. If that is the case,
+        then $\mu \sim m$ and $\nu \sim n$.
+    }
+    \tr\del{\iup \epsilon_{mnp} \sigma^m + \deltaup^{mn} \tens 1_2 +
+        \deltaup^{\mu0}\deltaup^{0\nu} \tens 1_2} &= 2 \delta^\mu_\nu \\
+    \intertext{%
+        The single Pauli matrix has no trace. The unit matrix has trace 2. So
+        after using the linearity of the trace we are left with the following.
+    }
+    2 \sbr{\deltaup^{mn} + \deltaup^{\mu0}\deltaup^{0\nu}} &= 2 \delta^\mu_\nu
+\end{align*}
+All possible values of $\mu$ and $\nu$ are accounted for and this holds.
+
+\paragraph{Basis and components}
+
+Now we have to show that $\tens x = \bar\sigma_\mu x^\mu$. This can be seen by
+writing it out:
+\[
+    \tens x = x^0
+    \begin{pmatrix}
+        1 & 0 \\ 0 & 1
+    \end{pmatrix}
+    + x^1
+    \begin{pmatrix}
+        0 & 1 \\ 1 & 0
+    \end{pmatrix}
+    + x^2
+    \begin{pmatrix}
+        0 & -\iup \\ -\iup & 0
+    \end{pmatrix}
+    + x^3
+    \begin{pmatrix}
+        1 & 0 \\ 0 & -1
+    \end{pmatrix}
+\]
+The sum indeed is the form of $\tens x$ given on the sheet.
+
+\paragraph{Component projection}
+
+Last we have to show $x^\mu = \frac12 \tr(\sigma^\mu \tens x)$ to get the one
+point for this problem.
+
+For $\mu = 0$, this clearly is the case since $\sigma^\mu = \tens 1_2$. For
+other $\mu$ we can write
+\begin{align*}
+    x^i &= \frac12 \tr\del{\sigma^i \tens x} \\
+    \intertext{%
+        Then we expand $\tens x$ as shown directly before this problem.
+    }
+    &= \frac12 \tr\del{\sigma^i \bar\sigma_\nu x^\nu} \\
+    \intertext{%
+        We split temporal and spatial components again, just a little less
+        crude here.
+    }
+    &= \frac12 \tr\del{\sigma^i \bar\sigma_0 x^0 + \sigma^i \bar\sigma_n x^n} \\
+    \intertext{%
+        The first summand is easy since $\bar\sigma_0$ is the identity. We can
+        raise the index and remove the bar.
+    }
+    &= \frac12 \tr\del{\sigma^i x^0 + \sigma^i \sigma^n x^n} \\
+    \intertext{%
+        The single Pauli matrix is traceless. We use the product expression for
+        the second.
+    }
+    &= \frac12 \tr\del{\sbr{\epsilon^i{}_{np} \sigma^p + \deltaup^{in} \tens
+    1_2} x^n} \\
+    \intertext{%
+        Again, the single Pauli matrix has no trace, so all is left is the
+        identity with the Kronecker symbol. Since that has trace 2, we are left
+        with
+    }
+    &= x^n.
 \end{align*}
 
 \end{document}
