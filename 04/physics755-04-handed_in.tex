@@ -210,6 +210,13 @@ as Equation~(66):
     [J_i, K_j] = \iup \epsilon_{ijk} K_k
 \end{gather*}
 
+And also
+\begin{gather*}
+    [J_+^i, J_+^j] = \iup \epsilon^{ijk} J_+^k \\
+    [J_-^i, J_-^j] = \iup \epsilon^{ijk} J_-^k \\
+    [J_+^i, J_-^j] = 0
+\end{gather*}
+
 \paragraph{Commutations among $L^i$}
 
 \begin{align*}
@@ -793,7 +800,44 @@ We start with the relation that we have to show.
 
 \subsection{Reality condition}
 
-\emph{Missing}
+First we note that
+\[
+    \xi_\text L := -\iup \sigma^2 \xi_\text R^*
+    \iff
+    \xi_\text R^* = \iup \sigma^2 \xi_\text R^*.
+\]
+Now we can tend to the equation we have to derive.
+\begin{align*}
+    \sbr{\xi_\text R^\dagger \sigma^\mu \psi_\text R}^*
+    &=
+    \xi_\text R^{\dagger*} \sigma^{\mu*} \psi_\text R^*
+    \intertext{%
+        Now we replace the right-handed spinors with the charge conjugated
+        left-handed spinors.
+    }
+    &= \sbr{\iup \sigma^2 \xi_\text L}^\dagger \sigma^{\mu*} \sbr{-\iup \sigma^2
+    \psi_\text L}
+    \intertext{%
+        The hermitian conjugate of $\iup$ turns that into its negative. The
+        Pauli matrices are hermitian. We also have $\sigma^{2*} = -
+        \sigma^{2}$.
+    }
+    &= - \iup \xi_\text L^\dagger \sigma^2 \sigma^{\mu*} \iup \sigma^2
+    \psi_\text L
+    \intertext{%
+        We can also remove all the imaginary units.
+    }
+    &= \xi_\text L^\dagger \sigma^2 \sigma^{\mu*} \sigma^2 \psi_\text L
+    \intertext{%
+        In subproblem 4 we have shown that $\sigma^2 \sigma^i \sigma^2 = -
+        \sigma^{i*}$. The case $\mu = 0$ gives a identity matrix that commutes
+        with $\sigma^2$. The result therefore is the identity matrix itself.
+        The expression $\sigma^2 \sigma^{\mu*} \sigma^2$ therefore either is
+        $\sigma^0$ or $- \sigma^m$. That is nicely wrapped up in
+        $\bar\sigma^\mu$. We now have the final result:
+    }
+    &= \xi_\text L^\dagger \bar\mu^\nu \psi_\text L.
+\end{align*}
 
 \end{document}
 
