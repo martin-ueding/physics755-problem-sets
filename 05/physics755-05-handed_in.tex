@@ -519,6 +519,66 @@ boosted spinor is then given by:
     \end{pmatrix}
 \end{align*}
 
+\subsection{Simplification}
+
+The simplification is also the next step by \textcite[46]{Peskin/QFT/1995},
+they just do not give any intermediate results. So here they are:
+\begin{align*}
+    &\sqrt{E + p_3} \frac{\tens 1_2 - \sigma^3}{2} + \sqrt{E - p_3} \frac{\tens
+    1_2 + \sigma^3}{2} \\
+    &= \sqrt{[E + p_3] \frac{[\tens 1_2 - \sigma^3]^2}{4}} + \sqrt{[E - p_3] \frac{
+    [\tens 1_2 + \sigma^3]^2}{4}} \\
+    \intertext{%
+        Computation shows that the fraction is a projection operator.
+    }
+    &= \sqrt{[E + p_3] \frac{\tens 1_2 - \sigma^3}{2}} + \sqrt{[E - p_3] \frac{\tens
+    1_2 + \sigma^3}{2}} \\
+    \intertext{%
+        In order to make it hard to read, the now do nothing, really.
+    }
+    &= \sqrt{\sbr{
+    \sqrt{[E + p_3] \frac{\tens 1_2 - \sigma^3}{2}}
+    + \sqrt{[E - p_3] \frac{\tens 1_2 + \sigma^3}{2}}
+    }^2} \\
+    \intertext{%
+        We can now apply the first binomial formula.
+    }
+    &= \sqrt{
+    [E + p_3] \frac{\tens 1_2 - \sigma^3}{2}
+    + [E - p_3] \frac{\tens 1_2 + \sigma^3}{2}
+    + 2 \sqrt{[E + p_3] \frac{\tens 1_2 - \sigma^3}{2}}
+    \sqrt{[E - p_3] \frac{\tens 1_2 + \sigma^3}{2}}
+    } \\
+    \intertext{%
+        The last summand does not contribute anything. This can be seen either
+        by seeing that the fractions are two orthogonal projection operators or
+        by actually calculating it using the third binomial theorem, which will
+        then yield $\tens 1_2 - \tens 1_2 = 0$.
+    }
+    &= \sqrt{
+    [E + p_3] \frac{\tens 1_2 - \sigma^3}{2}
+    + [E - p_3] \frac{\tens 1_2 + \sigma^3}{2}
+    } \\
+    \intertext{%
+        Then we can compute all of the eight terms, see that most cancel and
+        obtain just the following.
+    }
+    &= \sqrt{E \tens 1_2 - p_3 \sigma^3} \\
+    \intertext{%
+        Using $p_0 = E$ we can write this as
+    }
+    &= \sqrt{p_0 \sigma^0 - p_3 \sigma^3}. \\
+    \intertext{%
+        For our $p$, this can also be written as
+    }
+    &= \sqrt{p_\mu \sigma^\mu}
+\end{align*}
+We write the contraction with indices such that it is clear that the zeroth
+component is included as well.
+
+The second part has minus signs at the spatial components, so it will come out
+with $\bar\sigma$ instead of $\sigma$.
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
