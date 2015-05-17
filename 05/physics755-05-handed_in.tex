@@ -382,6 +382,143 @@ $\psi$:
 \section{Classical solutions}
 \label{homework:2}
 
+\subsection{Constraints}
+
+Using the free solutions we have:
+\begin{align*}
+    [\iup \slashed\partial - m] \psi(x) &= 0 \\
+    [\iup \slashed\partial - m] u(p) \exp(\iup p \cdot x) &= 0 \\
+    [\slashed p - m] u(p) \exp(\iup p \cdot x) &= 0 \\
+    [\slashed p - m] u(p) &= 0
+\end{align*}
+
+We look at $p = (m, 0, 0, 0)$ and insert this. Then we have:
+\begin{align*}
+    m \sbr{\gamma^0 - \tens 1_4} u(p) &= 0 \\
+    m \begin{pmatrix}
+        - \tens 1_2 & \tens 1_2 \\ \tens 1_2 & - \tens 1_2
+    \end{pmatrix} u(p) &= 0 \\
+    m \begin{pmatrix}
+        - \tens 1_2 & \tens 1_2 \\ \tens 1_2 & - \tens 1_2
+    \end{pmatrix} \begin{pmatrix}
+        \vec \xi \\ \vec \xi
+    \end{pmatrix} &= 0
+\end{align*}
+And the constraint is fulfilled.
+
+\subsection{Boost}
+
+We boost with rapidity $\eta$. Then we have
+\[
+    \Lambda p = \begin{pmatrix}
+        \cosh(\eta) m \\ 0 \\ 0 \\ \sinh(\eta) m
+    \end{pmatrix}
+    \overset != \begin{pmatrix}
+        E \\ 0 \\ 0 \\ p_3
+    \end{pmatrix}
+\]
+The norm of those has to be the same, so either way we get $E^2 - p_3^2 = m^2$
+which is not a surprise because a classic theory should be on-shell. We also
+get the following equations:
+\[
+    \cosh(\rho) m = E
+    \eqnsep
+    \sinh(\rho) m = p_3.
+\]
+We can write the trigonometric functions in terms of exponentials.
+\[
+    \sbr{\exp(\rho) + \exp(-\rho)} \frac m2 = E
+    \eqnsep
+     \sbr{\exp(\rho) - \exp(-\rho)}m = p_3.
+\]
+Now we can solve this system of equations for the exponentials.
+\[
+    \exp(\rho) m = E + p_3
+    \eqnsep
+    \exp(-\rho) m = E - p_3
+\]
+Taking the positive branch of the square root gives us the following.
+\[
+    \exp\del{\frac\rho2} \sqrt m = \sqrt{E + p_3}
+    \eqnsep
+    \exp\del{-\frac\rho2} \sqrt m = \sqrt{E - p_3}
+\]
+
+The transformation of the Dirac spinor $\psi$ can be written as
+\[
+    \Lambda_\text D = \exp\del{- \frac\eta2 \begin{pmatrix}
+        \sigma^3 & 0 \\ 0 & -\sigma^3
+    \end{pmatrix}}
+\]
+since we already derived the transformations of the left and right handed parts
+and have shown that they can be combined into a block diagonal form.
+
+We will now go along the lines of \textcite[46]{Peskin/QFT/1995}. The
+boosted spinor is then given by:
+\begin{align*}
+    u(p)
+    &= \exp\del{- \frac\eta2 \begin{pmatrix} \sigma^3 & 0 \\ 0 & -\sigma^3
+    \end{pmatrix}} u(p)
+    \intertext{%
+        Since the square of the Pauli matrices are always the identity matrix,
+        this exponential will split up into two terms, one containing the
+        identity and one containing the Pauli matrix. The factors in front will
+        give cosh and sinh.
+    }
+    &= \sbr{
+        \cosh\del{\frac\eta2}
+        \begin{pmatrix} \tens 1_2 & 0 \\ 0 & \tens 1_2 \end{pmatrix}
+        +
+        \sinh\del{\frac\eta2}
+        \begin{pmatrix} \sigma^3 & 0 \\ 0 & - \sigma^3 \end{pmatrix}
+    } u(p)
+    \intertext{%
+        As the next step one has to write cosh and sinh in terms of
+        exponentials to combine the two summands.
+    }
+    &=
+    \begin{pmatrix}
+        \exp\del{\frac\eta2} \frac{1-\sigma^3}{2} + \exp\del{-\frac\eta2} \frac{1+\sigma^3}{2}
+        & 0 \\ 0 &
+        \exp\del{\frac\eta2} \frac{1+\sigma^3}{2} + \exp\del{-\frac\eta2} \frac{1-\sigma^3}{2}
+    \end{pmatrix} u(p)
+    \intertext{%
+        We insert the ansatz.
+    }
+    &=
+    \begin{pmatrix}
+        \exp\del{\frac\eta2} \frac{1-\sigma^3}{2} + \exp\del{-\frac\eta2} \frac{1+\sigma^3}{2}
+        & 0 \\ 0 &
+        \exp\del{\frac\eta2} \frac{1+\sigma^3}{2} + \exp\del{-\frac\eta2} \frac{1-\sigma^3}{2}
+    \end{pmatrix} \sqrt m \begin{pmatrix}
+        \vec \xi \\ \vec \xi
+    \end{pmatrix}
+    \intertext{%
+        We can now use the equations that we derived for the exponentials
+        earlier on.
+    }
+    &=
+    \begin{pmatrix}
+        \sqrt{E + p_3} \frac{1-\sigma^3}{2} + \sqrt{E - p_3} \frac{1+\sigma^3}{2}
+        & 0 \\ 0 &
+        \sqrt{E + p_3} \frac{1+\sigma^3}{2} + \sqrt{E - p_3} \frac{1-\sigma^3}{2}
+    \end{pmatrix} \begin{pmatrix}
+        \vec \xi \\ \vec \xi
+    \end{pmatrix}
+    \intertext{%
+        This matrix multiplication is trivial, so we can just write it as a
+        vector.
+    }
+    &=
+    \begin{pmatrix}
+        \sbr{\sqrt{E + p_3} \frac{1-\sigma^3}{2} + \sqrt{E - p_3}
+            \frac{1+\sigma^3}{2}} \vec \xi
+            \\
+            \sbr{\sqrt{E + p_3} \frac{1+\sigma^3}{2} + \sqrt{E - p_3}
+            \frac{1-\sigma^3}{2}} \vec\xi
+    \end{pmatrix}
+\end{align*}
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
