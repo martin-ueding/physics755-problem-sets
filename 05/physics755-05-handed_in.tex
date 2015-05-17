@@ -4,6 +4,7 @@
 \usepackage{../my-boxes}
 
 \usepackage{booktabs}
+\usepackage{slashed}
 
 \hypersetup{
     pdftitle=
@@ -79,6 +80,8 @@ $\tens\sigma^{\mu\nu}$. First the time component:
     &= \epsilonup_{ijk} \sigma^k \\
     \bar\sigma^{ij} &= \sigma^{ij}
 \end{align*}
+These seem correct since \textcite[(3.26)f]{Peskin/QFT/1995} have the same
+expressions.
 
 Using those identities, we can rewrite the transformation that we previously
 had for left handed spinors.
@@ -199,6 +202,97 @@ for the final result. So we start with the given commutator.
     }
 \end{align*}
 This is just zero, but it should not be zero.
+
+\subsection{Lorentz invariance of Dirac's equation}
+
+This problem is exactly covered by \textcite[42]{Peskin/QFT/1995}.
+
+Even though $\slashed \partial = \gamma^\mu \partial_\mu$ \emph{looks like} it
+would transform like a Lorentz scalar, we cannot assume that. We need to
+transform the individual parts and then look at the whole thing. The Dirac
+equation is given by
+\[
+    \sbr{\iup \gamma^\mu \partial_\mu - m} \psi(x) = 0.
+\]
+Now we transform it passively by adding transformations.
+\begin{align*}
+    \sbr{\iup \gamma^\mu \Lambda\inv{}^\nu{}_\mu \partial_\nu - m} \Lambda_\text D \psi(\Lambda\inv x)
+    \intertext{%
+        We premuliply with $\Lambda_\text D \Lambda_\text D\inv$.
+    }
+    &= \Lambda_\text D \Lambda_\text D\inv \sbr{\iup \gamma^\mu \Lambda\inv{}^\nu{}_\mu \partial_\nu - m} \Lambda_\text D \psi(\Lambda\inv x)
+    \intertext{%
+        Since $m$ is just a number, it commutes with the transformations. We
+        can pull some transformations into the bracket, the $\Lambda_\text D
+        \inv \Lambda_\text D$ will just cancel around the $m$.
+    }
+    &= \Lambda_\text D \sbr{\Lambda_\text D\inv \iup \gamma^\mu \Lambda\inv{}^\nu{}_\mu \partial_\nu \Lambda_\text D - m} \psi(\Lambda\inv x)
+    \intertext{%
+        The matrix $\Lambda_\text D$ depends on the angles and boosts, but not
+        on spacetime. It therefore commutes with the partial derivatives.
+    }
+    &= \Lambda_\text D \sbr{\Lambda_\text D\inv \iup \gamma^\mu \Lambda_\text D \Lambda\inv{}^\nu{}_\mu \partial_\nu - m} \psi(\Lambda\inv x)
+    \intertext{%
+        Now we can use the identity that is given on the problem set.
+    }
+    &= \Lambda_\text D \sbr{\Lambda^\mu_\rho \iup \gamma^\rho \Lambda\inv{}^\nu{}_\mu \partial_\nu - m} \psi(\Lambda\inv x)
+    \intertext{%
+        There are now the normal and inverse transformation, they contract to a
+        Kronecker symbol.
+    }
+    &= \Lambda_\text D \sbr{\iup \deltaup^\nu_\rho \gamma^\rho \partial_\nu - m} \psi(\Lambda\inv x)
+    \intertext{%
+        And we are back to a Dirac equation:
+    }
+    &= \Lambda_\text D \sbr{\iup \slashed\partial - m} \psi(\Lambda\inv x)
+\end{align*}
+Now the transformation acts on the whole Dirac equation, which then is form
+invariant.
+
+\subsection{Klein-Gordon equation}
+
+This brings us to \textcite[43]{Peskin/QFT/1995}.
+
+The Dirac equation is the square root of the Klein-Gordon equation in
+the sense of the used Clifford algebra. Hamilton had shown this using
+quaternions around 1840 \parencite[619]{penrose-road_to_reality}. To get back
+to the Klein-Gordon equation, one has to \emph{square} the equation in the
+appropriate sense. The correct way of doing this is to take the modulus squared
+of the Dirac operator:
+\begin{align*}
+    \abs{\iup \slashed\partial - m}^2 \psi
+    &= \sbr{- \iup \slashed\partial - m} \sbr{\iup \slashed\partial - m} \psi
+    \\
+    \intertext{%
+        There are only two terms that contribute. One could also use the third
+        binomial formula here.
+    }
+    &= \sbr{\slashed\partial\slashed\partial + m^2} \psi \\
+    \intertext{%
+        This is in a form that is so compact that one cannot see how to simply
+        this. We undo the “slashing“.
+    }
+    &= \sbr{\gamma^\mu \gamma^\nu \partial_\mu \partial_\nu + m^2} \psi \\
+    \intertext{%
+        Since the partial derivatives of a differentiable function commute
+        (theorem of Schwarz), only the symmetric part of the Dirac matrix
+        tensor product contributes. Since we use the non-idempotent form of the
+        symmetrization and antisymmetrization notation now, we need to
+        explicitly introduce a factor of $1/2$.
+    }
+    &= \sbr{\frac 12 \gamma^{(\mu} \gamma^{\nu)} \partial_\mu \partial_\nu + m^2} \psi \\
+    \intertext{%
+        Since we take the symmetric part of a tensor times itself, $\tens
+        \gamma \otimes \tens \gamma$, we can also use the anticommutator.
+    }
+    &= \sbr{\frac 12 \sbr{\gamma^\mu, \gamma^\nu}_+ \partial_\mu \partial_\nu + m^2} \psi \\
+    \intertext{%
+        The anticommutator is known and we get
+    }
+    &= \sbr{\eta^{\mu\nu} \partial_\mu \partial_\nu + m^2} \psi \\
+    &= \sbr{\dalambert + m^2} \psi.
+\end{align*}
+This is the Klein-Gordon equation.
 
 \section{Classical solutions}
 \label{homework:2}
