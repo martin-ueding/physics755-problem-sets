@@ -54,6 +54,50 @@
 \section{The Dirac representation}
 \label{homework:1}
 
+\subsection{Transformation of Weyl spinors}
+
+We had transformations with $\vec L$ and $\vec K$, ones with $\vec J_+$ and
+$\vec J_-$ and lastly ones with $\vec \sigma$. So we look at those new
+$\tens\sigma^{\mu\nu}$. First the time component:
+\begin{align*}
+    \sigma^{00} &= 0 \\
+    \intertext{%
+        The mixed components:
+    }
+    \sigma^{0i}
+    &= \frac\iup4 \sbr{\sigma^0 \bar\sigma^i - \sigma^i \bar\sigma^0} \\
+    &= \frac\iup4 \sbr{- \sigma^i - \sigma^i} \\
+    &= - \frac\iup2 \sigma^i \\
+    \bar\sigma^{0i} &= - \frac\iup2 \bar\sigma^i \\
+    \intertext{%
+        The spatial components:
+    }
+    \sigma^{ij}
+    &= \frac\iup4 \sbr{\sigma^i \bar\sigma^j - \sigma^i \bar\sigma^j} \\
+    &= - \frac\iup4 \sbr{\sigma^i \sigma^j + \sigma^i \sigma^j} \\
+    &= - \frac\iup4 \sbr{\sigma^i, \sigma^j} \\
+    &= \epsilonup_{ijk} \sigma^k \\
+    \bar\sigma^{ij} &= \sigma^{ij}
+\end{align*}
+
+Using those identities, we can rewrite the transformation that we previously
+had for left handed spinors.
+\begin{align*}
+    -\iup \vec\Theta \cdot \frac{\vec \sigma}{2} - \vec\beta \cdot \frac{\vec \sigma}{2}
+    &= - \iup \Theta_i \frac{\sigma^i}{2} - \beta_i \frac{\sigma^i}{2} \\
+    &= - \frac\iup4 \sbr{\Theta_i \epsilonup_{ijk} \sigma^{jk} + \beta_i
+    \sigma^{0i}} \\
+    \intertext{%
+        Now one defined the antisymmetric angle tensor $\tens\omega$ such that
+        $\omega_{ij} = \Theta_i \epsilon_{ijk}$ and $\omega_{0i} = \beta_i$.
+        Then we can write
+    }
+    &= - \frac\iup4 \omega_{\mu\nu} \sigma^{\mu\nu},
+\end{align*}
+which is the desired result for the left handed spinors. For the left handed
+ones, there was an additional minus in front of $\vec\beta$, such that we need
+to use $\bar\sigma$ there.
+
 \section{Classical solutions}
 \label{homework:2}
 
