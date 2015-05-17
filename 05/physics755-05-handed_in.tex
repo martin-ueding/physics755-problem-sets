@@ -579,6 +579,41 @@ component is included as well.
 The second part has minus signs at the spatial components, so it will come out
 with $\bar\sigma$ instead of $\sigma$.
 
+\subsection{Lorentz invariance}
+
+The first relation.
+\begin{align*}
+    [p \cdot \sigma][p \cdot \bar\sigma]
+    &= p_\mu \sigma^\mu p_\nu \sigma^\nu \\
+    &= p_\mu p_\nu \sigma^\mu \sigma^\nu \\
+    \intertext{%
+        Since the $p$ are symmetric, only the symmetric part of the tensor
+        product of the Pauli matrices contributes. We can write this with the
+        anticommutator.
+    }
+    &= \frac12 p_\mu p_\nu [\sigma^\mu, \sigma^\nu]_+ \\
+    &= p_\mu p_\nu \eta^{\mu\nu} \\
+    &= p^2
+\end{align*}
+
+Then we have:
+\begin{align*}
+    u^\dagger u
+    &= \xi^\dagger p \cdot \sigma \xi + \xi^\dagger p \cdot \bar\sigma \xi \\
+    &= 2 \xi^\dagger E_p \xi \\
+    &= 2 E_p \xi^\dagger \xi
+\end{align*}
+
+Using a parity makes this invariant:
+\begin{align*}
+    \bar u u
+    &= 2 \xi^\dagger \sqrt{p \cdot \sigma} \sqrt{p \cdot \bar\sigma} \xi \\
+    \intertext{%
+        And as shown previously, this is just the (rest) mass.
+    }
+    &= 2 m \xi^\dagger \xi
+\end{align*}
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
