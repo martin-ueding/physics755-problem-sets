@@ -294,6 +294,91 @@ of the Dirac operator:
 \end{align*}
 This is the Klein-Gordon equation.
 
+\subsection{Lagrange density}
+
+The transformation works like this:
+\begin{align*}
+    \bar\phi
+    &= \phi^\dagger \gamma^0 \\
+    &\mapsto [\Lambda \phi]^\dagger \gamma^0 \\
+    &= \phi^\dagger \Lambda^\dagger \gamma^0 \\
+    \intertext{%
+        The transformation is given by this:
+    }
+    &= \phi^\dagger \exp\del{\frac\iup2 \omega_{\mu\nu} S^{\mu\nu}}^\dagger
+    \gamma^0 \\
+    &= \phi^\dagger \exp\del{- \frac\iup2 \omega_{\mu\nu} S^{\mu\nu\dagger}}
+    \gamma^0. \\
+    \intertext{%
+        The matrices $S^{ij}$ commute with $\gamma^0$ since these $S$ consist
+        of the product of two Dirac matrices. The constituents of said $S$
+        anticommute with $\gamma^0$ individually, and two anticommutations mean
+        a commutation in total. Since $S^{ij}$ are generators of a compact
+        subgroup in the physicist's convention they are hermitian. The
+        generators $S^{0i}$ are anti-hermitian but anticommute with $\gamma^0$.
+        $\gamma^0$ commutes with itself, which apparently is not trivial, see
+        \url{http://physics.stackexchange.com/q/139325/5705}. So the
+        anticommutation together with the antihermitian property gives that it
+        commutes and is hermitian for this particular case. We can therefore
+        commute it and remove the hermitian conjugate.
+    }
+    &= \phi^\dagger \gamma^0 \exp\del{- \frac\iup2 \omega_{\mu\nu} S^{\mu\nu}}
+    \intertext{%
+        We can now identify the transformation as an \emph{inverse}
+        transformation.
+    }
+    &= \bar\phi \Lambda\inv_\text D
+\end{align*}
+
+We can compute the equation of motion for $\phi$ easily using the
+Euler-Lagrange equation for it. We have $\mathscr L = \bar\psi [ \iup
+\slashed\partial - m] \psi$. Then the Euler-Lagrange equation is
+\begin{align*}
+    \pd{\mathscr L}{\bar\phi} - \partial_\mu \pd{\mathscr L}{\bar\phi_{,\mu}}
+    &= 0 \\
+    [\iup \slashed\partial - m] \psi
+    &= 0.
+\end{align*}
+That is the Dirac equation. The derivation can also be performed for $\psi$,
+which will give the hermitian conjugate of the Dirac equation. Since we will do
+that in the next problem anyway, we will not typeset that here.
+
+\subsection{Hermitian conjugate}
+
+$\gamma^0$ is a real, symmetric and therefore hermitian matrix. It commutes
+with itself and the relation is therefore trivially fulfilled. The $\gamma^i$
+in the chiral representation are antihermitian matrices that anticommute with
+$\gamma^0$. So in total, all the minus signs match and we use that the Dirac
+matrices are their own inverses.
+
+Using this, we can get the equation of motion for $\bar\psi$ from the one for
+$\psi$:
+\begin{align*}
+    [\iup \slashed\partial - m] \psi &= 0 \\
+    \iup \gamma^\mu \psi_{,\mu} - m \psi &= 0 \\
+    \intertext{%
+        We take the hermitian conjugate.
+    }
+    - \iup \psi_{,\mu}^\dagger \gamma^{\mu\dagger} - m \psi^\dagger &= 0 \\
+    \intertext{%
+        Now we can use the identity that we have derived earlier.
+    }
+    - \iup \psi_{,\mu}^\dagger \gamma^0 \gamma^\mu \gamma^0 - m \psi^\dagger &= 0 \\
+    \intertext{%
+        We identity the first spinor.
+    }
+    - \iup \bar\psi_{,\mu} \gamma^\mu \gamma^0 - m \psi^\dagger &= 0 \\
+    \intertext{%
+        Now the postmultiply with $\gamma^0$ and use that its square is the
+        identity.
+    }
+    - \iup \bar\psi_{,\mu} \gamma^\mu - m \bar\psi &= 0 \\
+    \intertext{%
+        We can now multiply with $-1$ and bring it into the compact form
+    }
+    [\iup \slashed\partial + m] \bar\phi &= 0.
+\end{align*}
+
 \section{Classical solutions}
 \label{homework:2}
 
