@@ -203,6 +203,8 @@ for the final result. So we start with the given commutator.
 \end{align*}
 This is just zero, but it should not be zero.
 
+% TODO Do you have anything better?
+
 \subsection{Lorentz invariance of Dirac's equation}
 
 This problem is exactly covered by \textcite[42]{Peskin/QFT/1995}.
@@ -387,8 +389,8 @@ $\psi$:
 Using the free solutions we have:
 \begin{align*}
     [\iup \slashed\partial - m] \psi(x) &= 0 \\
-    [\iup \slashed\partial - m] u(p) \exp(\iup p \cdot x) &= 0 \\
-    [\slashed p - m] u(p) \exp(\iup p \cdot x) &= 0 \\
+    [\iup \slashed\partial - m] u(p) \exp(- \iup p \cdot x) &= 0 \\
+    [\slashed p - m] u(p) \exp(- \iup p \cdot x) &= 0 \\
     [\slashed p - m] u(p) &= 0
 \end{align*}
 
@@ -613,6 +615,97 @@ Using a parity makes this invariant:
     }
     &= 2 m \xi^\dagger \xi
 \end{align*}
+
+\subsection{Changes for negative frequency}
+
+We now have the following constraint:
+\begin{align*}
+    [\iup \slashed\partial - m] \psi(x) &= 0 \\
+    [\iup \slashed\partial - m] u(p) \exp(\iup p \cdot x) &= 0 \\
+    [- \slashed p - m] u(p) \exp(\iup p \cdot x) &= 0 \\
+    [- \slashed p - m] u(p) &= 0
+\end{align*}
+So the sign in front of the momentum has changed. So there should be a minus
+sign in front of the second component, just as if $\gamma^0$ had been applied,
+since the parity connects the left and right handed components.
+
+% TODO Is that legit?
+
+\subsection{Completeness relation}
+
+This one is rather easy to show.
+\begin{align*}
+    u^s \bar u_s
+    &=
+    \begin{pmatrix}
+        \sqrt{p \cdot \sigma} \xi^s \\ \sqrt{p \cdot \bar\sigma} \xi^s
+    \end{pmatrix}
+    \begin{pmatrix}
+        \xi_s^\dagger \sqrt{p \cdot \sigma} \xi^s & \xi_s^\dagger \sqrt{p \cdot \bar\sigma} 
+    \end{pmatrix}
+    \intertext{%
+        We perform the tensor product and use the identities that we have
+        previously computed.
+    }
+    &=
+    \begin{pmatrix}
+        m \tens 1_2 & p \cdot \sigma \\
+        p \cdot \bar\sigma & m \tens 1_2
+    \end{pmatrix}
+    \intertext{%
+        This can be expanded like so:
+    }
+    &=
+    \begin{pmatrix}
+        0 & p_0 \sigma^0 \\
+        p_0 \bar\sigma^0 & 0
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+        0 & p_i \sigma^i \\
+        p_i \bar\sigma^i & 0
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+        \tens 1_2 & 0 \\
+        0 & \tens 1_2
+    \end{pmatrix} m
+    \intertext{%
+        And then we can put in $\bar\sigma$ in terms of $\sigma$.
+    }
+    &= p_0
+    \begin{pmatrix}
+        0 & \sigma^0 \\
+        \sigma^0 & 0
+    \end{pmatrix}
+    +
+    p_i
+    \begin{pmatrix}
+        0 & \sigma^i \\
+        - \sigma^i & 0
+    \end{pmatrix}
+    +
+    \begin{pmatrix}
+        \tens 1_2 & 0 \\
+        0 & \tens 1_2
+    \end{pmatrix} m
+    \intertext{%
+        Look! The Dirac matrices in the chiral representation.
+    }
+    &= p_\mu \gamma^\mu + m \tens 1_4
+\end{align*}
+
+\subsection{Negative frequency}
+
+The negative frequency case must the orthogonal to the positive frequency one.
+One choice would be \parencite[(3.62)]{Peskin/QFT/1995},
+\[
+    v^s(p) =
+    \begin{pmatrix}
+        \sqrt{p \cdot \sigma} \eta^s \\
+        - \sqrt{p \cdot \bar\sigma} \eta^s \\
+    \end{pmatrix}.
+\]
 
 \end{document}
 
