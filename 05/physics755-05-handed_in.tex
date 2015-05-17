@@ -98,6 +98,108 @@ which is the desired result for the left handed spinors. For the left handed
 ones, there was an additional minus in front of $\vec\beta$, such that we need
 to use $\bar\sigma$ there.
 
+\subsection{Dirac spinor transformation}
+
+We compute the $\tens S$ explicitly, just as done on the lecture on Friday.
+\begin{align*}
+    S^{\mu\nu}
+    &= \frac\iup4 \sbr{\gamma^\mu, \gamma^\nu} \\
+    &= \frac\iup4 \sbr{\gamma^\mu \gamma^\nu - \gamma^\nu \gamma^\mu} \\
+    &= \frac\iup4 \begin{pmatrix}
+    \sigma^\mu \bar\sigma^\nu - \sigma^\nu \bar\sigma^\mu & 0 \\
+    0 & \bar\sigma^\mu \sigma^\nu - \bar\sigma^\nu \sigma^\mu & 0
+    \end{pmatrix} \\
+    &= \diag\del{\sigma^{\mu\nu}, \bar\sigma^{\mu\nu}}
+\end{align*}
+
+So we see that this commutator of the Dirac matrices in the chiral
+representation give a block diagonal matrix. In the exponential map, this will
+still be a block diagonal matrix. As we have shown in the previous part of this
+problem, the left and right handed parts of the Dirac spinor transform
+independently, just like the block diagonal form that we have here.
+
+\subsection{Commutator}
+
+We want to use anticommutation relations to yield $\tens\eta$s which are needed
+for the final result. So we start with the given commutator.
+\begin{align*}
+    \sbr{\tens\gamma^\mu, \tens S^{\rho\sigma}}
+    &= \frac\iup4 \sbr{\tens\gamma^\mu, \tens\gamma^\rho \tens\gamma^\sigma + \tens\gamma^\sigma
+    \tens\gamma^\rho} \\
+    &= \frac\iup4 \sbr{
+        \tens\gamma^\mu \tens\gamma^\rho \tens\gamma^\sigma
+        + \tens\gamma^\mu \tens\gamma^\sigma \tens\gamma^\rho
+        - \tens\gamma^\rho \tens\gamma^\sigma \tens\gamma^\mu
+        - \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
+    }
+    \intertext{%
+        We now use the anticommutation relation of the Dirac matrices.
+    }
+    &= \frac\iup4 \sbr{
+        \sbr{- \tens\gamma^\rho \tens\gamma^\mu + \eta^{\mu\rho} \tens 1_4} \tens\gamma^\sigma
+        + \sbr{- \tens\gamma^\sigma \tens\gamma^\mu + \eta^{\mu\sigma} \tens 1_4} \tens\gamma^\rho
+        - \tens\gamma^\rho \tens\gamma^\sigma \tens\gamma^\mu
+        - \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
+    }
+    \intertext{%
+        Then we expand the inner brackets.
+    }
+    &= \frac\iup4 \sbr{
+        - \tens\gamma^\rho \tens\gamma^\mu \tens\gamma^\sigma
+        - \tens\gamma^\sigma \tens\gamma^\mu \tens\gamma^\rho
+        - \tens\gamma^\rho \tens\gamma^\sigma \tens\gamma^\mu
+        - \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
+        + \eta^{\mu\rho} \tens 1_4 \tens\gamma^\sigma
+        + \eta^{\mu\sigma} \tens 1_4 \tens\gamma^\rho
+    }
+    \intertext{%
+        We do the same thing again to move the $\tens\gamma^\mu$ to the back.
+    }
+    &= \frac\iup4 \left[
+        - \tens\gamma^\rho \sbr{- \tens\gamma^\sigma \tens\gamma^\mu + \eta^{\mu\sigma} \tens 1_4}
+        - \tens\gamma^\sigma \sbr{- \tens\gamma^\rho \tens\gamma^\mu + \eta^{\mu\rho} \tens 1_4}
+        - \tens\gamma^\rho \tens\gamma^\sigma \tens\gamma^\mu
+        - \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
+        \right. \\ &\qquad \left.
+        + \eta^{\mu\rho} \tens 1_4 \tens\gamma^\sigma
+        + \eta^{\mu\sigma} \tens 1_4 \tens\gamma^\rho
+    \right]
+    \intertext{%
+        And we factor out again.
+    }
+    &= \frac\iup4 \left[
+        \tens\gamma^\rho \tens\gamma^\sigma \tens\gamma^\mu
+        + \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
+        - \tens\gamma^\rho \tens\gamma^\sigma \tens\gamma^\mu
+        - \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
+        \right. \\ &\qquad \left.
+        + \eta^{\mu\rho} \tens 1_4 \tens\gamma^\sigma
+        + \eta^{\mu\sigma} \tens 1_4 \tens\gamma^\rho
+        - \tens\gamma^\rho \eta^{\mu\sigma} \tens 1_4
+        - \tens\gamma^\sigma \eta^{\mu\rho} \tens 1_4
+    \right]
+    \intertext{%
+        The first four terms cancel.
+    }
+    &= \frac\iup4 \sbr{
+        \eta^{\mu\rho} \tens 1_4 \tens\gamma^\sigma
+        + \eta^{\mu\sigma} \tens 1_4 \tens\gamma^\rho
+        - \tens\gamma^\rho \eta^{\mu\sigma} \tens 1_4
+        - \tens\gamma^\sigma \eta^{\mu\rho} \tens 1_4
+    }
+    \intertext{%
+        The components of the matrix tensor are just numbers and commute with
+        the matrices.
+    }
+    &= \frac\iup4 \sbr{
+        \eta^{\mu\rho} \tens\gamma^\sigma
+        + \eta^{\mu\sigma} \tens\gamma^\rho
+        - \eta^{\mu\sigma} \tens\gamma^\rho
+        - \eta^{\mu\rho} \tens\gamma^\sigma
+    }
+\end{align*}
+This is just zero, but it should not be zero.
+
 \section{Classical solutions}
 \label{homework:2}
 
