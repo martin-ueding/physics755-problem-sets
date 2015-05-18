@@ -127,45 +127,45 @@ We want to use anticommutation relations to yield $\tens\eta$s which are needed
 for the final result. So we start with the given commutator.
 \begin{align*}
     \sbr{\tens\gamma^\mu, \tens S^{\rho\sigma}}
-    &= \frac\iup4 \sbr{\tens\gamma^\mu, \tens\gamma^\rho \tens\gamma^\sigma + \tens\gamma^\sigma
+    &= \frac\iup4 \sbr{\tens\gamma^\mu, \tens\gamma^\rho \tens\gamma^\sigma - \tens\gamma^\sigma
     \tens\gamma^\rho} \\
     &= \frac\iup4 \sbr{
         \tens\gamma^\mu \tens\gamma^\rho \tens\gamma^\sigma
-        + \tens\gamma^\mu \tens\gamma^\sigma \tens\gamma^\rho
+        - \tens\gamma^\mu \tens\gamma^\sigma \tens\gamma^\rho
         - \tens\gamma^\rho \tens\gamma^\sigma \tens\gamma^\mu
-        - \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
+        + \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
     }
     \intertext{%
         We now use the anticommutation relation of the Dirac matrices.
     }
     &= \frac\iup4 \sbr{
-        \sbr{- \tens\gamma^\rho \tens\gamma^\mu + \eta^{\mu\rho} \tens 1_4} \tens\gamma^\sigma
-        + \sbr{- \tens\gamma^\sigma \tens\gamma^\mu + \eta^{\mu\sigma} \tens 1_4} \tens\gamma^\rho
+        \sbr{- \tens\gamma^\rho \tens\gamma^\mu + 2 \eta^{\mu\rho} \tens 1_4} \tens\gamma^\sigma
+        - \sbr{- \tens\gamma^\sigma \tens\gamma^\mu + 2 \eta^{\mu\sigma} \tens 1_4} \tens\gamma^\rho
         - \tens\gamma^\rho \tens\gamma^\sigma \tens\gamma^\mu
-        - \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
+        + \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
     }
     \intertext{%
         Then we expand the inner brackets.
     }
     &= \frac\iup4 \sbr{
         - \tens\gamma^\rho \tens\gamma^\mu \tens\gamma^\sigma
-        - \tens\gamma^\sigma \tens\gamma^\mu \tens\gamma^\rho
+        + \tens\gamma^\sigma \tens\gamma^\mu \tens\gamma^\rho
         - \tens\gamma^\rho \tens\gamma^\sigma \tens\gamma^\mu
-        - \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
-        + \eta^{\mu\rho} \tens 1_4 \tens\gamma^\sigma
-        + \eta^{\mu\sigma} \tens 1_4 \tens\gamma^\rho
+        + \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
+        + 2 \eta^{\mu\rho} \tens 1_4 \tens\gamma^\sigma
+        - 2 \eta^{\mu\sigma} \tens 1_4 \tens\gamma^\rho
     }
     \intertext{%
         We do the same thing again to move the $\tens\gamma^\mu$ to the back.
     }
     &= \frac\iup4 \left[
-        - \tens\gamma^\rho \sbr{- \tens\gamma^\sigma \tens\gamma^\mu + \eta^{\mu\sigma} \tens 1_4}
-        - \tens\gamma^\sigma \sbr{- \tens\gamma^\rho \tens\gamma^\mu + \eta^{\mu\rho} \tens 1_4}
+        - \tens\gamma^\rho \sbr{- \tens\gamma^\sigma \tens\gamma^\mu + 2 \eta^{\mu\sigma} \tens 1_4}
+        + \tens\gamma^\sigma \sbr{- \tens\gamma^\rho \tens\gamma^\mu + 2 \eta^{\mu\rho} \tens 1_4}
         - \tens\gamma^\rho \tens\gamma^\sigma \tens\gamma^\mu
-        - \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
+        + \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
         \right. \\ &\qquad \left.
-        + \eta^{\mu\rho} \tens 1_4 \tens\gamma^\sigma
-        + \eta^{\mu\sigma} \tens 1_4 \tens\gamma^\rho
+        + 2 \eta^{\mu\rho} \tens 1_4 \tens\gamma^\sigma
+        - 2 \eta^{\mu\sigma} \tens 1_4 \tens\gamma^\rho
     \right]
     \intertext{%
         And we factor out again.
@@ -174,36 +174,49 @@ for the final result. So we start with the given commutator.
         \tens\gamma^\rho \tens\gamma^\sigma \tens\gamma^\mu
         + \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
         - \tens\gamma^\rho \tens\gamma^\sigma \tens\gamma^\mu
-        - \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
+        + \tens\gamma^\sigma \tens\gamma^\rho \tens\gamma^\mu
         \right. \\ &\qquad \left.
-        + \eta^{\mu\rho} \tens 1_4 \tens\gamma^\sigma
-        + \eta^{\mu\sigma} \tens 1_4 \tens\gamma^\rho
+        + 2 \eta^{\mu\rho} \tens 1_4 \tens\gamma^\sigma
+        - 2 \eta^{\mu\sigma} \tens 1_4 \tens\gamma^\rho
         - \tens\gamma^\rho \eta^{\mu\sigma} \tens 1_4
-        - \tens\gamma^\sigma \eta^{\mu\rho} \tens 1_4
+        + \tens\gamma^\sigma \eta^{\mu\rho} \tens 1_4
     \right]
     \intertext{%
         The first four terms cancel.
     }
     &= \frac\iup4 \sbr{
-        \eta^{\mu\rho} \tens 1_4 \tens\gamma^\sigma
-        + \eta^{\mu\sigma} \tens 1_4 \tens\gamma^\rho
-        - \tens\gamma^\rho \eta^{\mu\sigma} \tens 1_4
-        - \tens\gamma^\sigma \eta^{\mu\rho} \tens 1_4
+        2 \eta^{\mu\rho} \tens 1_4 \tens\gamma^\sigma
+        - 2 \eta^{\mu\sigma} \tens 1_4 \tens\gamma^\rho
+        - \tens\gamma^\rho 2 \eta^{\mu\sigma} \tens 1_4
+        + \tens\gamma^\sigma 2 \eta^{\mu\rho} \tens 1_4
     }
     \intertext{%
         The components of the matrix tensor are just numbers and commute with
         the matrices.
     }
     &= \frac\iup4 \sbr{
-        \eta^{\mu\rho} \tens\gamma^\sigma
-        + \eta^{\mu\sigma} \tens\gamma^\rho
-        - \eta^{\mu\sigma} \tens\gamma^\rho
-        - \eta^{\mu\rho} \tens\gamma^\sigma
+        2 \eta^{\mu\rho} \tens\gamma^\sigma
+        - 2 \eta^{\mu\sigma} \tens\gamma^\rho
+        - 2 \eta^{\mu\sigma} \tens\gamma^\rho
+        + 2 \eta^{\mu\rho} \tens\gamma^\sigma
     }
+    \intertext{%
+        Then we can write this shorter by combining terms.
+    }
+    &= \iup \sbr{
+        \eta^{\mu\rho} \tens\gamma^\sigma
+        - \eta^{\mu\sigma} \tens\gamma^\rho
+    }
+    \intertext{%
+        We can move the Dirac matrix out of the bracket and introduce a
+        Kronecker symbol for it.
+    }
+    &= \iup \sbr{
+        \eta^{\mu\rho} \deltaup_\lambda^\sigma
+        - \eta^{\mu\sigma} \deltaup_\lambda^\rho
+    } \tens\gamma^\lambda
 \end{align*}
-This is just zero, but it should not be zero.
-
-% TODO Do you have anything better?
+And that is the expression given on the problem set.
 
 \subsection{Lorentz invariance of Dirac's equation}
 
@@ -465,12 +478,13 @@ boosted spinor is then given by:
         Since the square of the Pauli matrices are always the identity matrix,
         this exponential will split up into two terms, one containing the
         identity and one containing the Pauli matrix. The factors in front will
-        give cosh and sinh.
+        give cosh and sinh. The sinh will have a minus sign since we are
+        passively boosting by $-\eta$.
     }
     &= \sbr{
         \cosh\del{\frac\eta2}
         \begin{pmatrix} \tens 1_2 & 0 \\ 0 & \tens 1_2 \end{pmatrix}
-        +
+        -
         \sinh\del{\frac\eta2}
         \begin{pmatrix} \sigma^3 & 0 \\ 0 & - \sigma^3 \end{pmatrix}
     } u(p)
