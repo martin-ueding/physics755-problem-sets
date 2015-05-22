@@ -104,10 +104,9 @@ derivatives.
 \paragraph{Canonical momenta}
 
 We have four fields here: $\{ A^\mu \}$. Each of those fields has its own
-momentum 4-vector. Although it probably does not transform like a tensor, we
-can write it with two indices:
+momentum.
 \[
-    \pi^{\mu\nu} = \pd{\mathscr L}{A_{\mu,\nu}} = - \frac 12 A^{\mu,\nu}.
+    \pi^{\mu} = \pd{\mathscr L}{\dot A_{\mu}} = - \frac 12 \dot A^{\mu}.
 \]
 
 % TODO Should there be an additional factor of 2 because we take the derivative
@@ -139,11 +138,54 @@ electromagnetic fields without any charged particles.
 
 \paragraph{Field expansion}
 
-% TODO
+Here are the arguments to expand it like Equation~(5) on the problem set:
+
+\begin{itemize}
+    \item
+        Every square integrable function can be written as a Fourier series.
+        Since one assumes that the non-zero domain $\tens A$ is bounded, this
+        is the case. This motivates the $\int \dif^3 p$.
+
+    \item
+        To make the integral Lorentz invariant, the factor $[2
+        \omega_p]^{-1/2}$ is added to the integral.
+
+    \item
+        Since the equation of motion for $A^\mu$ is the Klein-Gordon equation
+        for massless particles, we can think of the electric field as an
+        infinite amount of harmonic oscillators, just that there are four
+        fields now. This lets us write the modes as annihilation and creation
+        operators.
+\end{itemize}
+
+\paragraph{Form of negative frequency part}
+
+The coefficient function $\epsilon$ is complex conjugated because we want $A$
+to be a hermitian operator to use it as an observable with real eigenvalues.
+
+We are not sure why it depends on $p$ and $\lambda$. If $\lambda$ is the
+wavelength, then it has a direct correspondence to $p$, so it looks redundant.
+Except if we are preparing for off-shell quantities, then it would make sense
+to have energy and momentum independent of each other.
 
 \paragraph{Momenta expansion}
 
-% TODO
+By analogy and looking at the case for the Klein-Gordon field from
+\textcite[(2.26)]{Peskin/QFT/1995} we know that we have to introduce a minus
+between the summands. Then there are different factors in front. In total we
+get:
+\[
+    \pi^\mu(\vec x) = \int \frac{\dif^3 p}{[2\piup]^3} [-\iup]
+    \sqrt{\frac{\omega_p}{2}} \sbr{
+        \epsilon^\mu(p, \lambda) a_{\vec p, \lambda} \exp(\iup \vec p \cdot
+        \vec x)
+        -
+        \epsilon^{\mu*}(p, \lambda) a_{\vec p, \lambda}^\dagger \exp(-\iup \vec p \cdot
+        \vec x)
+    }
+\]
+The index “comma $\lambda$” is meant as a juxtaposition of indices, not as a
+partial derivative with respect to $x^\lambda$.
 
 \end{document}
 
