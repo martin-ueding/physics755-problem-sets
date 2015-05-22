@@ -58,17 +58,84 @@
 
 \paragraph{Lagrangian}
 
-% TODO
+We start with the given Lagrange density in convenient short notation for the
+derivatives.
+\begin{align*}
+    \mathscr L'
+    &= - \frac{1}{4} F_{\mu\nu} F^{\mu\nu} - \frac{\kappa}{2}
+    \sbr{A^\mu{}_{,\mu}}^2
+    \intertext{%
+        Then we expand the field strength tensor using the non-idempotent
+        antisymmetrization notation. We directly apply the Lorenz gauge to get
+        rid of terms.
+    }
+    &= - \frac{1}{4} A_{[\mu,\nu]} \; A^{[\mu,\nu]}
+    \intertext{%
+        There is no need to antisymmetrize both of them, we can just add a
+        factor of two and omit one bracket.
+    }
+    &= - \frac{1}{2} A_{\mu,\nu} \; A^{[\mu,\nu]}
+    \intertext{%
+        We write it out explicitly.
+    }
+    &= - \frac{1}{2} A_{\mu,\nu} \; A^{\mu,\nu} + \frac{1}{2} A_{\mu,\nu} \; A^{\nu,\mu}
+    \intertext{%
+        The first term is the one that we want, we have to get rid of the
+        second one. We note that
+        \[
+            \partial_\mu A_\nu A^{\mu,\nu} = A_{\nu,\mu} \; A^{\mu,\nu} + A_\nu
+            A^{\mu,\nu}{}_{,\mu}.
+        \]
+        The second summand is a divergence of $\tens A$ and can therefore be
+        set to zero. We replace the unwanted term on the Lagrangian with the
+        total derivative.
+    }
+    &= - \frac{1}{2} A_{\mu,\nu} \; A^{\mu,\nu} + \partial_\mu A_\nu A^{\mu,\nu}
+    \intertext{%
+        As a last step we argue that the equations of motions do not change
+        when we add a total derivative to the Lagrangian. We can therefore omit
+        since we are only interested in the physics. That is the definition of
+        a new Lagrangian density that is equivalent to the previous one.
+    }
+    \tilde{\mathscr L}
+    &= - \frac{1}{2} A_{\mu,\nu} \; A^{\mu,\nu} + \partial_\mu A_\nu A^{\mu,\nu}
+\end{align*}
 
 \paragraph{Canonical momenta}
 
-% TODO
+We have four fields here: $\{ A^\mu \}$. Each of those fields has its own
+momentum 4-vector. Although it probably does not transform like a tensor, we
+can write it with two indices:
+\[
+    \pi^{\mu\nu} = \pd{\mathscr L}{A_{\mu,\nu}} = - \frac 12 A^{\mu,\nu}.
+\]
+
+% TODO Should there be an additional factor of 2 because we take the derivative
+% of the square of A?
 
 \subsection{Field expansion}
 
 \paragraph{Equations of motion}
 
-% TODO
+For a single field, the Euler-Lagrange equations look like this:
+\[
+    \partial_\mu \pd{\mathscr L}{\phi_{,\mu}} \pd{\mathscr L}{\phi} = 0
+\]
+We have four fields here, so we have four equations of motion, indexed by
+$\mu$:
+\[
+    \partial_\lambda \pd{\mathscr L}{A_{\mu,\lambda}} - \pd{\mathscr L}{A_\mu}
+    = 0
+    \iff
+    \partial_\mu A^{\mu,\lambda} = 0
+    \iff
+    A^{\mu,\lambda}{}_{,\lambda} = 0
+    \iff
+    \dalambert A^\mu = 0
+\]
+This looks familiar. If there had been some source term $\tens J$ in the
+theory, this would have shown up here as well. This theory only describes
+electromagnetic fields without any charged particles.
 
 \paragraph{Field expansion}
 
