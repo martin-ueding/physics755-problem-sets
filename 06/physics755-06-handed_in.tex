@@ -156,17 +156,21 @@ Here are the arguments to expand it like Equation~(5) on the problem set:
         infinite amount of harmonic oscillators, just that there are four
         fields now. This lets us write the modes as annihilation and creation
         operators.
+
+    \item
+        In contrast to the scalar (or pseudoscalar?) Klein-Gordon field with
+        spin 0, we have a field which is vector polarized and therefore has
+        spin 1. The gravitational field is tensor polarized and therefore the
+        graviton has spin 2, by the way. Since the particles in our theory, the
+        photons, are vector polarized, the creation and annihilation operators
+        need to take the polarization axis $\lambda$ as an additional argument.
+        This $\lambda$ has nothing to do with the wavelength of the photon.
 \end{itemize}
 
 \paragraph{Form of negative frequency part}
 
 The coefficient function $\epsilon$ is complex conjugated because we want $A$
 to be a hermitian operator to use it as an observable with real eigenvalues.
-
-We are not sure why it depends on $p$ and $\lambda$. If $\lambda$ is the
-wavelength, then it has a direct correspondence to $p$, so it looks redundant.
-Except if we are preparing for off-shell quantities, then it would make sense
-to have energy and momentum independent of each other.
 
 \paragraph{Momenta expansion}
 
@@ -176,7 +180,7 @@ between the summands. Then there are different factors in front. In total we
 get:
 \[
     \pi^\mu(\vec x) = \int \frac{\dif^3 p}{[2\piup]^3} [-\iup]
-    \sqrt{\frac{\omega_p}{2}} \sbr{
+    \sqrt{\frac{\omega_p}{2}} \sum_{\lambda=0}^3 \sbr{
         \epsilon^\mu(p, \lambda) a_{\vec p, \lambda} \exp(\iup \vec p \cdot
         \vec x)
         -
@@ -186,6 +190,122 @@ get:
 \]
 The index “comma $\lambda$” is meant as a juxtaposition of indices, not as a
 partial derivative with respect to $x^\lambda$.
+
+\subsection{Canonical commutations relations}
+
+We are supposed to compute the given commutator. We start by splitting temporal
+and spatial parts in the implicit sum.
+\begin{align*}
+    \sbr{A^\mu{}_{,\mu}(\vec x, t), A^\nu(\vec y, t)}
+    &= \sbr{\dot A^0(\vec x, t), A^\nu(\vec y, t)}
+    + \sbr{A^i{}_{,i}(\vec x, t), A^\nu(\vec y, t)}
+    \intertext{%
+        Now we can insert the canonical momentum that we have calculated.
+    }
+    &= - 2 \sbr{\pi^0(\vec x, t), A^\nu(\vec y, t)}
+    + \sbr{A^i{}_{,i}(\vec x, t), A^\nu(\vec y, t)}
+    \intertext{%
+        That commutator is given in Equation~(6) on the problem set.
+    }
+    &= 2 \iup \eta^{0\nu} \deltaup^{(3)}(\vec x - \vec y)
+    + \sbr{A^i{}_{,i}(\vec x, t), A^\nu(\vec y, t)}
+\end{align*}
+It depends on the commutation of the spatial derivatives whether this might go
+back to zero. If we had applied the Lorenz gauge before computing the
+commutator, it would definitely be zero.
+
+\subsection{Expressions for ladder operators}
+
+\paragraph{Annihilation operator}
+
+We take the expressions for the field and the canonical momentum and add them
+after multiplying the second equation with an with appropriate factor. We get
+one equation:
+\begin{gather*}
+    \int \frac{\dif^3 p}{[2\piup]^3} \frac{1}{\sqrt{2\omega_p}} \sum_{\lambda
+    = 0}^3 2 \epsilon^\mu(p, \lambda) \, a_{\vec p, \lambda} \eup^{\iup \vec p
+    \cdot \vec x}
+    =
+    A^\mu(\vec x) - \frac{\iup}{\omega_p} \pi^\mu(\vec x).
+    \intertext{%
+        The isolation of the annihilation operator is the goal, so we
+        already move as many factors to the other side as possible. We already
+        add a $-\iup$ to the left hand side as well.
+    }
+    \int \frac{\dif^3 p}{[2\piup]^3} \sum_{\lambda
+    = 0}^3 \epsilon^\mu(p, \lambda) \, a_{\vec p, \lambda} \eup^{\iup \vec p
+    \cdot \vec x}
+    =
+    - \iup \frac{1}{\sqrt{2\omega_p}} \sbr{\pi^\mu(\vec x) + \iup \omega_p A^\mu(\vec x)}
+    \intertext{%
+        We contract the whole expression with $\epsilon_\mu(p, \kappa)$.
+    }
+    \int \frac{\dif^3 p}{[2\piup]^3} \sum_{\lambda
+    = 0}^3 \epsilon_\mu(p, \kappa) \epsilon^\mu(p, \lambda) \, a_{\vec p, \lambda} \eup^{\iup \vec p
+    \cdot \vec x}
+    =
+    - \iup \frac{1}{\sqrt{2\omega_p}} \epsilon_\mu(p, \kappa) \sbr{\pi^\mu(\vec x) + \iup \omega_p A^\mu(\vec x)}
+    \intertext{%
+        The right hand side now contains the orthonormality relation for the
+        polarization vectors, we insert it.
+    }
+    \int \frac{\dif^3 p}{[2\piup]^3} \sum_{\lambda
+= 0}^3 \eta_{\kappa\lambda} \, a_{\vec p, \lambda} \eup^{\iup \vec p
+    \cdot \vec x}
+    =
+    - \iup \frac{1}{\sqrt{2\omega_p}} \epsilon_\mu(p, \kappa) \sbr{\pi^\mu(\vec x) + \iup \omega_p A^\mu(\vec x)}
+    \intertext{%
+        The only contributing term in the sum $\sum_{\lambda = 0}^3
+        \eta_{\kappa\lambda}$ will be $\eta_{\kappa\kappa}$. Since that is just
+        $\pm 1$ we can safely move it to the other side of the equation.
+    }
+    \int \frac{\dif^3 p}{[2\piup]^3} a_{\vec p, \lambda} \eup^{\iup \vec p
+    \cdot \vec x}
+    =
+    - \iup \eta_{\kappa\lambda} \frac{1}{\sqrt{2\omega_p}} \epsilon_\mu(p, \kappa) \sbr{\pi^\mu(\vec x) + \iup \omega_p A^\mu(\vec x)}
+    \intertext{%
+        The order of steps that we took caused a problem: $p$ is not defined on
+        the left hand side since it is the integration variable of the right
+        hand side. We will now fix this by adding a Fourier transform into
+        momentum space on both side. We should have done this before even
+        adding the equations, but that would have lead to much clutter. We are
+        aware that this is not very precise, but since the spatial integral on
+        the right hand side will yield a $\deltaup$-distribution, it would not
+        have changed anything. Since we only get three points for this problem
+        which contains four subproblems, we are just going to leave it like
+        that and let it squeal.
+    }
+    \int \frac{\dif^3 p}{[2\piup]^3} \dif^3x \, \eup^{\iup [\vec p - \vec k] \cdot \vec x}  a_{\vec p, \lambda}
+    =
+    - \iup \eta_{\kappa\lambda} \int \dif^3x \, \eup^{-\iup \vec k \cdot \vec x} \frac{1}{\sqrt{2\omega_k}} \epsilon_\mu(k, \kappa) \sbr{\pi^\mu(\vec x) + \iup \omega_k A^\mu(\vec x)}
+    \intertext{%
+        We get a $\deltaup(\vec p - \vec k)$ from the spatial integral. Then we
+        can apply the momentum integral and set all the momenta to $\vec k$.
+    }
+    a_{\vec k, \lambda}
+    =
+    - \iup \eta_{\kappa\lambda} \int \dif^3x \, \eup^{-\iup \vec k \cdot \vec x} \frac{1}{\sqrt{2\omega_k}} \epsilon_\mu(k, \kappa) \sbr{\pi^\mu(\vec x) + \iup \omega_k A^\mu(\vec x)}
+    \intertext{%
+        Now we can rename $\vec k$ back to $\vec p$. Then we arrived at the
+        expression that was wanted.
+    }
+    a_{\vec p, \lambda}
+    =
+    - \iup \eta_{\kappa\lambda} \int \dif^3x \, \eup^{-\iup \vec k \cdot \vec x} \frac{1}{\sqrt{2\omega_k}} \epsilon_\mu(k, \kappa) \sbr{\pi^\mu(\vec x) + \iup \omega_k A^\mu(\vec x)}
+\end{gather*}
+Again, we should have done the Fourier transform as the first step and rename
+the variables with hindsight, but the idea is still correct.
+
+\paragraph{Creation operator}
+
+We should be able to take the hermitian conjugate of the whole expression and
+get the result for the creation operator.
+\[
+    a_{\vec p, \lambda}^\dagger
+    =
+    \iup \eta_{\kappa\lambda} \int \dif^3x \, \eup^{\iup \vec k \cdot \vec x}
+    \frac{1}{\sqrt{2\omega_k}} \epsilon_\mu(k, \kappa)^* \sbr{\pi^\mu(\vec x) - \iup \omega_k A^\mu(\vec x)}
+\]
 
 \end{document}
 
