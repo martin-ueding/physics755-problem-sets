@@ -453,6 +453,170 @@ elements differ, so we incur a minus sign when we swap the field in front of
 the momentum. The commutators are then equal and cancel. Therefore, the whole
 commutator of the two ladder operators of the same type vanishes.
 
+\subsection{Hamiltonian}
+
+\paragraph{Ordered Hamiltonian}
+
+We assemble $H$ from $\mathscr L$ and $\pi$.
+\begin{align*}
+    H
+    &= \int \dif^3 x \sbr{\pi_\mu \, \dot A^\mu - \mathscr L}
+    \intertext{%
+        We insert the momentum.
+    }
+    &= \frac 12 \int \dif^3 x \sbr{- \dot A_\mu \, \dot A^\mu + A_{\mu,\nu} \;
+    A^{\mu,\nu}}
+    \intertext{%
+        The first summand substract all the time derivatives from the second
+        one. We denote that by using Latin indices there.
+    }
+    &= \frac 12 \int \dif^3 x \, A_{\mu,j} \; A^{\mu,j}
+    \intertext{%
+        This is where the multi line equations start again. We insert the
+        partial derivatives of $A$. It is important to chose different local
+        variables here as well.
+    }
+    &= - \frac 12 \int \dif^3 x \frac{\dif^3 p}{[2\piup]^3} \frac{\dif^3 p'}{[2\piup]^3}
+    \frac{p^j p'_j}{2 \sqrt{\omega_p \omega_{p'}}}
+    \sum_{\lambda = 0}^3 \sum_{\lambda' = 0}^3
+    \\&\qquad
+    \sbr{
+        \epsilon^\mu(p, \lambda) a_{\vec p, \lambda}
+        \eup^{\iup \vec p \cdot \vec x}
+        -
+        \epsilon^{\mu^*}(p, \lambda) a_{\vec p, \lambda}^\dagger 
+        \eup^{-\iup \vec p \cdot \vec x}
+    }
+    \sbr{
+        \epsilon_\mu(p', \lambda') a_{\vec p', \lambda'}
+        \eup^{\iup \vec p' \cdot \vec x}
+        -
+        \epsilon_{\mu^*}(p', \lambda') a_{\vec p', \lambda'}^\dagger
+        \eup^{-\iup \vec p' \cdot \vec x}
+    }
+    \intertext{%
+        Expanding this will even get worse since there are four terms now.
+    }
+    &= - \frac 12 \int \dif^3 x \frac{\dif^3 p}{[2\piup]^3} \frac{\dif^3 p'}{[2\piup]^3}
+    \frac{p^j p'_j}{2 \sqrt{\omega_p \omega_{p'}}}
+    \sum_{\lambda = 0}^3 \sum_{\lambda' = 0}^3
+    \\&\qquad
+    \left[
+        \epsilon^\mu(p, \lambda) a_{\vec p, \lambda}
+        \eup^{\iup \vec p \cdot \vec x}
+        \epsilon_\mu(p', \lambda') a_{\vec p', \lambda'}
+        \eup^{\iup \vec p' \cdot \vec x}
+        -
+        \epsilon^{\mu^*}(p, \lambda) a_{\vec p, \lambda}^\dagger 
+        \eup^{-\iup \vec p \cdot \vec x}
+        \epsilon_\mu(p', \lambda') a_{\vec p', \lambda'}
+        \eup^{\iup \vec p' \cdot \vec x}
+        \right.
+    \\&\qquad
+        \left.
+        -
+        \epsilon^\mu(p, \lambda) a_{\vec p, \lambda}
+        \eup^{\iup \vec p \cdot \vec x}
+        \epsilon_{\mu^*}(p', \lambda') a_{\vec p', \lambda'}^\dagger
+        \eup^{-\iup \vec p' \cdot \vec x}
+        +
+        \epsilon^{\mu^*}(p, \lambda) a_{\vec p, \lambda}^\dagger 
+        \eup^{-\iup \vec p \cdot \vec x}
+        \epsilon_{\mu^*}(p', \lambda') a_{\vec p', \lambda'}^\dagger
+        \eup^{-\iup \vec p' \cdot \vec x}
+    \right]
+    \intertext{%
+        We pull out all the polarization vectors and ignore the complex
+        conjugate. That seemed like it would work before, and it does work out
+        here also. We also combine the exponentials.
+    }
+    &= - \frac 12 \int \dif^3 x \frac{\dif^3 p}{[2\piup]^3} \frac{\dif^3 p'}{[2\piup]^3}
+    \frac{p^j p'_j}{2 \sqrt{\omega_p \omega_{p'}}}
+    \sum_{\lambda = 0}^3 \sum_{\lambda' = 0}^3
+    \epsilon^\mu(p, \lambda) \epsilon_\mu(p', \lambda') 
+    \\&\qquad
+    \left[
+        a_{\vec p, \lambda}
+        a_{\vec p', \lambda'}
+        \eup^{\iup [\vec p + \vec p'] \cdot \vec x}
+        -
+        a_{\vec p, \lambda}^\dagger 
+        a_{\vec p', \lambda'}
+        \eup^{-\iup [\vec p - \vec p'] \cdot \vec x}
+        -
+        a_{\vec p, \lambda}
+        a_{\vec p', \lambda'}^\dagger
+        \eup^{\iup [\vec p - \vec p'] \cdot \vec x}
+        +
+        a_{\vec p, \lambda}^\dagger 
+        a_{\vec p', \lambda'}^\dagger
+        \eup^{-\iup [\vec p + \vec p'] \cdot \vec x}
+    \right]
+    \intertext{%
+        The exponential functions now give $\deltaup$-distributions with the
+        integration over $\vec x$. The factor $p^j p'_j$ gives a sign change
+        when we identify $\vec p' = -\vec p$ in the terms where the exponential
+        carries a plus between the $\vec p$ and $\vec p'$. We will also
+        integrate over $\vec x$ to save a few steps.
+    }
+    &= \frac 12 \int \frac{\dif^3 p}{[2\piup]^3}
+    \frac{p^j p_j}{2 \omega_p}
+    \sum_{\lambda = 0}^3 \sum_{\lambda' = 0}^3
+    \epsilon^\mu(p, \lambda) \epsilon_\mu(p, \lambda') 
+    \\&\qquad
+    \left[
+        a_{\vec p, \lambda}
+        a_{- \vec p, \lambda'}
+        +
+        a_{\vec p, \lambda}^\dagger 
+        a_{\vec p, \lambda'}
+        +
+        a_{\vec p, \lambda}
+        a_{\vec p, \lambda'}^\dagger
+        +
+        a_{\vec p, \lambda}^\dagger 
+        a_{- \vec p, \lambda'}^\dagger
+    \right]
+    \intertext{%
+        We can use the orthonormality in the polarization vectors. We also
+        directly sum over $\lambda'$. In order to make this work, we need
+        $a_{\vec p,\lambda} = a_{-\vec p, \lambda}^\dagger$. This makes sense
+        in the way that a particle going one direction can be regarded as an
+        antiparticle going in the other direction. The fraction $p^j p_j /
+        \omega_p$ is just $\omega_p$. The factor $1/2$ from that fraction is
+        canceled with the factor 2 we get from bundling the ladder operator
+        products.
+    }
+    &= \frac 12 \int \frac{\dif^3 p}{[2\piup]^3} \omega_p
+     \sum_{\lambda = 0}^3 \eta_{\lambda\lambda}
+    \left[
+        a_{\vec p, \lambda}^\dagger 
+        a_{\vec p, \lambda}
+        +
+        a_{\vec p, \lambda}
+        a_{\vec p, \lambda}^\dagger
+    \right]
+    \intertext{%
+        We commute the second summand and just ignore the infinite amount that
+        will come from the commutator. This can be argued since we can only
+        measure energy differences.
+    }
+    &\simeq \int \frac{\dif^3 p}{[2\piup]^3} \omega_p
+    \sum_{\lambda = 0}^3 \eta_{\lambda\lambda}
+    a_{\vec p, \lambda}^\dagger a_{\vec p, \lambda}
+    \intertext{%
+        We split off the $\lambda = 0$ case as our last step.
+    }
+    &= \int \frac{\dif^3 p}{[2\piup]^3} E_p
+    \sbr{
+        a_{\vec p, 0}^\dagger a_{\vec p, 0}
+        -
+        \sum_{\lambda = 0}^3
+        a_{\vec p, \lambda}^\dagger a_{\vec p, \lambda}
+    }
+\end{align*}
+There is a missing minus sign, though.
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
