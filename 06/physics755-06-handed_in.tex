@@ -627,6 +627,57 @@ symmetries, the conserved quantities must look very similar as well. Only
 $\omega_p$, the energy must be exchanged by $\vec p$, the momentum. Then one
 arrives at Equation~(15).
 
+\subsection{Norm of photon state}
+
+\paragraph{Plane wave state}
+
+\begin{align*}
+    \Braket{1_{\vec p, 0} | 1_{\vec p, 0}}
+    &= \Braket{0 | a_{\vec p, 0} a^\dagger_{\vec p, 0} | 0}
+    \intertext{%
+        We use the commutator.
+    }
+    &= \Braket{0 | a^\dagger_{\vec p, 0} a_{\vec p, 0} - [2 \piup]^3
+    \deltaup^{(3)}(\vec 0) | 0}
+    \intertext{%
+        We use the linearity of the matrix element and that the annihilation
+        operator on the vacuum gives zero.
+    }
+    &= - [2 \piup]^3 \deltaup^{(3)}(\vec 0)
+\end{align*}
+
+\paragraph{Localized state}
+
+The state is modified with a function that peaks at the desired momentum.
+\begin{align*}
+    \Braket{\tilde 1_{\vec p, 0} | \tilde 1_{\vec p, 0}}
+    &= \int \dif^3 p \, \dif^3 p' \, f_0(\vec p) f_0(\vec p')
+    \Braket{0 | a_{\vec p, 0} a^\dagger_{\vec p', 0} | 0}
+    \intertext{%
+        We use the commutator again.
+    }
+    &= \int \dif^3 p \, \dif^3 p' \, f_0(\vec p) f_0(\vec p')
+    \Braket{0 | a^\dagger_{\vec p', 0} a_{\vec p, 0} - [2 \piup]^3
+    \deltaup^{(3)}(\vec p - \vec p')| 0}
+    \intertext{%
+        We use the linearity of the matrix element and that the annihilation
+        operator on the vacuum gives zero.
+    }
+    &= - [2 \piup]^3 \int \dif^3 p \, \dif^3 p' \, f_0(\vec p) f_0(\vec p')
+    \deltaup^{(3)}(\vec p - \vec p')
+    \intertext{%
+        We can eliminate the $\deltaup$-distribution by performing the $\vec
+        p'$ integral.
+    }
+    &= - [2 \piup]^3 \int \dif^3 p \, f_0(\vec p)^2
+    \intertext{%
+        The function $f$ was set up to have the Hilbert $L^2$ norm of unity.
+        Therefore the integral gives just unity.
+    }
+    &= - [2 \piup]^3
+\end{align*}
+And that norm is indeed negative.
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
