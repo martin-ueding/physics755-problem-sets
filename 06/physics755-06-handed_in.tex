@@ -286,12 +286,13 @@ one equation:
     =
     - \iup \eta_{\kappa\lambda} \int \dif^3x \, \eup^{-\iup \vec k \cdot \vec x} \frac{1}{\sqrt{2\omega_k}} \epsilon_\mu(k, \kappa) \sbr{\pi^\mu(\vec x) + \iup \omega_k A^\mu(\vec x)}
     \intertext{%
-        Now we can rename $\vec k$ back to $\vec p$. Then we arrived at the
-        expression that was wanted.
+        Since the metric tensor is always diagonal, we have to put a $\lambda$
+        there again as well. We rename $\vec k$ back to $\vec p$. Then we
+        arrived at the expression that was wanted.
     }
     a_{\vec p, \lambda}
     =
-    - \iup \eta_{\kappa\lambda} \int \dif^3x \, \eup^{-\iup \vec k \cdot \vec x} \frac{1}{\sqrt{2\omega_k}} \epsilon_\mu(k, \kappa) \sbr{\pi^\mu(\vec x) + \iup \omega_k A^\mu(\vec x)}
+    - \iup \eta_{\lambda\lambda} \int \dif^3x \, \eup^{-\iup \vec p \cdot \vec x} \frac{1}{\sqrt{2\omega_p}} \epsilon_\mu(p, \lambda) \sbr{\pi^\mu(\vec x) + \iup \omega_p A^\mu(\vec x)}
 \end{gather*}
 Again, we should have done the Fourier transform as the first step and rename
 the variables with hindsight, but the idea is still correct.
@@ -303,9 +304,154 @@ get the result for the creation operator.
 \[
     a_{\vec p, \lambda}^\dagger
     =
-    \iup \eta_{\kappa\lambda} \int \dif^3x \, \eup^{\iup \vec k \cdot \vec x}
-    \frac{1}{\sqrt{2\omega_k}} \epsilon_\mu(k, \kappa)^* \sbr{\pi^\mu(\vec x) - \iup \omega_k A^\mu(\vec x)}
+    \iup \eta_{\lambda\lambda} \int \dif^3x \, \eup^{\iup \vec p \cdot \vec x}
+    \frac{1}{\sqrt{2\omega_p}} \epsilon_\mu(p, \lambda)^* \sbr{\pi^\mu(\vec x) - \iup \omega_p A^\mu(\vec x)}
 \]
+
+\paragraph{Mixed commutator}
+
+We compute the mixed commutator. The crucial step is to rename all the local
+variables in the second term.
+\begin{align*}
+    \sbr{a_{\vec p, \lambda}, a_{\vec p', \lambda'}}
+    &= \left[
+        - \iup \eta_{\lambda\lambda} \int \dif^3x \, \eup^{-\iup \vec p \cdot
+        \vec x} \frac{1}{\sqrt{2\omega_p}} \epsilon_\mu(p, \lambda)
+        \sbr{\pi^\mu(\vec x) + \iup \omega_p' A^\mu(\vec x)}
+        ,
+        \right. \\ & \quad \left.
+        \iup \eta_{\lambda'\lambda'} \int \dif^3x' \, \eup^{\iup \vec p' \cdot
+        \vec x'}
+        \frac{1}{\sqrt{2\omega_p'}} \epsilon_\nu(p', \lambda')^*
+        \sbr{\pi^\nu(\vec x') - \iup \omega_p' A^\nu(\vec x')}
+    \right]
+    \intertext{%
+        We can move some of the constant factors up front.
+    }
+    &= \eta_{\lambda\lambda} \eta_{\lambda'\lambda'} \left[
+        \int \dif^3x \, \eup^{-\iup \vec p \cdot \vec x}
+        \frac{1}{\sqrt{2\omega_p}} \epsilon_\mu(p, \lambda) \sbr{\pi^\mu(\vec
+        x) + \iup \omega_p A^\mu(\vec x)}
+        ,
+        \right. \\ & \quad \left.
+        \int \dif^3x' \, \eup^{\iup \vec p' \cdot
+        \vec x'} \frac{1}{\sqrt{2\omega_p'}} \epsilon_\nu(p', \lambda')^*
+        \sbr{\pi^\nu(\vec x') - \iup \omega_p' A^\nu(\vec x')}
+    \right]
+    \intertext{%
+        We can take this further and move everything except the field and the
+        momentum out of the commutator.
+    }
+    &= \eta_{\lambda\lambda} \eta_{\lambda'\lambda'}
+    \int \dif^3x \, \dif^3x' \, \eup^{-\iup \vec p \cdot \vec x}
+    \eup^{\iup \vec p' \cdot \vec x'}
+    \frac{1}{\sqrt{2\omega_p}}
+    \frac{1}{\sqrt{2\omega_p'}}
+    \epsilon_\mu(p, \lambda)
+    \epsilon_\nu(p', \lambda')^*
+    \\&\quad
+    \sbr{
+        \pi^\mu(\vec x) + \iup \omega_p A^\mu(\vec x)
+        ,
+        \pi^\nu(\vec x') - \iup \omega_p' A^\nu(\vec x')
+    }
+    \intertext{%
+        We simplify.
+    }
+    &= \eta_{\lambda\lambda} \eta_{\lambda'\lambda'}
+    \int \dif^3x \, \dif^3x' \, 
+    \eup^{\iup \vec p' \cdot \vec x' - \iup \vec p \cdot \vec x}
+    \frac{1}{2 \sqrt{\omega_p \omega_p'}}
+    \epsilon_\mu(p, \lambda)
+    \epsilon_\nu(p', \lambda')^*
+    \\&\quad
+    \sbr{
+        \pi^\mu(\vec x) + \iup \omega_p A^\mu(\vec x)
+        ,
+        \pi^\nu(\vec x') - \iup \omega_p' A^\nu(\vec x')
+    }
+    \intertext{%
+        The only contributing commutators are the mixed ones.
+    }
+    &= \eta_{\lambda\lambda} \eta_{\lambda'\lambda'}
+    \int \dif^3x \, \dif^3x' \, 
+    \eup^{\iup \vec p' \cdot \vec x' - \iup \vec p \cdot \vec x}
+    \frac{1}{2 \sqrt{\omega_p \omega_p'}}
+    \epsilon_\mu(p, \lambda)
+    \epsilon_\nu(p', \lambda')^*
+    \\&\quad
+    \sbr{
+        \iup \omega_p' \sbr{
+            A^\nu(\vec x')
+            ,
+            \pi^\mu(\vec x)
+        }
+        + \iup \omega_p \sbr{
+            A^\mu(\vec x)
+            ,
+            \pi^\nu(\vec x')
+        }
+    }
+    \intertext{%
+        Since those commutators were imposed earlier, we can just insert them.
+    }
+    &= \eta_{\lambda\lambda} \eta_{\lambda'\lambda'}
+    \int \dif^3x \, \dif^3x' \, 
+    \eup^{\iup \vec p' \cdot \vec x' - \iup \vec p \cdot \vec x}
+    \frac{1}{2 \sqrt{\omega_p \omega_p'}}
+    \epsilon_\mu(p, \lambda)
+    \epsilon_\nu(p', \lambda')^*
+    \\&\quad
+    \iup \sbr{\omega_p' + \omega_p} \eta^{\mu\nu}
+    \deltaup^{(3)}(\vec x - \vec x')
+    \intertext{%
+        The perform the integration over $x'$.
+    }
+    &= \iup \eta_{\lambda\lambda} \eta_{\lambda\lambda}
+    \int \dif^3x \,
+    \eup^{\iup [\vec p' - \vec p] \cdot \vec x}
+    \frac{1}{2 \sqrt{\omega_p \omega_p'}}
+    \epsilon_\mu(p, \lambda)
+    \epsilon_\nu(p', \lambda')^*
+    \sbr{\omega_p' + \omega_p} \eta^{\mu\nu}
+    \intertext{%
+        The integration over $x$ now gives another such distribution. Since the
+        term would vanish otherwise, we can also set $p'$ to $p$.
+    }
+    &= \iup \eta_{\lambda\lambda} \eta_{\lambda'\lambda'}
+    \deltaup^{(3)}(\vec p - \vec p')
+    \frac{1}{2 \omega_p}
+    \epsilon_\mu(p, \lambda)
+    \epsilon_\nu(p, \lambda')^*
+    2 \omega_p \eta^{\mu\nu}
+    \intertext{%
+        We simplify more and use the orthonormality relation of the
+        polarization vectors. Equation~(11) from the problem set does not have
+        the complex conjugation, though. Since they are vectors in the
+        Minkowski space, they are probably real anyway. That is in contrast
+        with Equation~(5) where the complex conjugate of this polarization
+        vector appears. Ignoring this, it works out, so this either cancels a
+        different mistake or the complex conjugation does not matter here.
+    }
+    &= \iup \eta_{\lambda\lambda} \eta_{\lambda'\lambda'} \eta_{\lambda\lambda'}
+    \deltaup^{(3)}(\vec p - \vec p')
+    \intertext{%
+        The metric tensor is diagonal in special relativity, so we have to have
+        $\lambda' = \lambda$ to get any contributing terms. If that is the
+        case, the first to components of the metric tensor will be both $+1$ or
+        $-1$, they therefore cancel. Only the one with the mixed $\lambda$ and
+        $\lambda'$ remains. This is the final result:
+    }
+    &= \iup \eta_{\lambda\lambda'} \deltaup^{(3)}(\vec p - \vec p').
+\end{align*}
+
+\paragraph{Reflexive commutators}
+
+The commutators here contain the same type of ladder operator twice. This means
+that they have the same sign between field and momentum. The order of the two
+elements differ, so we incur a minus sign when we swap the field in front of
+the momentum. The commutators are then equal and cancel. Therefore, the whole
+commutator of the two ladder operators of the same type vanishes.
 
 \end{document}
 
