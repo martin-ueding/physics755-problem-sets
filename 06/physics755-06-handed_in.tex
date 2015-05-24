@@ -930,7 +930,101 @@ in the form of a $\deltaup$-distribution.
 
 \paragraph{Feynman propagator}
 
-% TODO
+\textcite[pp. 27 -- 31]{Peskin/QFT/1995} derive the Feynman propagator from the
+Heisenberg picture propagator for the Klein-Gordon field. Since the components
+of the electromagnetic field behave like a massless Klein-Gordon field, we can
+just set the mass to zero and take the exact same derivation in principle.
+
+This problem works with three and four-vectors, which are not differentiated at
+all in the problem set and by \textcite{Peskin/QFT/1995}. This forces one to
+distinguish them from the context, which is hard when the context is defined by
+the distinction. We therefore stick with ISO 80000-2 and have the three-vector
+$\vec p$ (with serifs) and the four-vector $\tens p$ (without serifs).
+
+For the theory to conserve causality we need that $D_\text F^{\mu\nu} (\tens x
+- \tens y)$ vanishes for space-like intervals $\tens x - \tens y$. The matrix
+element that we have computed in the first part of this subproblem does not
+vanish for space-like intervals. This means that photons and anti-photons can
+propagate off-shell. However, this is not what is of interest to us. Causality
+means that no information can travel on space-like paths. We have to look at
+the commutator for causal interaction. The canonical quantization defined this
+to be a complex number, so we can write it as a matrix element without changing
+anything.
+\begin{align*}
+    [A^\mu(\tens x), A^\nu(\tens y)]
+    &= \Braket{0 | [A^\mu(\tens x), A^\nu(\tens y)] | 0 }
+    \intertext{%
+        We can expand the commutator.
+    }
+    &= \Braket{0 | A^\mu(\tens x) A^\nu(\tens y) | 0 }
+    - \Braket{0 | A^\nu(\tens y) A^\mu(\tens x) | 0 }
+    \intertext{%
+        The two summands have been computed in the part before, we just insert
+        this.
+    }
+    &= \eta^{\mu\nu} \int \frac{\dif^3 p}{[2\piup]^3}
+    \frac{1}{2\omega_p} \sbr{
+        \eup^{- \iup \tens p \cdot [\tens x - \tens y]}
+        -
+        \eup^{\iup \tens p \cdot [\tens x - \tens y]}
+    }
+    \intertext{%
+        The crucial trick is to write this as a four-dimensional integral. We
+        slip in the $p^0$ by writing $\omega_p$ really complicated as the
+        evaluation of integral domains. We can also smuggle another minus sign
+        into the exponential function since the domain of integration is
+        symmetric around the origin and a sign change in front of the spatial
+        components of $\vec p$ does not change anything.
+    }
+    &= \eta^{\mu\nu} \int \frac{\dif^3 p}{[2\piup]^3}
+    \sbr{
+        \sbr{
+            \frac{1}{2 p^0}
+            \eup^{- \iup \tens p \cdot [\tens x - \tens y]}
+        }_{p_0 = \omega_p}
+        +
+        \sbr{
+            \frac{1}{2 p^0}
+            \eup^{- \iup \tens p \cdot [\tens x - \tens y]}
+        }_{p_0 = - \omega_p}
+    }
+    \intertext{%
+        Although nothing changed really, this looks like the evaluation of an
+        integrated function at the bounds of the integral. We want to have an
+        unbounded integral over $p^0$ such that the integration domain is the
+        whole of $\R^4$. An unbounded integral and two evaluations at finite
+        points suggests the use of the residue theorem. The function will have
+        poles in $p^0$ at two points. We have $\tens p^2 = [p^0]^2 - \vec p^2$.
+        This is also the mass of the particles, which is zero. So we know that
+        $[p^0]^2 = \vec p^2$. A function with $p^2$ in the denominator will
+        therefore have poles at $p^0 = \pm |\vec p| = \pm \omega_p$. Instead of
+        moving the contour, we move the poles a tiny bit with $\iup \epsilon$
+        and $\epsilon > 0$ a small number. Our singular function then is
+        \[
+            \frac{1}{\tens p^2 + \iup \epsilon}
+            = \frac{1}{[p^0]^2 - \vec p^2 + \iup \epsilon}
+        \]
+        which has poles at $p^0 = \pm [\omega_p - \iup \epsilon]$. (Square this
+        relation, omit terms $\mathrm O(\epsilon^2)$ and you get the above
+        expression.) One can then check the residuals of this singular function
+        and obtain that they are $\pm 1/\omega_p$. Depending on the sign of
+        $[x^0 - y^0]$ we need to close the contour above or below the real
+        line. We need the exponential suppression such that the great circles do
+        not contribute anything and the only get the real line integral when
+        adding up the residuals.
+    }
+    &= \eta^{\mu\nu} \int \frac{\dif^3 p}{[2\piup]^3} \frac{p^0}{2\piup \iup}
+    \frac{1}{\tens p^2 + \iup \epsilon} \eup^{- \iup \tens p \cdot [\tens x - \tens y]}
+    \intertext{%
+        Now we can just shuffle the factors around and get a form which is the
+        same as the one on the problem set.
+    }
+    &= \eta^{\mu\nu} \int \frac{\dif^4 p}{[2\piup]^4}
+    \frac{- \iup}{\tens p^2 + \iup \epsilon} \eup^{- \iup \tens p \cdot [\tens x - \tens y]}
+\end{align*}
+
+Since the contour integral splits into two parts, where we can only use one of
+them, one can write it shorter using the time ordering operator $T$.
 
 \end{document}
 
