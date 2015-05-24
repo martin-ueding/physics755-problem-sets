@@ -774,6 +774,9 @@ is a physical state.
     &= 0
 \end{align*}
 
+The state $\ket\phi$ therefore is not a normalized state which has to be taken
+into account in the next part.
+
 \paragraph{Vanishing energy}
 
 We sandwich the Hamiltonian operator into the matrix element.
@@ -828,16 +831,104 @@ We sandwich the Hamiltonian operator into the matrix element.
     &= 0
 \end{align*}
 
+This leaves one problem, though: The expectation of any operator is given by
+\[
+    \bracket{O} = \frac{\braket{\phi | O | \phi}}{\braket{\phi | \phi}}.
+\]
+Since numerator and denominator are both zero here, this value is undefined. It
+is fine to say that this is not what we want in a physical state, but we cannot
+conclude from \emph{this} that the energy vanishes.
+
 \paragraph{Vanishing momentum}
 
 The momentum operator contains the exact same ladder operators as the
-Hamiltonian and will therefore vanish as well.
+Hamiltonian and will therefore be similar to the energy expectation value. If
+the energy is zero, this is zero as well, if the energy is taken to be
+undefined, so is the momentum expectation value.
 
-\paragraph{Energy and momentum expectation value}
+\paragraph{Transversal modes}
 
 % TODO
 
 \subsection{Feynman propagator}
+
+\paragraph{Matrix element}
+
+We are not sure whether “$x$” and “$y$” are supposed to be vectors with three
+or four components. Thy are scalar multiplied with $p$, which has three
+components in the integral. We will assume they are three-vectors and typeset
+them in bold serif italic. As always, we start by inserting the ladder operator
+expression for $\tens A$, being careful to rename all the local variables.
+\begin{align*}
+    \Braket{0 | A_\mu(\vec x) A_\nu(\vec y) | 0}
+    &= \int \frac{\dif^3 p}{[2\piup]^3} \frac{\dif^3 p'}{[2\piup]^3}
+    \frac{1}{2\sqrt{\omega_p \omega_{p'}}} \sum_{\lambda = 0}^3 \sum_{\lambda' = 0}^3
+    \\&\quad
+    \bra 0
+    \sbr{\epsilon_\mu(\vec p, \lambda) a_{\vec p, \lambda} \eup^{\iup \vec
+    p \cdot \vec x} + \epsilon_\mu^*(\vec p, \lambda) a_{\vec p,
+    \lambda}^\dagger \eup^{-\iup \vec p \cdot \vec x}}
+    \\&\quad
+    \sbr{\epsilon_\nu(\vec p', \lambda') a_{\vec p', \lambda'} \eup^{\iup
+    \vec p' \cdot \vec y} + \epsilon_\nu^*(\vec p', \lambda') a_{\vec p',
+    \lambda'}^\dagger \eup^{-\iup \vec p' \cdot \vec y}}
+    \ket 0
+    \intertext{%
+        There is only one interesting term in this whole thing. The one that
+        has a annihilation creation operator pair.
+    }
+    &= \int \frac{\dif^3 p}{[2\piup]^3} \frac{\dif^3 p'}{[2\piup]^3}
+    \frac{1}{2\sqrt{\omega_p \omega_{p'}}} \sum_{\lambda = 0}^3 \sum_{\lambda' = 0}^3
+    \epsilon_\mu(\vec p, \lambda)
+    \epsilon_\nu^*(\vec p', \lambda')
+    \eup^{\iup [\vec p \cdot \vec x - \vec p' \cdot \vec y]}
+    \\&\quad
+    \Braket{0 | a_{\vec p, \lambda} a_{\vec p', \lambda'}^\dagger | 0}
+    \intertext{%
+        We apply the commutator and discard the occupation number operator term
+        which does not contribute anything in a vacuum matrix element.
+    }
+    &= - \int \frac{\dif^3 p}{[2\piup]^3} \frac{\dif^3 p'}{[2\piup]^3}
+    \frac{1}{2\sqrt{\omega_p \omega_{p'}}} \sum_{\lambda = 0}^3 \sum_{\lambda' = 0}^3
+    \epsilon_\mu(\vec p, \lambda)
+    \epsilon_\nu^*(\vec p', \lambda')
+    \eup^{\iup [\vec p \cdot \vec x - \vec p' \cdot \vec y]}
+    \\&\quad
+    [2\piup]^3 \deltaup^{(3)}(\vec p - \vec p') \eta_{\lambda\lambda'}
+    \intertext{%
+        We can perform a lot of simplifications here. First we integrate over
+        $\vec p'$ to eliminate it.
+    }
+    &= - \int \frac{\dif^3 p}{[2\piup]^3}
+    \frac{1}{2\omega_p} \sum_{\lambda = 0}^3 \sum_{\lambda' = 0}^3
+    \eta_{\lambda\lambda'}
+    \epsilon_\mu(\vec p, \lambda)
+    \epsilon_\nu^*(\vec p, \lambda')
+    \eup^{\iup \vec p \cdot [\vec x - \vec y]}
+    \intertext{%
+        Next we sum over $\lambda'$ to eliminate that.
+    }
+    &= - \int \frac{\dif^3 p}{[2\piup]^3}
+    \frac{1}{2\omega_p} \sum_{\lambda = 0}^3
+    \eta_{\lambda\lambda}
+    \epsilon_\mu(\vec p, \lambda)
+    \epsilon_\nu^*(\vec p, \lambda)
+    \eup^{\iup \vec p \cdot [\vec x - \vec y]}
+    \intertext{%
+        Then we can recognize the completeness relations of the polarization
+        vectors.
+    }
+    &= - \eta_{\mu\nu} \int \frac{\dif^3 p}{[2\piup]^3}
+    \frac{1}{2\omega_p}
+    \eup^{\iup \vec p \cdot [\vec x - \vec y]}
+\end{align*}
+This is the desired expression except a minus sign in the exponential function.
+This can be inserted since the integration domain over $\vec p$ is symmetric
+around the origin and $\omega_p$ only depends on the magnitude of $\vec p$. The
+$\omega_p$ stops us from performing the $\vec p$ integration and get something
+in the form of a $\deltaup$-distribution.
+
+\paragraph{Feynman propagator}
 
 % TODO
 
