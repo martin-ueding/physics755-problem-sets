@@ -678,6 +678,169 @@ The state is modified with a function that peaks at the desired momentum.
 \end{align*}
 And that norm is indeed negative.
 
+\subsection{Physical states 1}
+
+% TODO
+
+\subsection{Physical states 2}
+
+\paragraph{Physical states}
+
+We show this for $\lambda = 1$, $\lambda = 2$ follows with the exact same
+calculation. For a state to be physical it has to fulfil Equation~(22) from the
+problem set. This means here:
+\begin{align*}
+    \sbr{a_{\vec p, 0} - a_{\vec p, 3}} a^\dagger_{\vec p, 1} \ket 0 &= 0
+    \intertext{%
+        We can apply the commutator here. It will vanish because $\lambda \neq
+        0, 3$.
+    }
+    a^\dagger_{\vec p, 1} \sbr{a_{\vec p, 0} - a_{\vec p, 3}} \ket 0 &= 0
+\end{align*}
+And this is a true statement since the annihilation operators will destroy the
+vacuum.
+
+\paragraph{Unphysical states}
+
+We show this for $\lambda = 0$. The case $\lambda = 3$ does not differ much.
+\begin{align*}
+    \sbr{a_{\vec p, 0} - a_{\vec p, 3}} a^\dagger_{\vec p, 0} \ket 0 &\neq 0
+    \intertext{%
+        The commutator does not vanish here.
+    }
+    \sbr{a^\dagger_{\vec p, 0} \sbr{a_{\vec p, 0} - a_{\vec p, 3}} - [2\piup]^3
+    \deltaup^{(3)}(\vec 0)} \ket 0 &\neq 0
+    \intertext{%
+        The annihilation operators destroy the vacuum here as well.
+    }
+    - [2\piup]^3 \deltaup^{(3)}(\vec 0) \ket 0 &\neq 0
+\end{align*}
+And this is a also a true statement. So those states are not physical as they
+do not fulfil the defining equation.
+
+\paragraph{Mixed state}
+
+\begin{align*}
+    \sbr{a_{\vec p, 0} - a_{\vec p, 3}} \ket\phi
+    &= \sbr{a_{\vec p, 0} - a_{\vec p, 3}}
+    \sbr{a_{\vec p, 0}^\dagger - a_{\vec p, 3}^\dagger} \ket 0
+    \intertext{%
+        We expand the brackets.
+    }
+    &= \sbr{
+        a_{\vec p, 0} a_{\vec p, 0}^\dagger + a_{\vec p, 3} a_{\vec p, 3}^\dagger
+        - a_{\vec p, 0} a_{\vec p, 3}^\dagger - a_{\vec p, 3} a_{\vec p, 0}^\dagger
+    }
+    \ket 0
+    \intertext{%
+        We apply the commutator to each term. We know that the occupation
+        number of the vacuum is zero by definition, so we can just drop the
+        commuted terms and just keep the commutator.
+    }
+    &= [2\piup]^3 \sbr{-1 + 1 - 0 - 0} \ket 0
+    \intertext{%
+        In total, this vanishes.
+    }
+    &= 0
+\end{align*}
+This means that the state $\ket \phi$ is physical.
+
+\subsection{Properties of $\ket \phi$}
+
+\paragraph{Vanishing norm}
+
+This is almost identical to the part where we showed that the state $\ket \phi$
+is a physical state.
+\begin{align*}
+    \braket{\phi | \phi}
+    &= \Braket{0 | \sbr{a_{\vec p, 0} - a_{\vec p, 3}}
+    \sbr{a_{\vec p, 0}^\dagger - a_{\vec p, 3}^\dagger} | 0}
+    \intertext{%
+        We expand the brackets in the braket.
+    }
+    &= \Braket{0 |
+    a_{\vec p, 0} a_{\vec p, 0}^\dagger + a_{\vec p, 3} a_{\vec p, 3}^\dagger
+    - a_{\vec p, 0} a_{\vec p, 3}^\dagger - a_{\vec p, 3} a_{\vec p, 0}^\dagger
+    | 0}
+    \intertext{%
+        We apply the commutator to each term. We know that the occupation
+        number of the vacuum is zero by definition, so we can just drop the
+        commuted terms and just keep the commutator.
+    }
+    &= [2\piup]^3 \Braket{0 | -1 + 1 - 0 - 0 | 0}
+    \intertext{%
+        In total, this vanishes.
+    }
+    &= 0
+\end{align*}
+
+\paragraph{Vanishing energy}
+
+We sandwich the Hamiltonian operator into the matrix element.
+\begin{align*}
+    \braket{\phi | H | \phi}
+    &= \int \frac{\dif^3 p'}{[2\piup]^3} \omega_{p'}
+    \Braket{0 | \sbr{a_{\vec p, 0} - a_{\vec p, 3}}
+    \sbr{
+        - a^\dagger_{\vec p', 0} a_{\vec p', 0}
+        + \sum_{\lambda = 1}^3 a^\dagger_{\vec p', \lambda} a_{\vec p', \lambda}
+    }
+    \sbr{a_{\vec p, 0}^\dagger - a_{\vec p, 3}^\dagger} | 0}
+    \intertext{%
+        Since the commutator contains $\eta_{\lambda\lambda'}$, we only need to
+        consider terms where all the $\lambda$ are equal.
+    }
+    &= \int \frac{\dif^3 p'}{[2\piup]^3} \omega_{p'}
+    \Braket{0 |
+        - a_{\vec p, 0} a^\dagger_{\vec p', 0} a_{\vec p', 0} a_{\vec p, 0}^\dagger
+        +
+        a_{\vec p, 3} a^\dagger_{\vec p', 3} a_{\vec p', 3} a_{\vec p, 3}^\dagger
+    | 0}
+    \intertext{%
+        We apply the commutator and drop the terms that end in an annihilation
+        operator or begin with a creation operator directly, since those do not
+        contribute anything. The first sign changed because the commutator is
+        negative and $\eta_{00}$ is positive. The second sign does not change
+        because $\eta_{33} = -1$.
+    }
+    &= \int \dif^3 p' \, \omega_{p'}
+    \Braket{0 |
+        a_{\vec p, 0} a^\dagger_{\vec p', 0}
+        \deltaup^{(3)}(\vec p - \vec p')
+        +
+        a_{\vec p, 3} a^\dagger_{\vec p', 3}
+        \deltaup^{(3)}(\vec p - \vec p')
+    | 0}
+    \intertext{%
+        We perform the integration over $\vec p'$.
+    }
+    &= \omega_{p}
+    \Braket{0 |
+        a_{\vec p, 0} a^\dagger_{\vec p, 0}
+        +
+        a_{\vec p, 3} a^\dagger_{\vec p, 3}
+    | 0}
+    \intertext{%
+        And now we recognize a previous result from the calculation of the norm
+        and know that after applying the commutator to each term, nothing will
+        remain.
+    }
+    &= 0
+\end{align*}
+
+\paragraph{Vanishing momentum}
+
+The momentum operator contains the exact same ladder operators as the
+Hamiltonian and will therefore vanish as well.
+
+\paragraph{Energy and momentum expectation value}
+
+% TODO
+
+\subsection{Feynman propagator}
+
+% TODO
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
