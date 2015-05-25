@@ -99,19 +99,10 @@
 \RequirePackage{beramono}
 \RequirePackage{berasans}
 
-% Bold, sans-serif tensors. This fragment is taken from “egreg” from
-% http://tex.stackexchange.com/a/82747/8945 and licensed under `CC-BY-SA
-% <https://creativecommons.org/licenses/by-sa/3.0/>`_.
-\if@beamer
-\else
-    \RequirePackage{bm}
-    \DeclareMathAlphabet{\mathsfit}{\encodingdefault}{\sfdefault}{m}{sl}
-    \SetMathAlphabet{\mathsfit}{bold}{\encodingdefault}{\sfdefault}{bx}{sl}
-    \newcommand{\tens}[1]{\bm{\mathsfit{#1}}}
-\fi
-
 % Bold vectors.
-\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\RequirePackage{isomath}
+\renewcommand{\vec}{\vectorsym}
+\newcommand{\tens}{\tensorsym}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                               Input encoding                                %
@@ -221,9 +212,8 @@
 % Shape like operators.
 \DeclareMathOperator{\dalambert}{\Box}
 \DeclareMathOperator{\laplace}{\bigtriangleup}
-\newcommand{\curl}{\vnabla \times}
-\newcommand{\divergence}[1]{\inner{\vnabla}{#1}}
-\newcommand{\Divergence}[1]{\Inner{\vnabla}{#1}}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divergence}{div}
 \newcommand{\vnabla}{\vec \nabla}
 
 \newcommand{\half}{\frac 12}
@@ -242,7 +232,7 @@
 \newcommand{\messwert}{\textcolor{blue}{\square}}
 
 % Separator for equations on a single line.
-\newcommand{\eqnsep}{,\quad}
+\newcommand{\eqnsep}{,\qquad}
 
 % Quantum Mechanics.
 \RequirePackage{braket}
