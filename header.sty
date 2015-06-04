@@ -103,6 +103,7 @@
 \RequirePackage{isomath}
 \renewcommand{\vec}{\vectorsym}
 \newcommand{\tens}{\tensorsym}
+\newcommand{\mat}{\matrixsym}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                               Input encoding                                %
@@ -193,6 +194,12 @@
 \renewcommand{\Im}{\mathop{{}\mathrm{Im}}\nolimits}
 \renewcommand{\Re}{\mathop{{}\mathrm{Re}}\nolimits}
 
+% Groups
+\newcommand\SO{\mathrm{SO}}
+\newcommand\SU{\mathrm{SO}}
+\newcommand\so{\mathfrak{so}}
+\newcommand\su{\mathfrak{su}}
+
 % Fourier transform.
 \DeclareMathOperator{\fourier}{\ensuremath{\mathcal{F}}}
 
@@ -212,7 +219,8 @@
 % Shape like operators.
 \DeclareMathOperator{\dalambert}{\Box}
 \DeclareMathOperator{\laplace}{\bigtriangleup}
-\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\grad}{\mathbf{grad}}
+\DeclareMathOperator{\curl}{\mathbf{curl}}
 \DeclareMathOperator{\divergence}{div}
 \newcommand{\vnabla}{\vec \nabla}
 

@@ -55,6 +55,197 @@
 \section{$PCT$ and all that}
 \label{homework:1}
 
+\subsection{Table}
+
+Here we have to compute $4 \cdot 6 = 24$ transformation properties. We get
+whopping four points for this problem. So this means that we have to write
+about four pages to get everything done.
+
+\paragraph{Parity}
+
+Since there are six tensorial quantities, we will just number them for each
+transformation operator.
+
+\begin{enumerate}
+    \item 
+        To transform with the parity, we just sandwich the expression into $P$s
+        and use that $P^2$ is the identity since it comes from the cyclic group
+        $\Z_2$. We added two independent $\Z_2$ to the universal covering group
+        we get from the exponential map of the Lie algebra $\so(1, 3)$ to reach
+        the whole Lorentz group.
+        \begin{align*}
+            \bar\psi(t, \vec x) \psi(t, \vec x)
+            &\mapsto P \bar\psi(t, \vec x) \psi(t, \vec x) P \\
+            \intertext{%
+                We introduce a $P^2 = 1$ in the middle.
+            }
+            &= P \bar\psi(t, \vec x) P P \psi(t, \vec x) P \\
+            \intertext{%
+                Now we can use the transformation rule given in Equation~(2) on
+                the problem set. The phase $\eta$ here is not the metric tensor
+                $\eta$ which shows up in the table given on the problem set. It
+                neither is the rapidity $\eta$ which was used on a different
+                sheet. This is ambiguous, but luckily, there is always context
+                around, to make it clear. Right?
+            }
+            &= \eta^* \bar\psi(t, -\vec x) \mat\gamma^0 \eta \mat\gamma^0 \psi(t, -\vec x) \\
+            \intertext{%
+                The phase $\eta$ is a complex number and therefore commutes
+                with the matrices.
+            }
+            &= \eta^* \eta \bar\psi(t, -\vec x) \mat\gamma^0 \mat\gamma^0 \psi(t, -\vec x) \\
+            \intertext{%
+                The modulus of the phase is unity, so we can drop this. The
+                Dirac matrices are their own inverses, so we can drop those as
+                well. We are left with the Lorentz scalar as the transformed
+                point.
+            }
+            &= \bar\psi(t, -\vec x) \psi(t, -\vec x)
+            \intertext{%
+                To make it more apparent that we transformed the whole thing to
+                one new coordinate, we can write it like this:
+            }
+            &= [\bar\psi \psi](t, -\vec x).
+        \end{align*}
+        Then the additional factor that we get is just $+1$. If we keep up this
+        pace we will end up with a quarter of a point per page, so we need to
+        pick up the pace a bit.
+
+    \item
+        The next one, $\iup \bar\psi \mat\gamma^5 \psi$, has an imaginary unit
+        in it, as well as a $\mat\gamma^5$. The parity operator will give us
+        $\mat\gamma^0$s, which anticommute with the $\mat\gamma^5$, so that
+        will give us the minus sign.
+
+    \item
+        The bilinear $\bar\psi \mat\gamma^\mu \mat\gamma^5 \psi$ will transform
+        differently depending on the $\mu$. If $\mu = 0$, it commutes with the
+        $\mat\gamma^0$ that we get from the parity transformation. If $\mu \neq
+        0$, we have to perform an anticommutation. Hence a factor of
+        $\eta^{\mu\nu}$.
+
+    \item
+        Adding another $\mat\gamma^5$ to the bilinear means another
+        anticommutation compared to the previous one and therefore a factor of
+        $- \eta^{\mu\mu}$.
+
+    \item
+        We expand the transformed bilinear:
+        \[
+            \bar\psi \mat\gamma^0 \mat\sigma^{\mu\nu} \mat\gamma^0 \psi
+            = \frac\iup2 \bar\psi \mat\gamma^0 [\mat\gamma^\mu, \mat\gamma^\nu] \mat\gamma^0 \psi
+            = \frac\iup2 \bar\psi \sbr{
+                \mat\gamma^0 \mat\gamma^\mu \mat\gamma^\nu \mat\gamma^0
+                - \mat\gamma^0 \mat\gamma^\nu \mat\gamma^\mu \mat\gamma^0
+        } \psi.
+        \]
+        One can see that it takes two anticommutations to get the
+        $\mat\gamma^0$ to cancel the other one. Those anticommutations
+        introduce factors of $\eta^{\mu\mu}$ and $\eta^{\nu\nu}$ respectively.
+        Therefore the factor that we end up with is the product of the two.
+
+    \item
+        We apply the chain rule here and since we map $\vec x \mapsto - \vec x$
+        the chain rule will just give us a minus sign in the spatial
+        components. This is expressed in $\eta^{\mu\mu}$.
+\end{enumerate}
+
+\paragraph{Time reversal}
+
+We have to do the same thing for the time reversal operation.
+
+\begin{enumerate}
+    \item
+        We do the first one more explicit as before. We start with the sandwich
+        between the time reversal operators.
+        \begin{align*}
+            \bar\psi \psi
+            &\mapsto T \bar\psi \psi T
+            \intertext{%
+                We add a unit operator in between the field operators.
+            }
+            &= T \bar\psi T^\dagger T \psi T
+            \intertext{%
+                To use the formula that is given in Equation~(5) we must assume
+                that $T^\dagger = T$. Or are we really using that $T^2$ must be
+                the identity and not introduce a $T^\dagger$ at all? Either
+                way, we must write
+            }
+            &= T \bar\psi T T \psi T.
+            \intertext{%
+                Now we apply Equation~(5) from the problem set.
+            }
+            &= - \bar\psi(-t, \vec x) \mat\gamma^1 \mat\gamma^3 \mat\gamma^1
+            \mat\gamma^3 \psi(-t, \vec x)
+            \intertext{%
+                It takes one anticommutation in the middle.
+            }
+            &= \bar\psi(-t, \vec x) \mat\gamma^3 \mat\gamma^1 \mat\gamma^1
+            \mat\gamma^3 \psi(-t, \vec x)
+            \intertext{%
+                We can collapse the Dirac matrices and have a compact result.
+            }
+            &= [\bar\psi \psi](-t, \vec x)
+        \end{align*}
+
+    \item
+        The pseudo scalar has another $\mat\gamma^5$ which means another
+        anticommutation is needed. This makes the factor $-1$.
+
+    \item
+        The vector is also a bit tricky, so we need several steps here
+        as well.
+        \begin{align*}
+            \bar\psi \mat\gamma^5 \psi
+            &\mapsto T \iup \bar\psi \mat\gamma^\mu \psi T
+            \intertext{%
+                We add unit operators in between the elements.
+            }
+            &= T \bar\psi T T^\dagger \mat\gamma^\mu T^\dagger T \psi T
+            \intertext{%
+                We use the given transformation formulas on the field
+                operators. At the same time, we use that $\gamma^\mu$ is a
+                hermitian matrix and factor out the hermitian conjugate.
+            }
+            &= - \bar\psi(-t, \vec x) \mat\gamma^1 \mat\gamma^3 \sbr{T
+            \mat\gamma^\mu T}^\dagger \mat\gamma^1 \mat\gamma^3 \psi(-t, \vec x)
+            \intertext{%
+                Next we use the hint which tells us that time reversal complex
+                conjugates the Dirac matrices: $\mat\gamma^\mu$ will be complex
+                conjugated. For an hermitian matrix, this is the same as the
+                transpose. For the cases $\mu = 1$ and $\mu = 3$ the transpose
+                will have an additional minus sign compared to the matrix
+                itself. However, these are also the cases where we need one
+                anticommutation less to get the $\mat\gamma^\mu$ across the
+                $\mat\gamma^1 \mat\gamma^3$. This effect therefore cancels.
+            }
+            % TODO
+        \end{align*}
+
+    \item
+        The pseudovector works in the same way. We have an additional
+        $\mat\gamma^5$ here. Since the time reversal generates two Dirac
+        matrices additionally, we need two anticommutations to get them across
+        the $\mat\gamma^5$ this time. No sign change happens because of this.
+
+    \item
+        % TODO
+
+    \item
+        The partial derivative transform with the chain rule again. We only
+        change the sign in the time direction, so the spatial parts are left
+        intact. With our convention of the signature of the metric, this will
+        be $- \eta^{\mu\mu}$.
+\end{enumerate}
+
+\paragraph{Charge conjugation}
+
+\paragraph{All transformations}
+
+This one is easy: Just multiply all the factors from parity, time reversal and
+charge conjugation and you get the factor from the combined $CPT$
+transformation.
+
 \section{Wick's theorem}
 \label{homework:2}
 
