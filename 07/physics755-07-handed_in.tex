@@ -415,6 +415,34 @@ Dropping the matrix element again, we can conclude that Equation~(11) holds:
     \phi_1 \phi_2}
 \]
 
+\subsection{Proof of Wick's theorem}
+
+We saw in the previous subsection that the vacuum matrix elements are needed to
+get the propagators, but can be omitted, as long as we keep the vacuum in mind.
+
+The theorem is proven for $n = 2$ fields. The case $n = 1$ is not very
+interesting since there is not much to reorder if there is just one field. The
+foundation for the induction is laid, we need the induction step next. We chose
+the variant to start with the left side at $n+1$, use the theorem at $n$ and
+bring the other side to $n+1$ as well. The first step is extract the newest
+element from the time ordering. \textcite[90]{Peskin/QFT/1995} define the
+numbering of the fields such that $x_k^0 \geq x_{k+1}^0$, such that they are in
+time order already. If we do not use this trick as well, we would have $n+1$
+terms when we write down the time ordering using Heaviside step functions
+explicitly. Therefore we will also use this trick. This means that $\phi_{n+1}$
+has the smallest time of all and already is in the correct time order when it
+is at the very end.
+\begin{align*}
+    \timeorder(\phi_1 \phi_2 \ldots \phi_n \phi_{n+1})
+    &= \timeorder(\phi_1 \phi_2 \ldots \phi_n) \phi_{n+1}
+    \intertext{%
+        Then we can apply the theorem for $n$. To make the notation a tad more
+        precise we call the sum of all contractions up to and including the
+        field $n$ the sum $C_n$.
+    }
+    &= \normorder(\phi_1 \phi_2 \ldots \phi_n + C_n) \phi_{n+1}
+\end{align*}
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
