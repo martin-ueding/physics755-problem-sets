@@ -5,6 +5,7 @@
 
 \usepackage{booktabs}
 \usepackage{slashed}
+\usepackage{simplewick}
 
 \hypersetup{
     pdftitle=
@@ -331,8 +332,9 @@ There are six questions. We will number them to aid navigation.
     \item
         Angular momentum changes its sign under time inversion. So the helicity
         does not change. That would be really strange actually, if the helicity
-        would change in time reversal. Think of a movie of a falling gyro
-        played backwards.
+        would change in time reversal. Think of a falling gyro which has a
+        meridian marked. The helix described by this thing should not change
+        with time reversal.
 
     \item
         The generators for boosts would have a sign change under both parity
@@ -349,7 +351,69 @@ There are six questions. We will number them to aid navigation.
 \section{Wick's theorem}
 \label{homework:2}
 
+\newcommand\timeorder{\mathscr T}
+\newcommand\normorder{\mathscr N}
 
+This problems introduces another overload of the letter $T$, it now is both
+time ordering and time reversal operator. We have yet to define another $T$ to
+make it even with the thrice defined $\eta$. To make it easier for the reader,
+we chose to introduce script letters here, mostly because \LaTeX\ can do this
+and they are not used yet. The time ordering will be denoted with $\timeorder$
+and the normal ordering with $\normorder$.
+
+\subsection{Two fields}
+
+We have to look at vacuum matrix elements here.
+\textcite[Section~4.3]{Peskin/QFT/1995} do this as well, and we need it to get
+a Feynman propagator in the end. We start by expanding the time ordering in
+terms of Heaviside step functions.
+\begin{align*}
+    \Braket{0 | \timeorder(\phi_1 \phi_2) | 0}
+    &= \Theta(x_1^0 - x_2^0) \Braket{0 | \phi_1 \phi_2 | 0}
+    + \Theta(x_2^0 - x_1^0) \Braket{0 | \phi_2 \phi_1 | 0}
+    \intertext{%
+        We can identify this with the definition of the Feynman propagator.
+    }
+    &= D_\mathrm F(\tens x - \tens y)
+    \intertext{%
+        The vacuum state is normalized, we can add a bracket around this scalar
+        value.
+    }
+    &= \Braket{0 | D_\mathrm F(\tens x - \tens y) | 0}
+    \intertext{%
+        The normal ordering of any operator does not contribute anything in
+        vacuum matrix element, because all the occupation numbers are zero in
+        the vacuum.
+    }
+    &= \Braket{0 | \normorder(\phi_1 \phi_2) | 0}
+    + \Braket{0 | D_\mathrm F(\tens x - \tens y) | 0}
+    \intertext{%
+        We use the linearity of the braket.
+    }
+    &= \Braket{0 | \normorder(\phi_1 \phi_2) + D_\mathrm F(\tens x - \tens y) | 0}
+    \intertext{%
+        The contraction is defined via the Feynman propagator. We use this the
+        other way around and insert a contraction.
+    }
+    &= \Braket{0 | \normorder(\phi_1 \phi_2) +
+    \contraction{}{\phi_1}{}{\phi_2}
+    \phi_1 \phi_2
+    | 0}
+    \intertext{%
+        And as a last step we extend the normal ordering to the scalar.
+    }
+    &= \Braket{0 | \normorder\del{\phi_1 \phi_2 +
+    \contraction{}{\phi_1}{}{\phi_2}
+    \phi_1 \phi_2}
+    | 0}
+\end{align*}
+Dropping the matrix element again, we can conclude that Equation~(11) holds:
+\[
+    \timeorder(\phi_1 \phi_2)
+    = \normorder\del{\phi_1 \phi_2 +
+    \contraction{}{\phi_1}{}{\phi_2}
+    \phi_1 \phi_2}
+\]
 
 \end{document}
 
