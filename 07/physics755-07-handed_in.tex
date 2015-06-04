@@ -240,6 +240,69 @@ We have to do the same thing for the time reversal operation.
 
 \paragraph{Charge conjugation}
 
+The charge conjugation includes spatial and temporal Dirac matrices in the
+transformed results, so there will not be any distinction on the indices $\mu$
+or $\nu$ in the final results since there are the same number of
+anticommutations each.
+
+\begin{enumerate}
+    \item
+        We start with the scalar.
+        \begin{align*}
+            \bar\psi \psi
+            &\mapsto C \bar\psi \psi C \\
+            \intertext{%
+                One needs another unit operator in the middle to use the
+                transformation rule.
+            }
+            &= C \bar\psi C C \psi C
+            \intertext{%
+                We use the transformation given in Equation~(3).
+            }
+            &= \sbr{\mat\gamma^0 \mat\gamma^2 \psi}^\mathrm T
+            \sbr{\bar\psi \mat\gamma^0 \mat\gamma^2}^\mathrm T
+            \intertext{%
+                We take the transpose of the whole thing to get the order back
+                in the normal one. In this step we change the order of the
+                field operators which will give us another minus sign from the
+                fermionic anticommutation.
+            }
+            &= - \sbr{\bar\psi \mat\gamma^0 \mat\gamma^2 \mat\gamma^0 \mat\gamma^2 \psi}^\mathrm T
+            \intertext{%
+                The expression in the bracket is a scalar, we can therefore
+                drop the transpose.
+            }
+            &= - \bar\psi \mat\gamma^0 \mat\gamma^2 \mat\gamma^0 \mat\gamma^2 \psi
+            \intertext{%
+                It takes one anticommutation to remove all the Dirac matrices.
+            }
+            &= \bar\psi \psi
+        \end{align*}
+
+    \item
+        The additional $\mat\gamma^5$ in the pseudo scalar will lead to two
+        additional anticommutations which do not change the sign in the end.
+
+    \item
+        The additional $\mat\gamma^\mu$ will cost one anticommutation with the
+        Dirac matrices already in the expression. As seen before the transpose
+        of the Dirac matrix gives additional minus signs for $\mu = 1$ and $\mu
+        = 3$. Here the Dirac matrices for $\mu = 0$ and $\mu = 2$ are present,
+        so the minus sign does not cancel but happen in every of the four
+        possible terms.
+
+    \item
+        An additional $\mat\gamma^5$ in the pseudo vector again flips the sign
+        with respect to the vector.
+
+    \item
+        % TODO
+
+    \item
+        Derivatives of spacetime have nothing to do with charge, so no chain
+        rule applies and the sign stays as it is.
+\end{enumerate}
+
 \paragraph{All transformations}
 
 This one is easy: Just multiply all the factors from parity, time reversal and
