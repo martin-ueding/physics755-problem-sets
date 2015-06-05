@@ -197,7 +197,7 @@ We have to do the same thing for the time reversal operation.
         The vector is also a bit tricky, so we need several steps here
         as well.
         \begin{align*}
-            \bar\psi \mat\gamma^5 \psi
+            \bar\psi \mat\gamma^\mu \psi
             &\mapsto T \bar\psi \mat\gamma^\mu \psi T
             \intertext{%
                 We add unit operators in between the elements.
@@ -230,7 +230,65 @@ We have to do the same thing for the time reversal operation.
         the $\mat\gamma^5$ this time. No sign change happens because of this.
 
     \item
-        % TODO
+        The tensor requires care of all the different cases. We start by
+        expanding the Pauli matrix tensor.
+        \begin{align*}
+            T \bar\psi \mat\sigma^{\mu\nu} \psi T
+            &= T \bar\psi \frac\iup2 \sbr{\mat\gamma^\mu, \mat\gamma^\nu} \psi T
+            \intertext{%
+                We add more time reflection operators.
+            }
+            &= T \bar\psi TT \frac\iup2 \sbr{\mat\gamma^\mu, \mat\gamma^\nu} TT \psi T
+            \intertext{%
+                There are a lot of sign changes here, so we want to be careful.
+                The first one comes from moving $T$ past the imaginary unit.
+            }
+            &= - T \bar\psi T \frac\iup2 T \sbr{\mat\gamma^\mu, \mat\gamma^\nu} TT \psi T
+            \intertext{%
+                Now we can apply the time reversal on both the spinors and the
+                commutator of Dirac matrices.
+            }
+            &= \bar\psi \mat\gamma^1 \mat\gamma^3 \frac\iup2
+            \sbr{\mat\gamma^{\mu*}, \mat\gamma^{\nu*}} \mat\gamma^1
+            \mat\gamma^3 \psi
+            \intertext{%
+                We perform one anticommutation to the matrices in the right
+                order to cancel each other once we have moved them through the
+                commutator. This gives us another minus sign.
+            }
+            &= - \bar\psi \mat\gamma^1 \mat\gamma^3 \frac\iup2
+            \sbr{\mat\gamma^{\mu*}, \mat\gamma^{\nu*}} \mat\gamma^3
+            \mat\gamma^1 \psi
+            \intertext{%
+                Only the Dirac matrix $\mat\gamma^2$ is imaginary, all the
+                other ones are real in the Weyl representation. The complex
+                conjugation therefore gives us a minus sign whenever $\mu = 2$
+                or $\nu = 2$. It is symmetric in $\mu$ and $\nu$, so we only
+                need to look at six distinct cases. We start with $\mu = 0$ and
+                $\nu = 1$. We need one anticommutation for $\mat\gamma^1$ and
+                two anticommutations for $\gamma^3$. No minus sign will come
+                from the complex conjugation. We therefore write this as
+                \[
+                    N^{\mu\nu} = N_{\mat\gamma^1} + N_{\mat\gamma^3} + N_{*}
+                    = 1 + 2 + 0 = 4
+                \]
+                sign changes in total.
+            }
+            \intertext{%
+                Going through all the cases in this
+                fashion, we end up with the following symmetric matrix:
+                \[
+                    \mat N =
+                    \begin{pmatrix}
+                        & 1+2+0=4 & 2+2+1=6 & 2+1+0=4 \\
+                        & & 1+2+1=5 & 1+1+0=3 \\
+                        & & & 2+1+1=5
+                    \end{pmatrix}.
+                \]
+                This can be summed up in
+            }
+            &= - \eta^{\mu\mu} \eta^{\nu\nu} \bar\psi \mat\sigma^{\mu\nu} \psi.
+        \end{align*}
 
     \item
         The partial derivative transform with the chain rule again. We only
