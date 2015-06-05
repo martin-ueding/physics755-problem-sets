@@ -60,7 +60,8 @@
 
 Here we have to compute $4 \cdot 6 = 24$ transformation properties. We get
 whopping four points for this problem. So this means that we have to write
-about four pages to get everything done.
+about four pages to get everything done. The ratio seems rather bad here as we
+only finish on page~\pageref{page:end_of_1_1} with the very first problem.
 
 Often we have to use that the symmetric part of $\tens\gamma \otimes
 \tens\gamma$ is the metric tensor:
@@ -396,6 +397,46 @@ anticommutations each.
         with respect to the vector.
 
     \item
+        \begin{align*}
+            \bar\psi \mat\sigma^{\mu\nu} \psi
+            &\mapsto C \bar\psi \mat\sigma^{\mu\nu} \psi C
+            \intertext{%
+                We expand the matrix commutator and add more conjugation
+                operators. We use the property that the charge conjugation
+                operator commutes with all the Dirac matrices.
+            }
+            &= C \bar\psi C \frac\iup2 \sbr{\mat\gamma^\mu, \mat\gamma^\nu} C \psi C
+            \intertext{%
+                Then we write out the transformed spinors.
+            }
+            &= - \sbr{\mat\gamma^0 \mat\gamma^2 \psi}^\mathrm T
+            \frac\iup2 \sbr{\mat\gamma^\mu, \mat\gamma^\nu}
+            \sbr{\bar\psi \mat\gamma^0 \mat\gamma^2}^\mathrm T
+            \intertext{%
+                We do the same thing as with the scalar, to get everything into
+                a transpose bracket. After that, we can drop it since the
+                transpose of a scalar still is a scalar.
+            }
+            &= - \bar\psi \mat\gamma^0 \mat\gamma^2
+            \frac\iup2 \sbr{\mat\gamma^\mu, \mat\gamma^\nu}^\mathrm T
+            \mat\gamma^0 \mat\gamma^2 \psi
+            \intertext{%
+                We perform the anticommutation of the Dirac matrices now and
+                remove the leading minus sign.
+            }
+            &= \bar\psi \mat\gamma^0 \mat\gamma^2
+            \frac\iup2 \sbr{\mat\gamma^\mu, \mat\gamma^\nu}^\mathrm T
+            \mat\gamma^2 \mat\gamma^0 \psi
+        \end{align*}
+        The transpose of the commutator will give introduce additional minus
+        signs for $\mu = 2$ or $\nu = 2$. In those cases we need one
+        anticommutation less, so there is no net sign change when this is the
+        case. If the other index is 0, one should need one less anticommutation
+        and therefore incur a sign change.
+
+        Once everything is brought through the commutator, the nested pairs of
+        Dirac matrices will give an additional minus sign.
+
         % TODO
 
     \item
@@ -408,6 +449,8 @@ anticommutations each.
 This one is easy: Just multiply all the factors from parity, time reversal and
 charge conjugation and you get the factor from the combined $CPT$
 transformation.
+
+\label{page:end_of_1_1}
 
 \subsection{Short answers}
 
