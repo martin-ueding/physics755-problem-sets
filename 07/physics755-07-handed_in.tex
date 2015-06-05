@@ -511,6 +511,136 @@ There are six questions. We will number them to aid navigation.
         % TODO
 \end{enumerate}
 
+\subsection{Complex Klein-Gordon field}
+
+The real field $\phi(\vec x)$ is given as:
+\[
+    \phi(\vec x) = \int \frac{\dif^3 p}{[2\piup]^3} \frac{1}{\sqrt{E_{\vec p}}}
+    \sbr{
+        a_{\vec p} \exp(- \iup \vec p \cdot \vec x)
+        + a_{\vec p}^\dagger \exp(\iup \vec p \cdot \vec x)
+    }.
+\]
+Since we have a complex Klein-Gordon field we need two different sets of ladder
+operators. We call the second one $b$ and $b^\dagger$.
+\[
+    \phi(\vec x) = \int \frac{\dif^3 p}{[2\piup]^3} \frac{1}{\sqrt{E_{\vec p}}}
+    \sbr{
+        a_{\vec p} \exp(- \iup \vec p \cdot \vec x)
+        + b_{\vec p}^\dagger \exp(\iup \vec p \cdot \vec x)
+    }.
+\]
+
+We can add a time dependence by making this Schrödinger picture operator into a
+Heisenberg picture operator.
+\[
+    \phi_\mathrm H(t, \vec x) = \int \frac{\dif^3 p}{[2\piup]^3} \frac{1}{\sqrt{E_{\vec p}}}
+    U^\dagger(t) \sbr{
+        a_{\vec p} \exp(- \iup \vec p \cdot \vec x)
+        + b_{\vec p}^\dagger \exp(\iup \vec p \cdot \vec x)
+    } U(t)
+\]
+This does not help us much, yet.
+
+We need to write this more compact, with an explicit time dependence in the
+exponentials. \textcite[25]{Peskin/QFT/1995} look at the commutator of the
+Hamiltonian operator $H$ with the annihilation operator $a_{\vec p}$ and use
+this. Here we focus on $a$ only. We will show the commutator first.
+\begin{align*}
+    \sbr{H, a_{\vec p}}
+    &= \int \frac{\dif^3 p'}{[2\piup]^3} \omega_{\vec p'}
+    \sbr{a_{\vec p'}^\dagger a_{\vec p'}, a_{\vec p}}
+    \intertext{%
+        The annihilation operator commutes with itself, we can extract that
+        from the commutator.
+    }
+    &= \int \frac{\dif^3 p'}{[2\piup]^3} \omega_{\vec p'}
+    \sbr{a_{\vec p'}^\dagger, a_{\vec p}} a_{\vec p'}
+    \intertext{%
+        By definition, this is a Dirac $\deltaup$-distribution. Executing the
+        integral just gives us
+    }
+    &= \omega_{\vec p} a_{\vec p}.
+\end{align*}
+This result can then be used to remove the unitary time evolution operators $U$
+and replace them with a straight time dependence in the exponential by using
+this relation $n$ times in each summand of the exponential. The same procedure
+can be done for $b^\dagger$ as well, the sign will be the opposite, though.
+
+We now have
+\[
+    \phi_\mathrm H(t, \vec x) = \int \frac{\dif^3 p}{[2\piup]^3} \frac{1}{\sqrt{E_{\vec p}}}
+    \sbr{
+        a_{\vec p} \exp\del{\iup [E_{\vec p} t - \vec p \cdot \vec x]}
+        + b_{\vec p}^\dagger \exp\del{- \iup [E_{\vec p} t - \vec p \cdot \vec x]}
+    }.
+\]
+We finally have the field expressed in terms of creation and annihilation
+operators with explicit time dependence. One could use four-vectors to compress
+the notation a bit, but we need to look at space and time individually in the
+next parts anyway.
+
+\paragraph{Parity}
+
+The action of our transformation operators shall be given in terms of their
+action on the ladder operators. To flip $\vec x$ here, we should map $a_{\vec
+p} \mapsto a_{- \vec p}$ and then use the symmetry of the integral with respect
+to $p$. The exponential would have the exact same value if one looks at $\vec x
+\mapsto - \vec x$, which is the desired transformation.
+
+\paragraph{Time reversal}
+
+The time reversal is trickier, as expected. We need to exchange the
+exponentials and also perform the parity. So we have $a_{\vec
+p} \mapsto b^\dagger_{- \vec p}$ and the corresponding other way around.
+
+\paragraph{Charge conjugation}
+
+The complex Klein-Gordon field has distinct particles and antiparticles. To
+conjugate the charge, we need to exchange those two types of particles. This
+can be done by exchanging $a \mapsto b$ and $b \mapsto a$.
+
+\paragraph{Transformation properties of current}
+
+\begin{itemize}
+    \item
+        The transformation with the parity is:
+        \begin{align*}
+            J^\mu
+            &\mapsto P J^\mu P \\
+            &= \iup \sbr{P \phi^* P P \partial^\mu P P \phi P - P \phi P P
+            \partial^\mu P P \phi^* P} \\
+            &= - \iup \sbr{\phi^*(t, -\vec x) \partial^\mu \phi(t, -\vec x) -
+            \phi(t, -\vec x) \partial^\mu \phi^*(t, -\vec x)} \\
+            &= - J^\mu(t, -\vec x)
+        \end{align*}
+        The current is a regular vector. The current density actually is a
+        three-form since it assigns a scalar to three vectors (one timelike,
+        two spacelike). Therefore it has an odd parity.
+
+    \item
+        The charge conjugation should flip the sign of the current. And indeed
+        it does. The charge density is purely imaginary, taking the complex
+        conjugate reverses the sign:
+        \[
+            J^\mu \mapsto - J^\mu.
+        \]
+
+    \item
+        The time reversal works similarly, except that there is no sign change
+        from the partial derivative. However, we get a sign change from the
+        imaginary unit and the fields get complex conjugated. This just changes
+        the order and also gives a sign change with respect to the original
+        current density.
+        \[
+            J^\mu \mapsto J^{\mu}(-t, \vec x)
+        \]
+\end{itemize}
+
+\subsection{CPT invariance}
+
+% TODO
+
 \section{Wick's theorem}
 \label{homework:2}
 
