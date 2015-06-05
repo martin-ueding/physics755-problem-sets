@@ -425,13 +425,20 @@ interesting since there is not much to reorder if there is just one field. The
 foundation for the induction is laid, we need the induction step next. We chose
 the variant to start with the left side at $n+1$, use the theorem at $n$ and
 bring the other side to $n+1$ as well. The first step is extract the newest
-element from the time ordering. \textcite[90]{Peskin/QFT/1995} define the
-numbering of the fields such that $x_k^0 \geq x_{k+1}^0$, such that they are in
-time order already. If we do not use this trick as well, we would have $n+1$
-terms when we write down the time ordering using Heaviside step functions
-explicitly. Therefore we will also use this trick. This means that $\phi_{n+1}$
-has the smallest time of all and already is in the correct time order when it
-is at the very end.
+element from the time ordering.
+
+\textcite[90]{Peskin/QFT/1995} define the numbering of the fields such that
+$x_k^0 \geq x_{k+1}^0$, such that they are in time order already. If we do not
+use this trick as well, we would have $n+1$ terms when we write down the time
+ordering using Heaviside step functions explicitly. Therefore we will also use
+this trick. This means that $\phi_{n+1}$ has the smallest time of all and
+already is in the correct time order when it is at the very end. This does not
+mean that we loose generality by this restriction. We can always relabel the
+fields such that this holds: The time ordering $\timeorder$ will order them by
+time anyway. And the normal ordering $\normorder$ splits up positive and
+negative frequency parts which can commute among themselves freely. All
+possible contractions are build up, so reordering the fields would not change
+anything either.
 \begin{align*}
     \timeorder(\phi_1 \phi_2 \ldots \phi_n \phi_{n+1})
     &= \timeorder(\phi_1 \phi_2 \ldots \phi_n) \phi_{n+1}
@@ -441,7 +448,38 @@ is at the very end.
         field $n$ the sum $C_n$.
     }
     &= \normorder(\phi_1 \phi_2 \ldots \phi_n + C_n) \phi_{n+1}
+    \intertext{%
+        Here we need to split up the positive and negative frequency parts.
+    }
+    &= \normorder(\phi_1 \phi_2 \ldots \phi_n + C_n) \phi_{n+1}^+
+    + \normorder(\phi_1 \phi_2 \ldots \phi_n + C_n) \phi_{n+1}^-
+    \intertext{%
+        The normal ordering has the negative frequency parts on the left. This
+        means that the positive frequency part already is in the right position
+        and we can just insert that. The negative frequency part is on the
+        wrong side to be normal ordered. We therefore need to commute it with
+        every single positive frequency part. Every commutation will give us a
+        commutator, which is a Feynman propagator when sandwiched into a vacuum
+        matrix element.
+    }
+    &= \normorder(\phi_1 \phi_2 \ldots \phi_n \phi_{n+1}^+ + C_n \phi_{n+1}^+)
+    + \normorder(\phi_{n+1}^- \phi_1 \phi_2 \ldots \phi_n + \phi_{n+1}^- C_n)
+    \\&\qquad
+    + \sbr{\normorder(\phi_1 \phi_2 \ldots \phi_n), \phi_{n+1}^-}
+    + \sbr{\normorder(C_n), \phi_{n+1}^-}
+    \intertext{%
+        The first summands of the terms in the first line can be combined to
+        give the normal ordering of all $n+1$ fields. The terms with $C_n$ will
+        give all the contractions where $\phi_{n+1}$ is not involved.
+        The first commutator will then give all the contractions that
+        $\phi_{n+1}$ is involved in, but nothing else is contracted. Finally,
+        the commutator of $\phi_{n+1}$ with $C_n$ will give all the
+        contractions where $\phi_{n+1}$ is involved and other things are
+        contracted as well. All in all we arrive at the final result:
+    }
+    &= \normorder(\phi_1 \phi_2 \ldots \phi_n \phi_{n+1}).
 \end{align*}
+By the method of induction, this theorem holds for all $n \geq 1$ now.
 
 \end{document}
 
