@@ -62,6 +62,16 @@ Here we have to compute $4 \cdot 6 = 24$ transformation properties. We get
 whopping four points for this problem. So this means that we have to write
 about four pages to get everything done.
 
+Often we have to use that the symmetric part of $\tens\gamma \otimes
+\tens\gamma$ is the metric tensor:
+\[
+    \frac12 \sbr{\mat\gamma^\mu, \mat\gamma^\nu} = \eta^{\mu\nu} \mat1_4.
+\]
+In particular this means that
+\[
+    [\mat\gamma^\mu]^2 = \eta^{\mu\mu} \mat1_4.
+\]
+
 \paragraph{Parity}
 
 Since there are six tensorial quantities, we will just number them for each
@@ -185,6 +195,8 @@ We have to do the same thing for the time reversal operation.
             \mat\gamma^3 \psi(-t, \vec x)
             \intertext{%
                 We can collapse the Dirac matrices and have a compact result.
+                Both pairs of Dirac matrices give a minus, but that does not
+                change the net sign.
             }
             &= [\bar\psi \psi](-t, \vec x)
         \end{align*}
@@ -287,7 +299,13 @@ We have to do the same thing for the time reversal operation.
                 \]
                 This can be summed up in
             }
-            &= - \eta^{\mu\mu} \eta^{\nu\nu} \bar\psi \mat\sigma^{\mu\nu} \psi.
+            &= - \eta^{\mu\mu} \eta^{\nu\nu} \bar\psi \mat\gamma^1
+            \mat\gamma^3 \mat\gamma^3 \mat\gamma^1 \gamma^{\mu\nu} \psi.
+            \intertext{%
+                Now we can remove the pairs of Dirac matrices. Each pair will
+                give a minus sign, so the total sign does not change.
+            }
+            &= - \eta^{\mu\mu} \eta^{\nu\nu} \bar\psi \psi
         \end{align*}
 
     \item
@@ -318,7 +336,7 @@ anticommutations each.
             \intertext{%
                 We use the transformation given in Equation~(3).
             }
-            &= \sbr{\mat\gamma^0 \mat\gamma^2 \psi}^\mathrm T
+            &= - \sbr{\mat\gamma^0 \mat\gamma^2 \psi}^\mathrm T
             \sbr{\bar\psi \mat\gamma^0 \mat\gamma^2}^\mathrm T
             \intertext{%
                 We take the transpose of the whole thing to get the order back
@@ -326,14 +344,20 @@ anticommutations each.
                 field operators which will give us another minus sign from the
                 fermionic anticommutation.
             }
-            &= - \sbr{\bar\psi \mat\gamma^0 \mat\gamma^2 \mat\gamma^0 \mat\gamma^2 \psi}^\mathrm T
+            &= \sbr{\bar\psi \mat\gamma^0 \mat\gamma^2 \mat\gamma^0 \mat\gamma^2 \psi}^\mathrm T
             \intertext{%
                 The expression in the bracket is a scalar, we can therefore
                 drop the transpose.
             }
-            &= - \bar\psi \mat\gamma^0 \mat\gamma^2 \mat\gamma^0 \mat\gamma^2 \psi
+            &= \bar\psi \mat\gamma^0 \mat\gamma^2 \mat\gamma^0 \mat\gamma^2 \psi
             \intertext{%
-                It takes one anticommutation to remove all the Dirac matrices.
+                It takes one anticommutation to order the Dirac matrices into
+                nested pairs.
+            }
+            &= - \bar\psi \mat\gamma^0 \mat\gamma^2 \mat\gamma^2 \mat\gamma^0 \psi
+            \intertext{%
+                The pair $\mat\gamma^2$ will give us a minus sign, the pair
+                with $\mat\gamma^0$ will not. This is another sign change.
             }
             &= \bar\psi \psi
         \end{align*}
