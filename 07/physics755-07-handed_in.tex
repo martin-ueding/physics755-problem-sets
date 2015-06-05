@@ -217,7 +217,7 @@ We have to do the same thing for the time reversal operation.
             &= T \bar\psi T T^\dagger \mat\gamma^\mu T^\dagger T \psi T
             \intertext{%
                 We use the given transformation formulas on the field
-                operators. At the same time, we use that $\gamma^\mu$ is a
+                operators. At the same time, we use that $\mat\gamma^\mu$ is a
                 hermitian matrix and factor out the hermitian conjugate.
             }
             &= - \bar\psi(-t, \vec x) \mat\gamma^1 \mat\gamma^3 \sbr{T
@@ -231,8 +231,25 @@ We have to do the same thing for the time reversal operation.
                 itself. However, these are also the cases where we need one
                 anticommutation less to get the $\mat\gamma^\mu$ across the
                 $\mat\gamma^1 \mat\gamma^3$. This effect therefore cancels.
+                The $\mu = 0$ case has no sign change associated with it
+                whereas the other cases have a sign change.
             }
-            % TODO
+            &= - \eta^{\mu\mu} \bar\psi(-t, \vec x) \mat\gamma^1 \mat\gamma^3
+            \mat\gamma^1 \mat\gamma^3 \mat\sigma^{\mu\nu} \psi(-t,
+            \vec x)
+            \intertext{%
+                We need to anticommute the Dirac matrices to form nested pairs.
+                This will change the sign again.
+            }
+            &= \eta^{\mu\mu} \bar\psi(-t, \vec x) \mat\gamma^1 \mat\gamma^3
+            \mat\gamma^3 \mat\gamma^1 \mat\sigma^{\mu\nu} \psi(-t,
+            \vec x)
+            \intertext{%
+                The two nested pairs will both give a sign change this cancels
+                in the end result.
+            }
+            &= \eta^{\mu\mu} \bar\psi(-t, \vec x) \mat\sigma^{\mu\nu} \psi(-t,
+            \vec x)
         \end{align*}
 
     \item
@@ -282,7 +299,7 @@ We have to do the same thing for the time reversal operation.
                 from the complex conjugation. We therefore write this as
                 \[
                     N^{\mu\nu} = N_{\mat\gamma^1} + N_{\mat\gamma^3} + N_{*}
-                    = 1 + 2 + 0 = 4
+                    = 1 + 2 + 0 = 3
                 \]
                 sign changes in total.
             }
@@ -292,9 +309,9 @@ We have to do the same thing for the time reversal operation.
                 \[
                     \mat N =
                     \begin{pmatrix}
-                        & 1+2+0=4 & 2+2+1=6 & 2+1+0=4 \\
-                        & & 1+2+1=5 & 1+1+0=3 \\
-                        & & & 2+1+1=5
+                        & 1+2+0=3 & 2+2+1=5 & 2+1+0=3 \\
+                        & & 1+2+1=4 & 1+1+0=2 \\
+                        & & & 2+1+1=4
                     \end{pmatrix}.
                 \]
                 This can be summed up in
@@ -420,8 +437,19 @@ There are six questions. We will number them to aid navigation.
 
     \item
         The generators for boosts would have a sign change under both parity
-        and time inversion. The generators for rotations would not change under
-        either transformation.
+        and time inversion. Write such a generator $\mat K$ with either
+        transformation: $P \mat K P$. The one parity operator will flip the
+        sign in the spatial columns of $\mat K$, the other one will flip the
+        sign in the spatial rows. Together, only the signs of the $K^{0i}$
+        components are flipped. The time reversal will slip the temporal row
+        and column, yielding the same result.
+
+        The generators for rotations would not change under either
+        transformation. The parity will change the spatial components twice.
+        The rotation generator $\mat J$ only has spatial components that are
+        nonzero, so it does not change at all. The time reversal will not
+        change the spatial components at all, so $\mat J$ is invariant here as
+        well. 
 
     \item
         % TODO
