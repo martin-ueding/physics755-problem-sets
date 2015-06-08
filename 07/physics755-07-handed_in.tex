@@ -614,33 +614,72 @@ can be done by exchanging $a \mapsto b$ and $b \mapsto a$.
         \begin{align*}
             J^\mu
             &\mapsto P J^\mu P \\
-            &= \iup \sbr{P \phi^* P P \partial^\mu P P \phi P - P \phi P P
-            \partial^\mu P P \phi^* P} \\
-            &= - \iup \sbr{\phi^*(t, -\vec x) \partial^\mu \phi(t, -\vec x) -
-            \phi(t, -\vec x) \partial^\mu \phi^*(t, -\vec x)} \\
-            &= - J^\mu(t, -\vec x)
+            \intertext{%
+                We add more parity operators in between. To make it easier on
+                the eye, we added some spacing between the individual parts.
+            }
+            &= \iup \sbr{P \phi^* P \; P \partial^\mu P \; P \phi P - \cc} \\
+            \intertext{%
+                Now we can apply the given transformation properties given on
+                the problem set to each term. The partial derivative transforms
+                like we have computed in problem 1.1.
+            }
+            &= \iup \sbr{\phi^*(t, -\vec x) \; \eta^{\mu\mu} \partial^\mu \;
+            \phi(t, -\vec x) - \cc} \\
+            \intertext{%
+                We factor out $J^\mu$ again to make the additional factors
+                visible.
+            }
+            &= \eta^{\mu\mu} J^\mu(t, -\vec x)
         \end{align*}
-        The current is a regular vector. The current density actually is a
-        three-form since it assigns a scalar to three vectors (one timelike,
-        two spacelike). Therefore it has an odd parity.
 
     \item
         The charge conjugation should flip the sign of the current. And indeed
-        it does. The charge density is purely imaginary, taking the complex
-        conjugate reverses the sign:
-        \[
-            J^\mu \mapsto - J^\mu.
-        \]
+        it does. The charge density is purely real, taking the complex
+        conjugate does not reverse the sign. We will show that in detail now.
+        \begin{align*}
+            J^\mu
+            &\mapsto C J^\mu C \\
+            \intertext{%
+                We insert $J^\mu$ explicitly and add more charge conjugation
+                operators.
+            }
+            &= C \iup C \sbr{C \phi^* C \; C \partial^\mu C \; C \phi C - \cc} \\
+            &= - \iup \sbr{\phi \partial^\mu \phi^* - \cc} \\
+            \intertext{%
+                We exchange the two summands in the brackets to get back to
+                $J^\mu$ and remove the minus sign.
+            }
+            &= \iup \sbr{\phi^* \partial^\mu \phi - \cc} \\
+            \intertext{%
+                And this is just the current density that we have started with.
+            }
+            &= J^\mu(t, \vec x)
+        \end{align*}
 
     \item
-        The time reversal works similarly, except that there is no sign change
-        from the partial derivative. However, we get a sign change from the
+        The time reversal works similarly, except that there is a sign change
+        from the partial derivative compared to the parity, see the table from
+        problem 1.1. We also get a sign change from the
         imaginary unit and the fields get complex conjugated. This just changes
         the order and also gives a sign change with respect to the original
         current density.
-        \[
-            J^\mu \mapsto J^{\mu}(-t, \vec x)
-        \]
+        \begin{align*}
+            J^\mu
+            &\mapsto T J^\mu T \\
+            \intertext{%
+                We add more time reversal operators in between, also around the
+                imaginary unit.
+            }
+            &= T \iup T \; \sbr{T \phi^* T \; T \partial^\mu T \; T \phi T
+            - \cc} \\
+            \intertext{%
+                The imaginary unit gives us an additional minus sign. The
+                fields are taken at $-t$. The partial derivative gives a factor
+                of $-\eta^{\mu\mu}$.
+            }
+            &= \iup \eta^{\mu\mu} J^\mu(-t, \vec x)
+        \end{align*}
 \end{itemize}
 
 \subsection{CPT invariance}
