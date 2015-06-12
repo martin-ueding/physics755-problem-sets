@@ -61,9 +61,11 @@
 
 In Equation~(1) the symbol $T$ is used as time ordering operator and the bounds
 of the integration. This does not make too much sense. We will use $\timeorder$
-to time ordering like on the last sheet.
+for time ordering like on the last sheet.
 
 \subsection{First order}
+
+\paragraph{Linearization}
 
 We are supposed to compute the numerator to first order in $\lambda$. The
 numerator is given as
@@ -117,6 +119,7 @@ numerator is given as
         \phi(x) \phi(x) \phi(x) \phi(x)
     }
     \ket 0
+    + \mathrm O(\lambda^2)
     \intertext{%
         We use Wick's theorem in the first summand and convert the time
         ordering into normal ordering and contractions. Only fully contracted
@@ -140,7 +143,163 @@ numerator is given as
         \phi(x) \phi(x) \phi(x) \phi(x)
     }
     \ket 0
+    + \mathrm O(\lambda^2)
 \end{gather*}
+
+\paragraph{Counting contractions}
+
+We have eight field operators in the time ordering. There are $7!! =
+105$ possible contractions, which are not necessarily unique. We
+organize those contractions into three groups, grouped by the number of
+self-contractions of the $\phi^4$ term.
+
+\begin{itemize}
+    \item 
+        The group with no self-contractions contains $4! = 24$ elements and
+        they are all equal since the $\phi(x)$ terms are all equal.
+
+    \item
+        If we have one self contraction there are $4^2 \cdot 3^2 / 2 = 72$
+        possible contractions. We get to this number like so: In the beginning
+        we have four $\phi_\mathrm I$ and four $\phi$ fields to choose from.
+        This gives $4^2$. For the second contraction we can choose another
+        $\phi_\mathrm I$ and one $\phi$ field, we have three of each kind. This
+        gives $3^2$ possibilities. The two remaining $\phi_\mathrm I$ fields
+        are contracted with each other and so are the remaining $\phi$ fields.
+        We have over counted by a factor of two since the order of performing
+        the two contractions does not matter. We could get around this division
+        and say that the second contraction must chose a $x_j$ such that $j >
+        i$ when $x_i$ was chosen in the first contraction. We will use that
+        below.
+
+    \item
+        If we contract all the $\phi$ terms among themselves, we have $3!! = 3$
+        possibilities to contract the $\phi_\mathrm I$ terms. Since there are
+        also three possibilities to contract the $\phi$ fields independently,
+        we have $3^3 = 9$ contractions in this group.
+\end{itemize}
+
+Together, those are the 105 contractions that we have calculated earlier. Some
+of them have the same values, some are distinct. They only have the same value
+if they only differ in the order of the contractions of the $\phi$ fields.
+
+We have computed the $\lambda^0$ order already and we will focus of the time
+ordering of the $\lambda^1$ order inside of the integral. We are not supposed
+to carry out integrations, so looking at the integrand should be sufficient.
+This problem demands a considerable dose of consistency, otherwise we would be
+lost. We call the groups with $i$ self-contractions $C_i$:
+\[
+    \bra 0
+    \timeorder\del{
+        \phi_\mathrm I(x_1)
+        \phi_\mathrm I(x_2)
+        \phi_\mathrm I(x_3)
+        \phi_\mathrm I(x_4)
+        \phi(x) \phi(x) \phi(x) \phi(x)
+    }
+    \ket 0
+    = C_0 + C_1 + C_2.
+\]
+Then we will look into each group separately.
+
+\paragraph{No self contractions}
+
+So we start with the terms in the group without self contractions. Those
+terms are all equal. Again, we only consider fully contracted terms here, since
+the vacuum expectation values of all other normal ordered products is zero. We
+choose one representative contraction and multiply it by $4!$.
+\[
+    C_0
+    = 4! \bra 0
+    %
+    \contraction{}{\phi_\mathrm I} {(x_1)\phi_\mathrm I(x_2) \phi_\mathrm I(x_3) \phi_\mathrm I(x_4)} {\phi}
+    %
+    \contraction[1.5ex]{\phi_\mathrm I(x_1)}{\phi_\mathrm I}{(x_2) \phi_\mathrm I(x_3)
+    \phi_\mathrm I(x_4) \phi(x)} {\phi}
+    %
+    \bcontraction{\phi_\mathrm I(x_1) \phi_\mathrm I(x_2)}{\phi_\mathrm I}{(x_3)
+    \phi_\mathrm I(x_4) \phi(x) \phi(x)} {\phi}
+    %
+    \bcontraction[1.5ex]{\phi_\mathrm I(x_1) \phi_\mathrm I(x_2) \phi_\mathrm I(x_3)
+    }{\phi_\mathrm I}{(x_4) \phi(x) \phi(x) \phi(x)} {\phi}
+    %
+    \phi_\mathrm I(x_1)
+    \phi_\mathrm I(x_2)
+    \phi_\mathrm I(x_3)
+    \phi_\mathrm I(x_4)
+    \phi(x) \phi(x) \phi(x) \phi(x)
+    \ket 0
+    = 4! \prod_{i = 1}^4 D(x_i - x)
+\]
+
+\paragraph{One self contraction}
+
+We have to come up 72 contractions here. However, there are only six unique
+configuration. This is easiest to see since there are only six ways to form one
+contraction of the $\phi_\mathrm I$ uniquely. The duplicity will be $72 / 6 =
+12$ for each term. There will be a $D(0)$ from the single contraction of the
+$\phi^4$ term.
+\begin{align*}
+    C_2 &= 12 \left[
+        D(x_1 - x_2) D(x_3 - x) D(x_4 - x)
+        + D(x_1 - x_3) D(x_2 - x) D(x_4 - x)
+        \right. \\ &\quad
+        + D(x_1 - x_4) D(x_2 - x) D(x_3 - x)
+        + D(x_2 - x_3) D(x_1 - x) D(x_4 - x)
+        \\ &\quad \left.
+        + D(x_2 - x_4) D(x_1 - x) D(x_3 - x)
+        + D(x_3 - x_4) D(x_1 - x) D(x_2 - x)
+    \right] D(0)
+\end{align*}
+In total, there are $12 \cdot 6 = 72$ terms, this is fine. Sorry for not
+typesetting the contractions here, they just eat too much time.
+
+
+\paragraph{Two self contractions}
+
+As written earlier, the contractions where the $\phi^4$ term is fully
+contracted with itself are independent of the contractions of the $\phi_\mathrm
+I$ with each other. We see the zeroth order term with an additional factor from
+the $\phi^4$ term. There are three different contractions within $\phi^4$, so
+we get an additional factor three.
+\[
+    C_2
+    = 3 \sbr{ D(x_1 - x_3) D(x_2 - x_4) + D(x_1 - x_4) D(x_2 - x_3)
+    + D(x_1 - x_2) D(x_3 - x_4)} D(0)^2
+\]
+
+\paragraph{End result}
+
+Now we just have to combine all three terms together to get the desired result.
+\begin{multline*}
+    - \frac{\iup \lambda}{4!}
+    \int_{-T}^T \dif t
+    \int_{\R^3} \dif^3 x \,
+    \bra 0
+    \timeorder\del{
+        \phi_\mathrm I(x_1)
+        \phi_\mathrm I(x_2)
+        \phi_\mathrm I(x_3)
+        \phi_\mathrm I(x_4)
+        \phi(x) \phi(x) \phi(x) \phi(x)
+    }
+    \ket 0 \\
+    = 4! \prod_{i = 1}^4 D(x_i - x)
+    + 12 \left[
+        D(x_1 - x_2) D(x_3 - x) D(x_4 - x)
+        + D(x_1 - x_3) D(x_2 - x) D(x_4 - x)
+        \right. \\ \quad
+        + D(x_1 - x_4) D(x_2 - x) D(x_3 - x)
+        + D(x_2 - x_3) D(x_1 - x) D(x_4 - x)
+        \\ \quad \left.
+        + D(x_2 - x_4) D(x_1 - x) D(x_3 - x)
+        + D(x_3 - x_4) D(x_1 - x) D(x_2 - x)
+    \right] D(0) \\
+    \quad + 3 \sbr{ D(x_1 - x_3) D(x_2 - x_4) + D(x_1 - x_4) D(x_2 - x_3)
+    + D(x_1 - x_2) D(x_3 - x_4)} D(0)^2
+\end{multline*}
+
+Each term has four propagators in it, which should be the case.
 
 \section{A glimpse at the Path integral in zero dimensions}
 \label{homework:2}
