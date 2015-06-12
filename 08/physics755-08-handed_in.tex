@@ -7,6 +7,9 @@
 \usepackage{slashed}
 \usepackage{simplewick}
 
+\newcommand\timeorder{\mathscr T}
+\newcommand\normorder{\mathscr N}
+
 \hypersetup{
     pdftitle=
 }
@@ -55,6 +58,89 @@
 
 \section{Wick gymnastics}
 \label{homework:1}
+
+In Equation~(1) the symbol $T$ is used as time ordering operator and the bounds
+of the integration. This does not make too much sense. We will use $\timeorder$
+to time ordering like on the last sheet.
+
+\subsection{First order}
+
+We are supposed to compute the numerator to first order in $\lambda$. The
+numerator is given as
+\begin{gather*}
+    \bra 0
+    \timeorder\del{
+        \phi_\mathrm I(x_1)
+        \phi_\mathrm I(x_2)
+        \phi_\mathrm I(x_3)
+        \phi_\mathrm I(x_4)
+        \exp\del {
+            - \iup \int_{-T}^T \dif t \, H_\mathrm I(t)
+        }
+    }
+    \ket 0
+    \intertext{%
+        We expand the Hamiltonian in the interacting picture.
+    }
+    = \bra 0
+    \timeorder\del{
+        \phi_\mathrm I(x_1)
+        \phi_\mathrm I(x_2)
+        \phi_\mathrm I(x_3)
+        \phi_\mathrm I(x_4)
+        \exp\del {
+            - \frac{\iup \lambda}{4!} \int_{-T}^T \dif t
+            \int_{\R^3} \dif^3 x \, \phi^4
+        }
+    }
+    \ket 0
+    \intertext{%
+        Since we are only interested in terms linear in $\lambda$, we linearize
+        the exponential and use the linearity of the $L^2$ scalar product.
+    }
+    = \bra 0
+    \timeorder\del{
+        \phi_\mathrm I(x_1)
+        \phi_\mathrm I(x_2)
+        \phi_\mathrm I(x_3)
+        \phi_\mathrm I(x_4)
+    }
+    \ket 0 \\\quad
+    - \frac{\iup \lambda}{4!} \bra 0
+    \timeorder\del{
+        \int_{-T}^T \dif t
+        \int_{\R^3} \dif^3 x \,
+        \phi_\mathrm I(x_1)
+        \phi_\mathrm I(x_2)
+        \phi_\mathrm I(x_3)
+        \phi_\mathrm I(x_4)
+        \phi(x) \phi(x) \phi(x) \phi(x)
+    }
+    \ket 0
+    \intertext{%
+        We use Wick's theorem in the first summand and convert the time
+        ordering into normal ordering and contractions. Only fully contracted
+        terms survive the vacuum (bad pun intended). We therefore only have to
+        keep the three different contractions. The integrals and the time
+        ordering should commute since the time ordering only applies to the
+        integrands, not the integral signs.
+    }
+    = D(x_1 - x_3) D(x_2 - x_4) + D(x_1 - x_4) D(x_2 - x_3)
+    + D(x_1 - x_2) D(x_3 - x_4)
+    \\\quad
+    - \frac{\iup \lambda}{4!}
+    \int_{-T}^T \dif t
+    \int_{\R^3} \dif^3 x \,
+    \bra 0
+    \timeorder\del{
+        \phi_\mathrm I(x_1)
+        \phi_\mathrm I(x_2)
+        \phi_\mathrm I(x_3)
+        \phi_\mathrm I(x_4)
+        \phi(x) \phi(x) \phi(x) \phi(x)
+    }
+    \ket 0
+\end{gather*}
 
 \section{A glimpse at the Path integral in zero dimensions}
 \label{homework:2}
