@@ -284,8 +284,12 @@ Now we just have to combine all three terms together to get the desired result.
         \phi(x) \phi(x) \phi(x) \phi(x)
     }
     \ket 0 \\
-    = 4! \prod_{i = 1}^4 D(x_i - x)
-    + 12 \left[
+    = - \frac{\iup \lambda}{4!}
+    \int_{-T}^T \dif t
+    \int_{\R^3} \dif^3 x \,
+    \bra 0 \Bigg[
+    4! \prod_{i = 1}^4 D(x_i - x) \\
+    \quad + 12 \left[
         D(x_1 - x_2) D(x_3 - x) D(x_4 - x)
         + D(x_1 - x_3) D(x_2 - x) D(x_4 - x)
         \right. \\ \quad
@@ -296,7 +300,7 @@ Now we just have to combine all three terms together to get the desired result.
         + D(x_3 - x_4) D(x_1 - x) D(x_2 - x)
     \right] D(0) \\
     \quad + 3 \sbr{ D(x_1 - x_3) D(x_2 - x_4) + D(x_1 - x_4) D(x_2 - x_3)
-    + D(x_1 - x_2) D(x_3 - x_4)} D(0)^2
++ D(x_1 - x_2) D(x_3 - x_4)} D(0)^2 \Bigg] \ket 0
 \end{multline*}
 
 Each term has four propagators in it, which should be the case.
