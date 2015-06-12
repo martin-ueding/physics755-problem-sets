@@ -1,0 +1,66 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+\usepackage{../my-boxes}
+
+\usepackage{booktabs}
+\usepackage{slashed}
+\usepackage{simplewick}
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{8}
+
+\subject{physics755 -- Quantum Field Theory}
+\ihead{physics755 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\newcommand\thegroup{Group Tuesday -- Ripunjay Acharya}
+
+\publishers{\thegroup}
+\ofoot{\thegroup}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+    \and
+    Oleg Hamm
+}
+\ifoot{Martin Ueding, Oleg Hamm}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem & achieved points & possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{8} \\
+        \nameref{homework:2} & & \punkte{6} \\
+        \midrule
+        total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\section{Wick gymnastics}
+\label{homework:1}
+
+\section{A glimpse at the Path integral in zero dimensions}
+\label{homework:2}
+
+
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
