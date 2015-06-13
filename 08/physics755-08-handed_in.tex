@@ -519,6 +519,67 @@ is nothing new.
 \section{A glimpse at the Path integral in zero dimensions}
 \label{homework:2}
 
+\subsection{Linear coupling}
+
+\paragraph{Integral}
+
+The integral can be solved by completing the square in the exponential
+function.
+\begin{align*}
+    Z_0
+    &= \int_{-\infty}^\infty \dif x \, \exp\del{- \frac{m^2}{2} x^2 + Jx} \\
+    \intertext{%
+        We move the $Jx$ term into the bracket.
+    }
+    &= \int_{-\infty}^\infty \dif x \, \exp\del{
+    - \frac{m^2}{2} \sbr{x^2 - \frac{2}{m^2} Jx}
+    } \\
+    \intertext{%
+        Then we complete the square.
+    }
+    &= \int_{-\infty}^\infty \dif x \, \exp\del{
+    - \frac{m^2}{2} \sbr{x^2 - \frac{2}{m^2} Jx + \frac{J^2}{m^4} - \frac{J^2}{m^4}}
+    } \\
+    &= \int_{-\infty}^\infty \dif x \, \exp\del{
+        - \frac{m^2}{2} \sbr{x^2 - \frac{2}{m^2} Jx + \frac{J^2}{m^4}} + \frac{J^2}{2 m^2}
+    } \\
+    &= \int_{-\infty}^\infty \dif x \, \exp\del{
+        - \frac{m^2}{2} \sbr{x - \frac{J}{m^2}}^2 + \frac{J^2}{2 m^2}
+    } \\
+    \intertext{%
+        The term constant in $x$ can be split off and moved in front of the
+        integral.
+    }
+    &= \exp\del{\frac{J^2}{2 m^2}}
+    \int_{-\infty}^\infty \dif x \, \exp\del{
+        - \frac{m^2}{2} \sbr{x - \frac{J}{m^2}}^2
+    } \\
+    \intertext{%
+        The integration bounds do not change with a finite shift. We shift $x$
+        such that the recover the Gaussian integral formula.
+    }
+    &= \exp\del{\frac{J^2}{2 m^2}}
+    \int_{-\infty}^\infty \dif y \, \exp\del{ - \frac{m^2}{2} y^2 } \\
+    \intertext{%
+        Now we can apply the formula and yield the result.
+    }
+    &= \exp\del{\frac{J^2}{2 m^2}} \frac{\sqrt{2\piup}}{m}
+\end{align*}
+
+\paragraph{Derivative}
+
+The quantization of the points here should give half a point for this problem.
+Since having the result should be more than half, we should get the point,
+although the derivation is missing. We computed the first ten derivatives with
+Mathematica and read off the pattern. This is the result:
+\[
+    \pdx nZJ(0) = [n-1]!! \frac{\sqrt{2\piup}}{m^{n+1}} \times
+    \begin{cases}
+        1 & \text{$n$ even} \\
+        0 & \text{$n$ odd}
+    \end{cases}
+\]
+
 % TODO
 
 \end{document}
