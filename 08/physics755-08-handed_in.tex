@@ -11,6 +11,8 @@
 \usepackage{adjustbox}
 \newenvironment{fmwrapper}{\begin{adjustbox}{margin=5mm}}{\end{adjustbox}}
 
+\usepackage{multicol}
+
 \newcommand\timeorder{\mathscr T}
 \newcommand\normorder{\mathscr N}
 
@@ -394,6 +396,8 @@ Each term has four propagators in it, which should be the case.
 We have a disconnected piece in only one of the diagrams, the one where the
 $\phi^4$ term is completely contracted with itself.
 
+% TODO
+
 \subsection{Odd number of fields}
 
 With an odd number of fields we cannot fully contract the fields. The one field
@@ -402,10 +406,115 @@ Green's functions are zero.
 
 \subsection{Second order diagrams}
 
+In the second order we have two internal vertices, $v_1$ and $v_1$ that we need
+to integrate over. There are still four external points, the $x_i$. The wording
+in the problem statement says that we shall draw all the diagrams
+\emph{contributing} to order $\lambda^2$, which means that we are not
+interested in disconnected pieces.
+
+If we factor out the disconnected pieces, we have the same contribution like
+above, just with an additional $D(0)^2$ from the second internal vertex. We
+will not draw those, since the connected part only has one internal vertex and
+is nothing new.
+
+\begin{enumerate}
+    \item
+        The first diagram has one self-contraction of the internal vertices. We
+        cannot have to self-contractions since that would give a disconnected
+        “head with ears” diagram.
+
+        \begin{fmffile}{second-order-1}
+            \begin{fmfgraph}(100, 40)
+                \fmfleft{x1,x2}
+                \fmfright{x3,x4}
+
+                \fmfdot{x1,x2,x3,x4,v1,v2}
+
+                \fmf{plain}{x1,v1}
+                \fmf{plain}{x2,v1}
+                \fmf{plain}{x3,v2}
+                \fmf{plain}{x4,v2}
+                \fmf{plain,left}{v1,v2,v1}
+            \end{fmfgraph}
+        \end{fmffile}
+
+        Now we have to collect factors for the symmetries: There are no lines
+        that start and end on the same vertex. The two lines connecting the
+        internal vertices can be interchanged and give a factor two. This
+        diagram has $S = 2$.
+
+    \item
+        The second option that we have is to connect three external vertices to
+        an internal one and self-contract the other internal vertex with
+        itself.
+
+        \begin{fmffile}{second-order-2}
+            \begin{fmfgraph}(100, 40)
+                \fmfleft{x1,x2}
+                \fmfright{x3,x4}
+
+                \fmfdot{x1,x2,x3,x4,v1,v2}
+
+                \fmf{plain}{x1,v1}
+                \fmf{plain}{x2,v1}
+                \fmf{plain}{x3,v1}
+                \fmf{plain}{x4,v2}
+                \fmf{plain}{v1,v2}
+                \fmf{plain}{v2,v2}
+            \end{fmfgraph}
+        \end{fmffile}
+
+        This diagram has a line that ends on the vertex it started from. Other
+        than that, there is nothing to exchange, so we have $S = 2$.
+
+    \item
+        We can connect one external vertex with another external one and get
+        one more self-contraction of the internal vertices.
+
+        \begin{fmffile}{second-order-3}
+            \begin{fmfgraph}(100, 40)
+                \fmfleft{x1,x2}
+                \fmfright{x3,x4}
+
+                \fmfdot{x1,x2,x3,x4,v1,v2}
+
+                \fmf{plain}{x1,x2}
+                \fmf{plain}{x3,v1}
+                \fmf{plain}{x4,v2}
+                \fmf{plain}{v1,v2}
+                \fmf{plain}{v2,v2}
+                \fmf{plain}{v1,v1}
+            \end{fmfgraph}
+        \end{fmffile}
+
+        This has two closed loops and we have a symmetric factor $S = 4$ here.
+
+    \item
+        We can have the self-contraction on the other side as well.
+
+        \begin{fmffile}{second-order-4}
+            \begin{fmfgraph}(100, 40)
+                \fmfleft{x1,x2}
+                \fmfright{x3,x4}
+
+                \fmfdot{x1,x2,x3,x4,v1,v2}
+
+                \fmf{plain}{x1,v1,x2}
+                \fmf{plain}{x3,v2,x4}
+                \fmf{plain}{v2,v2}
+                \fmf{plain}{v1,v1}
+            \end{fmfgraph}
+        \end{fmffile}
+
+        Here we have a factor $2^2$ for the two closed loops. Is this an
+        instance of equivalent subgraphs and we get another $2!$ from that? If
+        so, the symmetry factor is $S = 8$.
+\end{enumerate}
+
 \section{A glimpse at the Path integral in zero dimensions}
 \label{homework:2}
 
-
+% TODO
 
 \end{document}
 
