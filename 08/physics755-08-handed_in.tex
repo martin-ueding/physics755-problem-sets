@@ -7,6 +7,10 @@
 \usepackage{slashed}
 \usepackage{simplewick}
 
+\usepackage{feynmp-auto}
+\usepackage{adjustbox}
+\newenvironment{fmwrapper}{\begin{adjustbox}{margin=5mm}}{\end{adjustbox}}
+
 \newcommand\timeorder{\mathscr T}
 \newcommand\normorder{\mathscr N}
 
@@ -232,6 +236,30 @@ choose one representative contraction and multiply it by $4!$.
     = 4! \prod_{i = 1}^4 D(x_i - x)
 \]
 
+This can be pictured as the following diagram:
+
+\begin{fmwrapper}
+    \begin{fmffile}{cross}
+        \begin{fmfgraph*}(40, 25)
+            \fmfleft{i1,i2}
+            \fmfright{o1,o2}
+
+            \fmflabel{$x_1$}{i1}
+            \fmflabel{$x_2$}{i2}
+            \fmflabel{$x_3$}{o1}
+            \fmflabel{$x_4$}{o2}
+            \fmflabel{$x$}{v1}
+
+            \fmfdot{v1,i1,i2,o1,o2}
+
+            \fmf{plain}{i1,v1}
+            \fmf{plain}{i2,v1}
+            \fmf{plain}{o1,v1}
+            \fmf{plain}{o2,v1}
+        \end{fmfgraph*}
+    \end{fmffile}
+\end{fmwrapper}
+
 \paragraph{One self contraction}
 
 We have to come up 72 contractions here. However, there are only six unique
@@ -252,7 +280,34 @@ $\phi^4$ term.
     \right] D(0)
 \end{align*}
 In total, there are $12 \cdot 6 = 72$ terms, this is fine. Sorry for not
-typesetting the contractions here, they just eat too much time.
+typesetting the contractions here, they just eat too much time. Creating
+Feynman diagrams did cost some time as well. I guess I am hypocritical here
+:-). Anyway, the first summand can be pictured like this:
+
+\begin{fmwrapper}
+    \begin{fmffile}{one-self-1}
+        \begin{fmfgraph*}(40, 40)
+            \fmfleft{x1,x2}
+            \fmfright{x3,x4}
+
+            \fmflabel{$x_1$}{x1}
+            \fmflabel{$x_2$}{x2}
+            \fmflabel{$x_3$}{x3}
+            \fmflabel{$x_4$}{x4}
+            \fmflabel{$x$}{x}
+
+            \fmfdot{x,x1,x2,x3,x4}
+
+            \fmf{plain}{x1,x2}
+            \fmf{plain}{x3,x}
+            \fmf{plain}{x4,x}
+
+            \fmf{plain,tension=0.4}{x,x}
+        \end{fmfgraph*}
+    \end{fmffile}
+\end{fmwrapper}
+
+All the other graphs are variations of this.
 
 
 \paragraph{Two self contractions}
@@ -267,6 +322,35 @@ we get an additional factor three.
     = 3 \sbr{ D(x_1 - x_3) D(x_2 - x_4) + D(x_1 - x_4) D(x_2 - x_3)
     + D(x_1 - x_2) D(x_3 - x_4)} D(0)^2
 \]
+
+The first summand can be pictured like this:
+
+\begin{fmwrapper}
+    \begin{fmffile}{two-self}
+        \begin{fmfgraph*}(100, 40)
+            \fmftop{x1,x2,p1}
+            \fmfbottom{x3,x4,p2}
+
+            \fmflabel{$x_1$}{x1}
+            \fmflabel{$x_2$}{x2}
+            \fmflabel{$x_3$}{x3}
+            \fmflabel{$x_4$}{x4}
+            \fmflabel{$x$}{x}
+
+            \fmfdot{x,x1,x2,x3,x4}
+
+            \fmf{plain}{x1,x3}
+            \fmf{plain}{x2,x4}
+
+            \fmf{phantom,tension=5}{p1,x,p2}
+
+            \fmf{plain,tension=0.3,right=0}{x,x}
+            \fmf{plain,tension=0.3,right=180}{x,x}
+        \end{fmfgraph*}
+    \end{fmffile}
+\end{fmwrapper}
+
+This is the first time that we have a disconnected piece in our diagram.
 
 \paragraph{End result}
 
