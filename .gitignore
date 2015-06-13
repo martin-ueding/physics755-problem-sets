@@ -5,10 +5,15 @@
 ??/physics755-??-handed_in.blg
 ??/physics755-??-handed_in.fdb_latexmk
 ??/physics755-??-handed_in.fls
-??/physics755-??-handed_in.log
 ??/physics755-??-handed_in.out
 ??/physics755-??-handed_in.pdf
 ??/physics755-??-handed_in.run.xml
 points-physics755.pdf
 points-physics755.png
 points-physics755.svg
+*.2
+*.1
+*.log
+*.t1
+*.t2
+*.mp
