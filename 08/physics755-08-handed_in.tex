@@ -580,7 +580,54 @@ Mathematica and read off the pattern. This is the result:
     \end{cases}
 \]
 
-% TODO
+\subsection{Nonlinear perturbation}
+
+The integration in Equations~(11) and (12) on the problem set is over the
+measure of $\R^4$, which probably is a mistake, since we are in the zero
+dimensional case and the space of functions on the one point set only has one
+dimension, it can be parametrized by $\R$. In the path integral formalism, each
+degree of freedom corresponds to one integration. Having four integrations with
+$\dif x^4$ would mean that there are exactly four degrees of freedom. For a
+field theory, this does not sound sensible. We will assume that the integration
+$\int \dif x$ was meant and that the power of four just crept in since the
+perturbation also has a power of four now.
+
+First we derive the expansion of a fraction:
+\[
+    \frac{a + \lambda b}{c + \lambda d} = \frac ac + \frac{bc-ad}{c^2} \lambda
+    + \mathrm O(\lambda^2).
+\]
+The linearization of the exponential in $\lambda$ will give us
+\[
+    1 + \frac{\lambda}{4!} x^4.
+\]
+We can therefore write:
+\begin{align*}
+    a &= \int_{-\infty}^\infty \dif x \, x^4 \exp\del{-\frac12 x^2}
+    = 3 \sqrt{2\piup} \\
+    b &= \frac{1}{4!} \int_{-\infty}^\infty \dif x \, x^8 \exp\del{-\frac12 x^2}
+    = \frac{105}{4!} \sqrt{2\piup} \\
+    c &= \int_{-\infty}^\infty \dif x \, \exp\del{-\frac12 x^2}
+    = \sqrt{2\piup} \\
+    d &= \frac{1}{4!} \int_{-\infty}^\infty \dif x \, x^4 \exp\del{-\frac12 x^2}
+    = \frac{3}{4!} \sqrt{2\piup}
+\end{align*}
+Using those components, we can build up our result to first order in $\lambda$.
+\begin{align*}
+    \braket{\Omega | x^4 | \Omega}
+    &= \frac ac \frac{bc - ad}{c^2} \lambda + \mathrm O(\lambda^2) \\
+    \intertext{%
+        We insert $a$, $b$, $c$, and $d$. The $\sqrt{2 \piup}$ cancels in all
+        terms and just the factors in front are left. Only one of the factors
+        contains the term with the factorial, so we can pull that up front.
+    }
+    &= 3 + \frac{105 \cdot 1 - 3 \cdot 3}{4!} \lambda  + \mathrm O(\lambda^2) \\
+    &= 3 + 4 \lambda + \mathrm O(\lambda^2)
+\end{align*}
+
+\subsection{Diagrams}
+
+\emph{Missing}
 
 \end{document}
 
