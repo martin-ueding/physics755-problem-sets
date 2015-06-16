@@ -1,0 +1,168 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+\usepackage{../my-boxes}
+
+\usepackage{booktabs}
+\usepackage{slashed}
+\usepackage{simplewick}
+
+\usepackage{feynmp-auto}
+\usepackage{adjustbox}
+\newenvironment{fmwrapper}{\begin{adjustbox}{margin=5mm}}{\end{adjustbox}}
+
+\usepackage{multicol}
+\usepackage{lastpage}
+
+\newcommand\timeorder{\mathscr T}
+\newcommand\normorder{\mathscr N}
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{9}
+
+\subject{physics755 -- Quantum Field Theory}
+\ihead{physics755 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\newcommand\thegroup{Group Tuesday -- Ripunjay Acharya}
+
+\publishers{\thegroup}
+\ofoot{\thegroup}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+    \and
+    Oleg Hamm
+}
+\ifoot{Martin Ueding, Oleg Hamm}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem & achieved points & possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{15} \\
+        \midrule
+        total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{small}
+        This document consists of \pageref{LastPage} pages.
+    \end{small}
+\end{center}
+
+\section{The S-Matrix}
+\label{homework:1}
+
+\subsection{Momentum conservation}
+
+This problem covers the material also shown by \textcite[94 --
+95]{Peskin/QFT/1995}.
+
+\paragraph{Momentum conservation at vertex}
+
+Each vertex gives us a factor $- \iup \lambda \int \dif^4 z$, where $\tens z$
+is the four-vector for the particular vertex. Each vertex has to have its own
+internal integration variable. Then each propagator gives us $D(\tens x - \tens
+y)$. Looking at the vertex and all the propagators (labeled with $i$) that end
+in this vertex, we get the following term, which we label $A$ to continue
+working on it.
+\[
+    A := - \iup \lambda \int \dif^4 z \, \prod_i D(\tens x_i - \tens z)
+\]
+
+To say anything about the momentum, we have to Fourier transform the
+propagator. That is given by \textcite[(4.46]{Peskin/QFT/1995} as
+\[
+    D(\tens x - \tens y) = \int \frac{\dif^4 p}{[2\piup]^4} \frac{\iup}{\tens
+    p^2 - m^2 + \iup \epsilon} \exp\del{-\iup \tens p \cdot [\tens x - \tens
+    y]}.
+\]
+We insert this into $A$.
+\begin{align*}
+    A
+    &= - \iup \lambda \int \dif^4 z \, \prod_i \int \frac{\dif^4 p_i}{[2\piup]^4} \frac{\iup}{\tens
+    p_i^2 - m^2 + \iup \epsilon} \exp\del{-\iup \tens p_i \cdot [\tens x_i - \tens
+    z]}
+    \intertext{%
+        We can move all the $\tens z$ dependence to the very back of the
+        expression to isolate the part which is of interest here.
+    }
+    &= - \iup \lambda \prod_i \int \frac{\dif^4 p_i}{[2\piup]^4} \frac{\iup}{\tens
+    p_i^2 - m^2 + \iup \epsilon}
+    \exp(-\iup \tens p_i \cdot \tens x_i)
+    \int \dif^4 z \, \exp(\iup \tens p_i \cdot \tens z)
+    \intertext{%
+        We execute the product for the last term to get the expression that we
+        can work with.
+    }
+    &= - \iup \lambda \sbr{\prod_i \int \frac{\dif^4 p_i}{[2\piup]^4} \frac{\iup}{\tens
+        p_i^2 - m^2 + \iup \epsilon}
+    \exp(-\iup \tens p_i \cdot \tens x_i)}
+    \int \dif^4 z \, \exp\del{\iup \sbr{\sum_i \tens p_i} \cdot \tens z}
+    \intertext{%
+        This last integral will give us the desired result of a momentum
+        conserving $\deltaup$-distribution.
+    }
+    &= - \iup \lambda \sbr{\prod_i \int \frac{\dif^4 p_i}{[2\piup]^4} \frac{\iup}{\tens
+        p_i^2 - m^2 + \iup \epsilon}
+    \exp(-\iup \tens p_i \cdot \tens x_i)}
+    [2\piup]^4 \deltaup^{(4)}\del{\sum_i \tens p_i}
+\end{align*}
+
+Each external line has a factor $\exp(- \iup \tens p \cdot \tens x)$ associated
+with it. So this works for external lines just the same as it does for
+propagators ending on the vertex.
+
+\paragraph{Overall momentum conservation}
+
+We have momentum conservation in each vertex as derived above. Just like with
+Kirchoff's law for the electric current, momentum can be transfered between the
+the vertices but is conserved in total.
+
+\paragraph{Fixed internal momenta}
+
+Each propagator brings a momentum with it. If there are too few propagators in
+the diagram, everything is fixed. Whenever there is a loop in the diagram,
+there is a freedom in momentum there, both can be increased by the same fixed
+amount and total momentum is conserved.
+
+\begin{fmffile}{loop}
+    \begin{fmfgraph}(100, 40)
+        \fmfleft{x}
+        \fmfright{y}
+
+        \fmfdot{v1,v2}
+
+        \fmf{fermion}{x,v1}
+        \fmf{fermion}{v2,y}
+        \fmf{fermion,left,tension=0.7}{v1,v2,v1}
+    \end{fmfgraph}
+\end{fmffile}
+
+Internal momenta are fixed if there is no closed path that connects vertices.
+So if the graph is a tree, all internal momenta are fixed by momentum
+conversion.
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
