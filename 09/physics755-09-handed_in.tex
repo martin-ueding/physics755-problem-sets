@@ -136,15 +136,16 @@ propagators ending on the vertex.
 \paragraph{Overall momentum conservation}
 
 We have momentum conservation in each vertex as derived above. Just like with
-Kirchoff's law for the electric current, momentum can be transfered between the
-vertices but is conserved in total.
+Kirchoff's law for the electric current (which follows from the continuity
+equation and that $\dot \varrho = 0$ in regular wires), momentum can be
+transfered between the vertices but is conserved in total.
 
 \paragraph{Fixed internal momenta}
 
 Each propagator brings a momentum with it. If there are too few propagators in
 the diagram, everything is fixed. Whenever there is a loop in the diagram,
-there is a freedom in momentum there, both can be increased by the same fixed
-amount and total momentum is conserved.
+there is a freedom in momentum there, both can be increased by the same amount
+and total momentum is conserved.
 
 \begin{fmffile}{loop}
     \begin{fmfgraph}(100, 40)
@@ -211,6 +212,74 @@ This way we can have the same rules that are given by
     \item
         And as before, we need to divide by the symmetry factor.
 \end{enumerate}
+
+\subsection{Case for Dirac and electromagnetic field}
+
+\subsection{Momentum flow}
+
+In a pair creation event the total particle number is zero, as is the total
+momentum. Such a process needs some energetic justification. Maybe it is a
+decay of a spin-0 boson into two fermions or photons. The process we have in
+mind looks like this:
+
+\begin{fmffile}{pair}
+    \begin{fmfgraph}(100, 40)
+        \fmfleft{a}
+        \fmfright{b}
+
+        \fmfdot{v}
+
+        \fmf{fermion}{v,a}
+        \fmf{fermion}{v,b}
+    \end{fmfgraph}
+\end{fmffile}
+
+We have momentum conservation enforced at the one vertex: $\tens p_1 + \tens
+p_2 = \tens 0$. If we just take the absolute values using the directions
+defined by the diagram we have $p_1 = p_2$. Since we have no particles in
+total, one needs to be the anti-particle of the other one. Both particles move
+away from the vertex, so for anti-particles the particle number flow goes
+against the direction of the momentum arrow.
+
+In the case of electron-positron-scattering one often has seen a diagram as
+such, where the positrons travel backward in time, so to speak:
+
+\begin{fmffile}{electron-positron}
+    \begin{fmfgraph}(100,50)
+        \fmfleft{e1,p1}
+        \fmfright{e2,p2}
+
+        \fmfdot{v1,v2}
+
+        \fmf{fermion}{e1,v1}
+        \fmf{fermion}{v2,e2}
+        \fmf{fermion}{p2,v2}
+        \fmf{fermion}{v1,p1}
+        \fmf{photon}{v1,v2}
+    \end{fmfgraph}
+\end{fmffile}
+
+It was asked for internal lines in the question. We can reformulate our initial
+process as a vacuum bubble:
+
+\begin{fmffile}{bubble}
+    \begin{fmfgraph}(100,40)
+        \fmfleft{a1}
+        \fmfright{a2}
+
+        \fmfdot{v1,v2}
+
+        \fmf{phantom}{a1,v1}
+        \fmf{phantom}{a2,v2}
+
+        \fmf{fermion,right,tension=0.7}{v1,v2,v1}
+    \end{fmfgraph}
+\end{fmffile}
+
+The particle number must be conserved at each vertex. We can look at each
+vertex and interpret it like one particle is arriving, the other is leaving.
+The total number is conserved. Or we say that from each vertex propagates a
+particle and an anti-particle.
 
 \end{document}
 
