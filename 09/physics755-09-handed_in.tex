@@ -163,6 +163,55 @@ Internal momenta are fixed if there is no closed path that connects vertices.
 So if the graph is a tree, all internal momenta are fixed by momentum
 conversion.
 
+\subsection{Momentum space Feynman rules}
+
+The number of vertices should still give the order in $\lambda$, so we will
+associate the factor of $- \iup \lambda$ with the vertices.
+
+We have seen in the $A$ that the remainder of the propagator is
+\[
+    \int \frac{\dif^4 p}{[2\piup]^4} \frac{\iup}{\tens
+        p^2 - m^2 + \iup \epsilon}
+    \exp(-\iup \tens p \cdot \tens x)
+\]
+It will be convenient to split this up into several parts. The integration over
+$\tens p$ becomes a rule that all internal momenta need to be integrated over
+in the end. Each propagator gets the fraction assigned. The exponential can be
+assigned to the external point connecting the propagator.
+
+This way we can have the same rules that are given by
+\textcite[95]{Peskin/QFT/1995}:
+\begin{enumerate}
+    \item
+        Each propagator gets a factor
+        \[
+            \frac{\iup}{\tens p^2 - m^2 + \iup \epsilon}
+        \]
+        assigned.
+
+    \item
+        Each vertex gets just the factor $- \iup \lambda$, which then also
+        determines the order of the diagram.
+
+    \item
+        Each external point gets the exponential $\exp(-\iup \tens p \cdot
+        \tens x)$. This reference to a space-time point is a problem since we
+        do not want them here. In a momentum space prescription, there should
+        not bet external points to begin with. There should only be incoming
+        propagators.
+
+    \item
+        Since we derived that total momentum at the vertices is conserved, we
+        have to apply the derived $\deltaup$-distribution and assert momentum
+        conservation at each of the vertices.
+
+    \item
+        All internal momenta have to integrated over.
+
+    \item
+        And as before, we need to divide by the symmetry factor.
+\end{enumerate}
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
