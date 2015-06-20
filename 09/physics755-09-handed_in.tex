@@ -75,8 +75,10 @@
 
 \subsection{Momentum conservation}
 
-This problem covers the material also shown by \textcite[94 --
-95]{Peskin/QFT/1995}.
+\begin{remark}
+    This problem covers the material also shown by
+    \textcite[94]{Peskin/QFT/1995}.
+\end{remark}
 
 \paragraph{Momentum conservation at vertex}
 
@@ -166,6 +168,11 @@ conversion.
 
 \subsection{Momentum space Feynman rules}
 
+\begin{remark}
+    This problem covers the material also shown by
+    \textcite[95]{Peskin/QFT/1995}.
+\end{remark}
+
 The number of vertices should still give the order in $\lambda$, so we will
 associate the factor of $- \iup \lambda$ with the vertices.
 
@@ -214,6 +221,79 @@ This way we can have the same rules that are given by
 \end{enumerate}
 
 \subsection{Case for Dirac and electromagnetic field}
+
+\begin{remark}
+    This problem covers the material also shown by
+    \textcite[§4.7f]{Peskin/QFT/1995}.
+\end{remark}
+
+Looking at Equation~(7) from the problem set we see that the factor $\exp(-\iup
+\tens k \cdot \tens x)$ comes from the application of a positive frequency
+operator $\phi_\mathrm I^+$ onto a free momentum state $\ket{\vec k}$. In the
+previous subproblem we looked at the Feynman rules for the scalar fields.
+
+\paragraph{Fermions}
+
+The fermions fulfil the Dirac equation and therefore need to be modeled with a
+four-component spinor instead of a single scalar field. Also, the fermionic
+fields anticommute which needs to be taken into account as well in the
+contractions. A sensible way to do this is using a generalized from of Wick's
+theorem where the time and normal ordering operators account for the sign
+changes.
+
+The Dirac field also has distinct creation and annihilation operators, whereas
+the real scalar field only had particles which are their own antiparticles. So
+far we only had the real scalar field $\phi$ which occurred in even powers in
+the Hamiltonian. Now we have the fields $\bar\psi$ and $\psi$ which occur in
+pairs to give bilinears with distinct transformation properties under the
+Lorentz group. The only nonzero contraction we can build is from a mixed pair
+of those, contractions between $\psi$s or $\bar\psi$s respectively give a zero
+propagator.
+
+The “external leg rule” then changes by the way the Dirac fields act on the
+pure momentum states:
+\begin{align*}
+    \contraction{}{\psi}{_\mathrm I(\tens x)}{\ket{\vec p, s}}
+    \psi_\mathrm I(\tens x) \ket{\vec k, s}_0
+    &= \psi_\mathrm I(\tens x) \sqrt{2 E_{\vec k}} a_{\vec k}^{s\dagger} \ket
+    0.
+    \intertext{%
+        We expand the field $\psi$ in term of positive and negative frequency
+        operators. Only the positive frequency part is interesting since we
+        evaluate a matrix element with single-momentum states on both sides
+        eventually. \textcite[(4.114)]{Peskin/QFT/1995}
+    }
+    &= \int \frac{\dif^3 k'}{[2\piup]^3} \frac{1}{\sqrt{E_{\vec k'}}} \sum_{s'}
+    a_{\vec k'}^{s'} u^{s'}(\tens k') \exp(-\iup \tens k' \cdot \tens x)
+    \sqrt{2 E_{\vec k}} a_{\vec k}^{s\dagger} \ket 0.
+    \intertext{%
+        The anticommutator of the ladder operators will give us a
+        $\deltaup$-distribution and we can simplify this to
+    }
+    &= u^{s}(\tens k) \exp(-\iup \tens k \cdot \tens x) \ket 0.
+\end{align*}
+
+Now we have the exact same exponential as there is in Equation~(8) on the
+problem set. There is an additional upper spinor component $u^s(\vec k)$. From
+this we would conclude that the factor for each external line would be
+$u^{s}(\vec k) \exp(-\iup \tens k \cdot \tens x)$.
+\textcite[118]{Peskin/QFT/1995} state the “external leg rule” for fermions as
+just having $u^s(\tens k)$, though. So the exponential is moved somewhere else?
+
+The same argument can probably be made for the $\bar \psi$ as well, and then
+one would have $\bar\psi$ acting on antifermions, which will give a factor
+$\bar v^s(\tens k)$.
+
+In both cases, the action of the “hermitian conjugate and $\mat\gamma^0$
+version also gets such a bar over the factor in the diagram. So reversal of the
+particle number flow adds or removes the bar over the spinor part.
+
+\paragraph{Photons}
+
+As mentioned in front of part~6 of this exercise on the problem set, the
+interaction term is given by $H_\text{int} = \iup e \bar\psi \mat\gamma^\mu
+\psi A_\mu$. The “external leg rule” is given on the problem set as $- \iup e
+\gamma^\mu$. We do not see how this comes from the Hamiltonian.
 
 \subsection{Momentum flow}
 
@@ -280,6 +360,121 @@ The particle number must be conserved at each vertex. We can look at each
 vertex and interpret it like one particle is arriving, the other is leaving.
 The total number is conserved. Or we say that from each vertex propagates a
 particle and an anti-particle.
+
+\subsection{Momentum space Feynman rules for Dirac- and EM-field}
+
+The propagator for the Dirac field is by given by
+\textcite[118]{Peskin/QFT/1995} as 
+\[
+    \frac{\iup [\slashed p + m]}{p^2 - m^2 + \iup \epsilon}.
+\]
+This differs from the scalar field by the factor $\slashed p + m$. The states
+this propagator acts are four-component spinors, the propagator therefore needs
+to be a $4 \times 4$ matrix. Something contracted with the Dirac matrices seems
+to be a good idea here. Looking at the propagator of the Dirac field in
+position space, we see that it exactly has the form we want here.
+\parencite[(3.121)]{Peskin/QFT/1995}
+
+The propagator for the electromagnetic field is by given by
+\textcite[123]{Peskin/QFT/1995} as 
+\[
+    \frac{\iup g_{\mu\nu}}{q^2 + \iup \epsilon}.
+\]
+They say it is difficult to prove but easy to guess. So let us try whether we
+could have guessed it. The denominator makes sense since photons are massless.
+The imaginary unit in the numerator is also present in every other case. We
+have to explain the presence of the metric tensor $\tens g$. The
+four components of the electromagnetic field obey the Klein-Gordon equation
+individually. So the Klein-Gordon propagator is a good start. Since photons
+have a vector polarization and simple propagation cannot change this
+polarization, only states with the same polarization can propagate. The metric
+tensor $\tens g$ then creates the scalar product between the polarization
+vectors of the incoming and outgoing states and gives the propagation overlap.
+Seems legit.
+
+\subsection{Leading-order scattering}
+
+There are two possible diagrams, with the convention that time is upwards in
+our diagrams. The first one has a repulsion of the two fermions.
+
+\begin{fmffile}{scatter-1}
+    \begin{fmfgraph}(100, 100)
+        \fmfbottom{i1,i2}
+        \fmftop{o1,o2}
+
+        \fmf{fermion}{i1,v1,o1}
+        \fmf{fermion}{i2,v2,o2}
+        \fmf{photon}{v1,v2}
+    \end{fmfgraph}
+\end{fmffile}
+
+The other one has some sort of attraction.
+
+\begin{fmffile}{scatter-2}
+    \begin{fmfgraph}(100, 100)
+        \fmfbottom{i1,i2}
+        \fmftop{o1,o2}
+
+        \fmf{fermion}{i1,v1}
+        \fmf{fermion}{i2,v2}
+        \fmf{phantom}{v1,o1}
+        \fmf{phantom}{v2,o2}
+        \fmf{fermion,tension=0}{v1,o2}
+        \fmf{fermion,tension=0}{v2,o1}
+        \fmf{photon}{v1,v2}
+    \end{fmfgraph}
+\end{fmffile}
+
+This second diagram exchanges the two fermions. Since they are distinguishable,
+this would be excluded and only the first one kept.
+
+We apply the rule and we get the following factors:
+
+\begin{itemize}
+    \item
+        The left incoming particle gives us a factor $u^s(\tens k)$.
+
+    \item
+        The right one gives us $u^s(\tens k')$.
+
+    \item
+        The two vertices introduce a factor $- \iup e \mat \gamma^\mu$ each, so
+        we get $[-\iup e]^2 \mat \gamma^\mu \mat \gamma^\nu$.
+
+    \item
+        The photon propagator gives us the term
+        \[
+            \frac{- \iup g_{\mu\nu}}{\tens q^2 + \iup \epsilon}
+        \]
+        where $\tens q := \tens p' - \tens p$ is the momentum exchanged.
+
+    \item
+        The left outgoing particle gives $\bar u^s(\tens p)$.
+
+    \item
+        The right outgoing particle gives $\bar u^s(\tens p')$.
+\end{itemize}
+
+Then we have to put everything together and we arrive at the matrix element:
+\[
+    \iup \mathscr M
+    = [-\iup e]^2
+    \bar u^s(\tens p')
+    \mat \gamma^\nu 
+    u^s(\tens k')
+    \frac{- \iup g_{\mu\nu}}{\tens q^2 + \iup \epsilon}
+    \bar u^s(\tens p)
+    \mat \gamma^\mu
+    u^s(\tens k)
+\]
+
+Perhaps the assigning of the momenta went wrong, but the structure of the
+matrix element is the same except for the spin indices that we have. They need
+to be summed upon, probably.
+
+\subsection{Momentum space potential}
+
+\subsection{Antifermion}
 
 \end{document}
 
