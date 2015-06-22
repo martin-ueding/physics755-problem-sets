@@ -474,7 +474,123 @@ to be summed upon, probably.
 
 \subsection{Momentum space potential}
 
+\begin{remark}
+    This problem covers the material also shown by
+    \textcite[125]{Peskin/QFT/1995}.
+\end{remark}
+
+We continue to use the matrix element we have just computed.
+\begin{align*}
+    \iup \mathscr M
+    &= [-\iup e]^2
+    \bar u^s(\tens p')
+    \mat \gamma^\nu 
+    u^s(\tens p)
+    \frac{- \iup g_{\mu\nu}}{\tens q^2 + \iup \epsilon}
+    \bar u^s(\tens k')
+    \mat \gamma^\mu
+    u^s(\tens k)
+    \intertext{%
+        We move the numbers up to the front.
+    }
+    &= 
+    \frac{\iup e^2 g_{\mu\nu}}{\tens q^2 + \iup \epsilon}
+    \bar u^s(\tens p')
+    \mat \gamma^\nu 
+    u^s(\tens p)
+    \bar u^s(\tens k')
+    \mat \gamma^\mu
+    u^s(\tens k)
+\end{align*}
+
+We look at the spinor scalar products. We look at $\nu = 0$ first.
+\begin{align*}
+    \bar u(\tens p') \mat \gamma^0 u(\tens p)
+    &= u^\dagger(\tens p') u(\tens p)
+    \intertext{%
+        The boosted spinors were given by a factor $\sqrt{\tens p \cdot \tens
+        \sigma}$ \parencite[(3.50)]{Peskin/QFT/1995}. So we have
+    }
+    &=
+    \begin{pmatrix}
+        \sqrt{\tens p' \cdot \tens \sigma} \vec \xi' \\
+        \sqrt{\tens p' \cdot \bar{\tens \sigma}} \vec \xi'
+    \end{pmatrix}^\dagger
+    \begin{pmatrix}
+        \sqrt{\tens p \cdot \tens \sigma} \vec \xi \\
+        \sqrt{\tens p \cdot \bar{\tens \sigma}} \vec \xi
+    \end{pmatrix}.
+    \intertext{%
+        Since we assume $\vec p \to 0$, only the zeroth component in the scalar
+        products will contribute a sizeable term. The $p^0$ component is the
+        energy of the particle. However, we can directly use it as the mass in
+        the non-relativistic limit. And although the particles are
+        indistinguishable, they have the same mass $m \approx p^0$.
+    }
+    &=
+    \begin{pmatrix}
+        \sqrt{p^0 \mat\sigma^0} \vec \xi' \\
+        \sqrt{p^0 \mat\sigma^0} \vec \xi'
+    \end{pmatrix}^\dagger
+    \begin{pmatrix}
+        \sqrt{p^0 \mat\sigma^0} \vec \xi \\
+        \sqrt{p^0 \mat\sigma^0} \vec \xi
+    \end{pmatrix}.
+    \intertext{%
+        The $\mat\sigma^0$ is just the identity matrix, so this scalar product
+        leaves us with
+    }
+    &= m \vec\xi^{\prime\dagger} \vec\xi.
+\end{align*}
+
+One can also show that the case $\nu = 1, 2, 3$ give a vanishing result.
+
+Now we can use that to simplify the matrix element.
+\begin{align*}
+    \iup \mathscr M
+    &= 
+    \frac{\iup e^2 g_{\mu\nu}}{\tens q^2 + \iup \epsilon}
+    \bar u^s(\tens p')
+    \mat \gamma^\nu 
+    u^s(\tens p)
+    \bar u^s(\tens k')
+    \mat \gamma^\mu
+    u^s(\tens k) \\
+    &= \frac{\iup e^2 g_{00}}{\tens q^2 + \iup \epsilon} 4 m^2 \, [\vec\xi'
+    \vec\xi](\tens p) \, [\vec\xi'\vec\xi](\tens k) \\
+    \intertext{%
+        The zeroth-zeroth element of the metric tensor is just one.
+    }
+    &= \frac{\iup e^2}{\tens q^2 + \iup \epsilon} 4 m^2 \, [\vec\xi'
+    \vec\xi](\tens p) \, [\vec\xi'\vec\xi](\tens k)
+\end{align*}
+
+The only interesting term is the fraction, so we have
+\[
+    \tilde V(\vec q) = \frac{\iup e^2}{\vec q^2 + \iup \epsilon}.
+\]
+One can Fourier transform this back and then one would get
+\[
+    V(\vec x) = \frac{e^2}{4 \piup} \frac 1r.
+\]
+
+This is a repulsive potential, since in the limit $r \to 0$, the potential
+energy goes up.
+
 \subsection{Antifermion}
+
+\begin{remark}
+    This problem covers the material also shown by
+    \textcite[125]{Peskin/QFT/1995}.
+\end{remark}
+
+For the antifermion, we need to use the spinor $v$ instead of $u$. This one is
+made up from $(\vec\xi, -\vec\xi)$. This minus sign does not show up in the
+spinor scalar product because the $\mat\gamma^0$ exchanges the terms in a way
+that they both cancel. In the contractions that we did in the derivation, there
+needs to be an additional anticommutation because we want to act with a
+$\bar\psi$ to the right. This will give us a minus sign which makes the
+potential attractive.
 
 \end{document}
 
