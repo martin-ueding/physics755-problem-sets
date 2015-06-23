@@ -1,0 +1,254 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+\usepackage{../my-boxes}
+
+\usepackage{booktabs}
+\usepackage{slashed}
+\usepackage{simplewick}
+
+\usepackage{feynmp-auto}
+\usepackage{adjustbox}
+\newenvironment{fmwrapper}{\begin{adjustbox}{margin=5mm}}{\end{adjustbox}}
+
+\usepackage{multicol}
+\usepackage{lastpage}
+
+\newcommand\timeorder{\mathscr T}
+\newcommand\normorder{\mathscr N}
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{10}
+
+\subject{physics755 -- Quantum Field Theory}
+\ihead{physics755 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\newcommand\thegroup{Group Tuesday -- Ripunjay Acharya}
+
+\publishers{\thegroup}
+\ofoot{\thegroup}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+    \and
+    Oleg Hamm
+}
+\ifoot{Martin Ueding, Oleg Hamm}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem & achieved points & possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{15} \\
+        \midrule
+        total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{small}
+        This document consists of \pageref{LastPage} pages.
+    \end{small}
+\end{center}
+
+In the tutorial on 2015-06-23 we were a bit irritated that the momentum space
+Feynman rules given by \textcite[95]{Peskin/QFT/1995} since the external legs
+had $\exp(-\iup \tens p \cdot \tens x)$ as an additional factor. We quickly
+checked another book and found that \textcite[63]{Tong/QFT} does not
+explicitly list the external legs, which means that he uses a factor of 1
+there.
+
+I think I can shed some light on this issue. The exact wording used is “For
+each external \emph{point}” (emphasis mine). When we have such a point, we need
+a vector $\tens x$ in position space to get this point into the computation.
+The connection between momentum and space is given by $\exp(-\iup \tens p \cdot
+\tens x)$ then. Looking at \parencite[115]{Peskin/QFT/1995} where the rules for
+computing $\iup \mathscr M$ are listed the wording is “For each external
+\emph{line}” (emphasis mine) and a factor of 1. Three pages later,
+\textcite[118]{Peskin/QFT/1995} gives the Feynman rules for fermions, and there
+is no exponential factor either.
+
+So I would suggest that the rules that we got from
+\textcite[95]{Peskin/QFT/1995} are not wrong in any sense. They are the wrong
+rules to use if we want to look at diagrams purely in the momentum state and
+not in the transition from position to momentum space like we did on the last
+homework problem set where we derived, or rather guessed, the rules for the
+momentum space. Taking away the external \emph{points} will take away the
+exponentials.
+
+\section{Bhabha scattering}
+\label{homework:1}
+
+\subsection{Contributing diagrams}
+
+Since we have two different kind of particles, they are distinguishable. This
+limits the number of diagrams that contribute to this process. We take the
+convention that the time goes to the right.
+
+The first diagram has the annihilation of the particles which creates a real
+(because it is time-like) photon. Then this one creates a pair of electron of
+positron again:
+
+\begin{fmffile}{feyn-scatter-1}
+    \begin{fmfgraph}(100, 50)
+        \fmfleft{ei,pi}
+        \fmfright{eo,po}
+        \fmfdot{v1,v2}
+
+        \fmf{fermion}{ei,v1}
+        \fmf{fermion}{v1,pi}
+
+        \fmf{fermion}{v2,eo}
+        \fmf{fermion}{po,v2}
+
+        \fmf{photon}{v1,v2}
+    \end{fmfgraph}
+\end{fmffile}
+
+The factors that we get for the parts of each diagram will be the same for the
+second diagram. However, the momentum conservation at the vertices will bind
+different momenta together. A different ordering of the terms might give a
+different overall sign.
+
+The factors that we get for the first diagram are:
+\begin{itemize}
+    \item The incoming fermion gives $u^s(\tens p_1)$.
+    \item The incoming antifermion gives $\bar v^s(\tens p_2)$.
+    \item The outgoing fermion gives $\bar u^r(\tens k_1)$.
+    \item The outgoing antifermion gives $v^r(\tens k_2)$.
+    \item The left vertex gives $- \iup e \mat\gamma^\mu$.
+    \item The right vertex gives $- \iup e \mat\gamma^\nu$.
+    \item The propagator gives $\iup \eta_{\mu\nu}/\tens q^2$.
+\end{itemize}
+
+We need to impose momentum conservation at each vertex, this gives us $\tens
+p_1 + \tens p_2 = \tens q$ and $\tens q = \tens k_1 + \tens k_2$.
+There is no undetermined momentum left since we have a Feynman graph which is a
+tree (graph theory). Is it a Feynman tree, then?
+
+Taking all those terms together we obtain
+\[
+    [-\iup e]^2 \bar v^s(\tens p_2) \mat\gamma^\mu u^s(\tens p_1) \frac{\iup
+    \eta_{\mu\nu}}{\tens q^2} \bar u^r(\tens k_1) \mat\gamma^\nu v^r(\tens
+    k_2).
+\]
+
+To figure out the sign we look at the second order of the perturbation
+expansion. For QED, the interacting Hamiltonian density is $e \bar\psi
+\mat\gamma^\mu \psi A_\mu$. In second order we have this twice. So the core of
+our expression would be something along the lines of
+\[
+    \bra 0 b_{\tens k_2} a_{\tens k_1} \; \bar\psi(\tens x) \mat\gamma^\mu
+    \psi(\tens x) A_\mu(\tens x) \; \bar\psi(\tens y) \mat\gamma^\nu A_\mu(\tens
+    y) \; a_{\tens p_1}^\dagger b_{\tens p_2}^\dagger \ket 0.
+\]
+Our first diagram corresponds to the following contraction:
+\[
+    \contraction{\bra 0}{b_{\tens k_2}}{a_{\tens k_1} \; \bar\psi(\tens x)
+    \mat\gamma^\mu}{\psi}
+    %
+    \contraction{\bra 0 b_{\tens k_2}}{a_{\tens k_1}}{\;}{\bar\psi}
+    %
+    \contraction{\bra 0 b_{\tens k_2} a_{\tens k_1} \; \bar\psi(\tens x)
+    \mat\gamma^\mu \psi(\tens x) A_\mu(\tens x) \;}{\bar\psi}{(\tens y)
+    \mat\gamma^\nu \psi(\tens y) A_\mu(\tens y) \; a_{\tens
+    p_1}^\dagger}{b_{\tens p_2}^\dagger}
+    %
+    \contraction{\bra 0 b_{\tens k_2} a_{\tens k_1} \; \bar\psi(\tens x)
+    \mat\gamma^\mu \psi(\tens x) A_\mu(\tens x) \; \bar\psi(\tens y)
+    \mat\gamma^\nu}{\psi}{(\tens y) A_\mu(\tens y) \;}{a_{\tens p_1}^\dagger}
+    %
+    \bra 0 b_{\tens k_2} a_{\tens k_1} \; \bar\psi(\tens x) \mat\gamma^\mu
+    \psi(\tens x) A_\mu(\tens x) \; \bar\psi(\tens y) \mat\gamma^\nu \psi(\tens
+    y) A_\mu(\tens y) \; a_{\tens p_1}^\dagger b_{\tens p_2}^\dagger \ket 0.
+\]
+None of the contractions intersect, there are no further modifications needed
+to untangle this. This diagram has a no additional sign changes.
+
+There is no symmetry factor to account for in this diagram.
+
+The second diagram is the more natural way of thinking about scattering. The
+two particles scatter by the exchange of a virtual photon:
+
+\begin{fmffile}{feyn-scatter-2}
+    \begin{fmfgraph}(100, 50)
+        \fmfleft{ei,pi}
+        \fmfright{eo,po}
+        \fmfdot{v1,v2}
+
+        \fmf{fermion}{ei,v1,eo}
+        \fmf{fermion}{po,v2,pi}
+
+        \fmf{photon}{v1,v2}
+    \end{fmfgraph}
+\end{fmffile}
+
+We can take the same exact factors and build the invariant matrix element from
+this. The only difference is the position of the vertices. This only changes
+the internal momentum $\tens q$. Momentum conservation now gives us at the
+lower vertex
+\[
+    \tens p_2 = \tens q + \tens k_2.
+\]
+The upper vertex will give us
+\[
+    \tens p_1 = - \tens q + \tens k_1.
+\]
+So we have $\tens q = \tens p_2 - \tens k_2 = \tens k_1 - \tens p_1$.
+
+We can directly go and look at the contractions.
+\[
+    \acontraction{\bra 0 b_{\tens k_2}}{a_{\tens k_1}}{\; \bar\psi(\tens x)
+    \mat\gamma^\mu \psi(\tens x) A_\mu(\tens x) \;}{\bar\psi}
+    %
+    \bcontraction{\bra 0}{b_{\tens k_2}}{a_{\tens k_1} \; \bar\psi(\tens x)
+    \mat\gamma^\mu}{\psi}
+    %
+    \bcontraction[2ex]{\bra 0 b_{\tens k_2} a_{\tens k_1} \;}{\bar\psi}{(\tens x)
+    \mat\gamma^\mu \psi(\tens x) A_\mu(\tens x) \; \bar\psi(\tens y)
+    \mat\gamma^\nu \psi(\tens y) A_\mu(\tens y) \; a_{\tens
+    p_1}^\dagger}{b_{\tens p_2}^\dagger}
+    %
+    \acontraction{\bra 0 b_{\tens k_2} a_{\tens k_1} \; \bar\psi(\tens x)
+    \mat\gamma^\mu \psi(\tens x) A_\mu(\tens x) \; \bar\psi(\tens y)
+    \mat\gamma^\nu}{\psi}{(\tens y) A_\mu(\tens y) \;}{a_{\tens p_1}^\dagger}
+    %
+    \bra 0 b_{\tens k_2} a_{\tens k_1} \; \bar\psi(\tens x) \mat\gamma^\mu
+    \psi(\tens x) A_\mu(\tens x) \; \bar\psi(\tens y) \mat\gamma^\nu \psi(\tens
+    y) A_\mu(\tens y) \; a_{\tens p_1}^\dagger b_{\tens p_2}^\dagger \ket 0.
+\]
+The $\bar\psi(\tens y)$ in the middle of the expression needs to be moved in
+front of the $\psi(\tens x)$ to untangle the lower contraction. This is one
+anticommutation, although we will get an additional term with
+$\deltaup^{(4)}(\tens x - \tens y)$. After this exchange, we need to move the
+$\bar\psi(\tens x)$ behind the $\psi(\tens x)$. This now needs two
+anticommutations since we already moved the $\bar\psi(\tens y)$ into there.
+This will give us no sign change but an additional term with
+$\deltaup^{(4)}(\tens 0)$ which looks a bit problematic.
+
+Ignoring those extra commutators, we have the matrix element twice with
+different values for $\tens q$ and the second one with one minus sign with
+respect to the first one.
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
