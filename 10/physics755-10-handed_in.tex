@@ -251,7 +251,7 @@ respect to the first one.
 
 \subsection{Identities}
 
-\paragraph{First identities}
+\paragraph{First batch}
 
 All the identities follow the same pattern. The first one is for different $u$
 and $v$, setting one to the other will give the second and third identity. We
@@ -295,6 +295,122 @@ start by expanding the “bar”.
     }
     &= u^\dagger(\tens k) \mat\gamma^{\mu} \bar v(\tens p)
 \end{align*}
+
+\paragraph{Second batch}
+
+The wording sounds like we are allowed to just use the completeness relations
+without proof. So they are given by \textcite[49]{Peskin/QFT/1995}:
+\[
+    \sum_s u^s(\tens p) \bar u^s(\tens p) = \slashed{\tens p} + m
+    \eqnsep
+    \sum_s v^s(\tens p) \bar v^s(\tens p) = \slashed{\tens p} - m.
+\]
+In case there is only a blob of ink to see on the inkjet printout, that is a
+slashed four-vector $p$ right after the equality sign.
+
+We start with the first equation. We can move the summation over $s$ in the
+middle and group the term for the next step.
+\begin{align*}
+    \sum_{s, s'} \bar u^{s'}(\tens p') \mat\gamma^\mu u^s(\tens p)
+    \bar u^s(\tens p) \mat\gamma^\nu u^{s'} (\tens p')
+    &= \sum_{s'} \bar u^{s'}(\tens p') \mat\gamma^\mu
+    \sbr{\sum_s u^s(\tens p) \bar u^s(\tens p)}
+    \mat\gamma^\nu u^{s'} (\tens p')
+    \intertext{%
+        Here we can use the completeness relation and replace the contents of
+        the bracket. We will explicitly write $m \mat 1_4$ since adding a
+        scalar to a matrix feels a bit imprecise.
+    }
+    &= \sum_{s'} \bar u^{s'}(\tens p') \mat\gamma^\mu
+    \sbr{\slashed{\tens p} + m \mat 1_4}
+    \mat\gamma^\nu u^{s'} (\tens p')
+    \intertext{%
+        We add spinor indices (is that correct?) to the spinors such that we
+        can move them around freely.
+    }
+    &= \sum_{s'} \bar u^{s'}{}_a (\tens p') \sbr{\mat\gamma^\mu
+    \sbr{\slashed{\tens p} + m \mat 1_4}
+    \mat\gamma^\nu}^a{}_b [u^{s'}]^b (\tens p')
+    \intertext{%
+        The $u$ can be moved to the very front of the equation. Everything that
+        depends on $s'$ is in the first terms, we add another bracket to
+        isolate it for the next step.
+    }
+    &= \sbr{\sum_{s'} [u^{s'}]^b (\tens p') \bar u^{s'}{}_a (\tens p')}
+    \sbr{\mat\gamma^\mu
+    \sbr{\slashed{\tens p} + m \mat 1_4}
+    \mat\gamma^\nu}^a{}_b
+    \intertext{%
+        We think that we can still apply the completeness relation since we sum
+        over $s'$ first and then over the spinor indices $a$ and $b$.
+    }
+    &= \sbr{\slashed{\tens p}' + m \mat 1_4}^b{}_a
+    \sbr{\mat\gamma^\mu
+    \sbr{\slashed{\tens p} + m \mat 1_4}
+    \mat\gamma^\nu}^a{}_b
+    \intertext{%
+        Then the summation over both indices will result in a matrix
+        multiplication ($b$) and a trace ($a$).
+    }
+    &= \tr\del{\sbr{\slashed{\tens p}' + m \mat 1_4} \mat\gamma^\mu
+    \sbr{\slashed{\tens p} + m \mat 1_4} \mat\gamma^\nu}
+\end{align*}
+
+The second identity has a minus sign in the $\slashed{\tens p}'$ term since
+there are $v$ spinors outside. The third one has the minus sign with the
+$\slashed{\tens p}$ term since the inner spinors are $v$ instead of $u$. And in
+the last one there are only $v$, so there are minus signs in both spots.
+
+\paragraph{Third batch}
+
+This batch contains of assorted identities, we will just iterate over them.
+
+\begin{enumerate}
+    \item
+        The identity $\tr(\mat 1) = 4$ is a bit weird. Either we assume that
+        $\mat 1$ is a $4 \times 4$ matrix and this is rather trivial, or there
+        is something very deep to it. The identity matrix is the one which only
+        has ones on the diagonal. Therefore the trace is the dimension of that
+        matrix.
+
+    \item
+    \item
+        We start with the anticommutation relation of the Dirac matrices. This
+        gives us
+        \[
+            \tr(\mat\gamma^\mu \mat\gamma^\nu)
+            = \tr(- \mat\gamma^\nu \mat\gamma^\mu + 2 \eta^{\mu\nu} \mat 1_4)
+            = - \tr(\mat\gamma^\nu \mat\gamma^\mu) + 8 \eta^{\mu\nu},
+        \]
+        where we have used the linearity and the first identity in the last
+        step.
+        The trace is cyclic, so we also know that
+        \[
+            \tr(\mat\gamma^\mu \mat\gamma^\nu)
+            = \tr(\mat\gamma^\nu \mat\gamma^\mu).
+        \]
+        We can now rewrite the first equation as
+        \[
+            2 \tr(\mat\gamma^\mu \mat\gamma^\nu)
+            = 8 \eta^{\mu\nu},
+        \]
+        which will give the desired relation after dividing by a factor of two:
+        \[
+            \tr(\mat\gamma^\mu \mat\gamma^\nu)
+            = 4 \eta^{\mu\nu}.
+        \]
+
+
+    \item
+    \item
+        The $\tr(\mat \gamma^5)$ is zero because the matrix is given by
+        \[
+            \mat\gamma^5 = \diag(1, 1, -1, -1)
+        \]
+        in the representation that we usually use.
+
+    \item
+\end{enumerate}
 
 \end{document}
 
