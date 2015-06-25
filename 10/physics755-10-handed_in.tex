@@ -249,6 +249,53 @@ Ignoring those extra commutators, we have the matrix element twice with
 different values for $\tens q$ and the second one with one minus sign with
 respect to the first one.
 
+\subsection{Identities}
+
+\paragraph{First identities}
+
+All the identities follow the same pattern. The first one is for different $u$
+and $v$, setting one to the other will give the second and third identity. We
+start by expanding the “bar”.
+\begin{align*}
+    \sbr{\bar v(\tens p) \mat\gamma^{\mu} u(\tens k)}^*
+    &= \sbr{v^\dagger(\tens p) \mat\gamma^0 \mat\gamma^{\mu} u(\tens k)}^*
+    \intertext{%
+        From the anticommutation of the two Dirac matrices, we get a factor
+        $\eta_{\mu\mu}$.
+    }
+    &= \eta_{\mu\mu} \sbr{v^\dagger(\tens p) \mat\gamma^{\mu} \mat\gamma^0 u(\tens k)}^*
+    \intertext{%
+        Then we can absorb the $\mat\gamma^0$ into the $u$ and give it a “bar”.
+    }
+    &= \eta_{\mu\mu} \sbr{v^\dagger(\tens p) \mat\gamma^{\mu} \bar
+    u^\dagger(\tens k)}^*
+    \intertext{%
+        The square bracket contains a scalar. For such, we can always add a
+        transpose operation which does not change the value of the scalar.
+        Together with the complex conjugate we will have a hermitian
+        conjugation.
+    }
+    &= \eta_{\mu\mu} \sbr{v^\dagger(\tens p) \mat\gamma^{\mu} \bar
+    u^\dagger(\tens k)}^\dagger \\
+    &= \eta_{\mu\mu} u^\dagger(\tens k) \mat\gamma^{\mu} \bar
+    v(\tens p)
+    \intertext{%
+        This is almost the expression that we want. The Pauli matrices
+        $\mat\sigma^\mu$ are
+        hermitian. The Dirac matrices $\mat\gamma^\mu$ are build from those,
+        except with an additional minus sign for $\mu \in \{1, 2, 3\}$. Those
+        last three matrices are antihermitian, which will introduce a factor
+        $\eta_{\mu\mu}$ again.
+    }
+    &= [\eta_{\mu\mu}]^2 u^\dagger(\tens k) \mat\gamma^{\mu} \bar
+    v(\tens p)
+    \intertext{%
+        And since that factor can only be $\pm 1$, it will be squared away. We
+        arrive at the desired term.
+    }
+    &= u^\dagger(\tens k) \mat\gamma^{\mu} \bar v(\tens p)
+\end{align*}
+
 \end{document}
 
 % vim: spell spelllang=en tw=79
