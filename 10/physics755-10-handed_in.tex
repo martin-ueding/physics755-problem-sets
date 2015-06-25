@@ -374,6 +374,33 @@ This batch contains of assorted identities, we will just iterate over them.
         matrix.
 
     \item
+        The Dirac matrices can be written in the chiral representation like
+        this:
+        \[
+            \mat\gamma^\mu =
+            \begin{pmatrix}
+                0 & \mat\sigma^\mu \\
+                \bar{\mat\sigma}^\nu & 0
+            \end{pmatrix}.
+        \]
+        Forming the product of two such Dirac matrices will yield a block
+        diagonal matrix:
+        \[
+            \mat\gamma^\mu \mat\gamma^\nu =
+            \begin{pmatrix}
+                \mat\sigma^\mu \bar{\mat\sigma}^\nu & 0 \\
+                0 & \bar{\mat\sigma}^\mu \mat\sigma^\nu \\
+            \end{pmatrix}.
+        \]
+
+        Any even number of Dirac matrices will give a block diagonal matrix.
+        Adding one more Dirac matrix will make it an off-diagonal matrix which
+        has no trace. Therefore
+        \[
+            \tr\del{\prod_{i = 1}^{2n+1} \mat\gamma^{\mu_i}} = 0 \qquad
+            \text{with $n \in \N$}.
+        \]
+
     \item
         We start with the anticommutation relation of the Dirac matrices. This
         gives us
@@ -400,8 +427,71 @@ This batch contains of assorted identities, we will just iterate over them.
             = 4 \eta^{\mu\nu}.
         \]
 
-
     \item
+        We will group the matrices again in pairs and use the relation derived
+        for the second identity.
+        \begin{align*}
+            \tr(\mat\gamma^\mu \mat\gamma^\nu \mat\gamma^\rho
+            \mat\gamma^\sigma)
+            &= \tr\del{
+                \diag\del{
+                    \mat\sigma^\mu \bar{\mat\sigma}^\nu,
+                    \bar{\mat\sigma}^\mu \mat\sigma^\nu
+                }
+                \diag\del{
+                    \mat\sigma^\rho \bar{\mat\sigma}^\sigma,
+                    \bar{\mat\sigma}^\rho \mat\sigma^\sigma
+                }
+            }
+            \intertext{%
+                The product of the two block-diagonal matrices gives another
+                block-diagonal matrix.
+            }
+            &= \tr\del{
+                \diag\del{
+                    \mat\sigma^\mu \bar{\mat\sigma}^\nu
+                    \mat\sigma^\rho \bar{\mat\sigma}^\sigma,
+                    \bar{\mat\sigma}^\mu \mat\sigma^\nu
+                    \bar{\mat\sigma}^\rho \mat\sigma^\sigma
+                }
+            }
+            \intertext{%
+                The trace is the sum of the traces of this block-diagonal
+                matrix.
+            }
+            &= \tr\del{
+                \mat\sigma^\mu \bar{\mat\sigma}^\nu
+                \mat\sigma^\rho \bar{\mat\sigma}^\sigma
+            }
+            + \tr\del{
+                \bar{\mat\sigma}^\mu \mat\sigma^\nu
+                \bar{\mat\sigma}^\rho \mat\sigma^\sigma
+            }
+            \intertext{%
+                The only Pauli matrix that has a trace is the $\mat\sigma^0$
+                matrix. All other ones do not have a trace. This also means
+                that they can be used as the generators of a special matrix
+                group. If we square the Pauli matrices, we obtain a matrix that
+                is proportional to the identity matrix. The “bar” will give a
+                minus sign for the spatial indices, so we need to take that
+                into account. If we have $\mu$, $\nu$, $\rho$ and $\sigma$ form
+                two pairs, we only have matrices which are proportional to the
+                identity. The trace will be $\pm 4$ then. A metric tensor will
+                allow us to cope with the minus signs by the “bar”. So we have
+                three possibilities to “contract” the four matrices. Looking at
+                the signs that we get, we can write the result as
+            }
+            &= 4 \sbr{\eta^{\mu\nu} \eta^{\rho\sigma} + \eta^{\mu\sigma}
+            \eta^{\nu\rho} - \eta^{\mu\rho} \eta^{\nu\sigma}}.
+        \end{align*}
+
+        There are no other possibilities to get a non-zero trace. The product
+        of two non-equal Pauli matrices is a third one which will have no
+        trace. So if only two indices match up, we have a diagonal matrix times
+        a traceless matrix which will be traceless. If no index matches up, the
+        product of the four factors will be a single spatial Pauli matrix which
+        has no trace either.
+
     \item
         The $\tr(\mat \gamma^5)$ is zero because the matrix is given by
         \[
@@ -410,6 +500,13 @@ This batch contains of assorted identities, we will just iterate over them.
         in the representation that we usually use.
 
     \item
+        If $\mu = \nu$ then the product $[\mat\gamma^\mu]^2$ will be
+        $\eta_{\mu\mu} \mat 1_4$. Together with $\mat\gamma^5$ this will be a
+        traceless matrix. In the other case that $\mu \neq \nu$ the product
+        will be an off-diagonal matrix, as shown for the second identity. The
+        multiplication with $\mat\gamma^5$ will change the signs, but the main
+        diagonal will not be populated. The matrix does not change a trace
+        either.
 \end{enumerate}
 
 \end{document}
