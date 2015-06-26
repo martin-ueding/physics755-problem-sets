@@ -14,6 +14,10 @@
 \usepackage{multicol}
 \usepackage{lastpage}
 
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.10}
+
 \newcommand\timeorder{\mathscr T}
 \newcommand\normorder{\mathscr N}
 
@@ -611,6 +615,122 @@ m] \mat\gamma_\rho}}
     \tr\del{[\slashed{\tens p}_1 + m] \, \mat\gamma^\mu [\slashed{\tens p}_2 -
     m] \, \mat\gamma^\rho}
 \end{align*}
+
+\subsection{Massless limit}
+
+\newcommand\Ecm{E_\mathrm{cm}}
+
+The momentum three-vectors in the center of mass frame are shown in
+Figure~\ref{fig:center_of_mass}. All three-momenta lie on a circle since the
+sum of $\vec p_1$ and $\vec p_2$ has to be zero and this momentum is conserved
+in the scattering process. Since we are looking at elastic scattering, the
+energy of all particles involved is the same, since the rest mass is the same
+as well.
+
+\begin{figure}[hbp]
+    \centering
+    \begin{tikzpicture}
+        \draw (0, 0) circle (3);
+
+        \draw[<-, thick] (90:.1) -- (90:3) node[midway, left] {$\vec p_1$};
+        \draw[<-, thick] (270:.1) -- (270:3) node[midway, right] {$\vec p_2$};
+        \draw[->, thick] (210:.1) -- (210:3) node[midway, above left] {$\vec k_1$};
+        \draw[->, thick] (30:.1) -- (30:3) node[midway, above left] {$\vec k_2$};
+
+        \draw[<-] (210:.7) arc (210:270:.7);
+        \node at (240:1) {$\theta$};
+    \end{tikzpicture}
+    \caption{%
+        Scattering of two particles in the center of mass system. Shown are the
+        momentum three-vectors.
+    }
+    \label{fig:center_of_mass}
+\end{figure}
+
+We will look at the Mandelstam variables and write them out in the high energy
+limit. The variable $s$ will just contain the energy. Note the change from
+four-vectors to three-vectors, which is hard to see with the ISO~80000-2
+notation.
+\[
+    s
+    = \tens p_1 \cdot \tens p_2
+    = \Ecm^2 - \vec p_1 \cdot \vec p_2
+    = \Ecm^2 + \vec p_1 \cdot \vec p_1
+    = 2 \Ecm^2
+\]
+The variable $t$ will contain a dependence on the angle.
+\[
+    t
+    = - \tens p_1 \cdot \tens k_1
+    = - \Ecm^2 + \vec p_1 \cdot \vec k_1
+    = - \Ecm^2 + |\vec p_1| |\vec k_1| \cos(\theta)
+    = \Ecm^2 \sbr{\cos(\theta) - 1}
+\]
+And similarly we obtain an expression for $u$:
+\[
+    u
+    = - \tens p_1 \cdot \tens k_2
+    = - \Ecm^2 + \tens p_1 \cdot \tens k_2
+    = - \Ecm^2 - \tens p_1 \cdot \tens k_1
+    = - \Ecm^2 - \Ecm^2 \cos(\theta)
+    = - \Ecm^2 \sbr{\cos(\theta) + 1}.
+\]
+
+The three summands from Equation~(7) from the problem set can be expanded now
+with the new expressions for the Mandelstam variables. We start with
+Equation~(8) from the problem set.
+\begin{align*}
+    \od{\sigma_\mathrm{cm}}{\cos(\theta)}
+    &= \frac{|\mathscr M|^2}{32 \piup \Ecm^2}
+    \intertext{%
+        Then we insert Equation~(7). It only makes sense if the sum over all
+        the spin states is already executed.
+    }
+    &= \frac{1}{4 \piup \Ecm^2} \sbr{
+        \frac{s^2 + u^2}{t^2}
+        + \frac{t^2 + u^2}{s^2}
+        + \frac{2 u^2}{st}
+    }
+    \intertext{%
+        Now we use the expressions that we computed in the beginning of this
+        part. We have already cancelled the terms with $\Ecm^4$.
+    }
+    &= \frac{1}{4 \piup \Ecm^2} \sbr{
+        \frac{4 + \sbr{\cos(\theta) + 1}^2}{\sbr{\cos(\theta) - 1}^2}
+        + \frac{\sbr{\cos(\theta) - 1}^2 + \sbr{\cos(\theta) + 1}^2}{4}
+        + \frac{\sbr{\cos(\theta) + 1}^2}{\sbr{\cos(\theta) - 1}^2}
+    }
+    \intertext{%
+        We used Mathematica to simplify this expression and arrived at the
+        rather simple form
+    }
+    &= \frac{\sbr{3 + \cos(\theta)}^2}{2 \sbr{\cos(\theta) - 1}^2}.
+\end{align*}
+
+Instead of the laborious steps you get an awesome looking graph of the
+differential cross section in Figure~\ref{fig:cross_section}.
+
+\begin{figure}[hbp]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+                xlabel={$\theta$},
+                ylabel={$\od{\sigma_\mathrm{cm}}{\cos(\theta)}$},
+                width=0.7\linewidth,
+                grid,
+            ]
+        \addplot[
+            domain=-180:180,
+            samples=100,
+        ]
+        expression {((3 + cos(x))^2)/(2 (cos(x) - 1)^2)};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{%
+        Differential cross section.
+    }
+    \label{fig:cross_section}
+\end{figure}
 
 \end{document}
 
