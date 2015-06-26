@@ -282,7 +282,7 @@ part of this problem and write this more compact as:
     \bar u^r(\tens k_1) \mat\gamma^\nu v^{r'}(\tens k_2).
 \]
 The $s$ in the index for the spin, whereas the $s$ in the denominator is the
-mandelstam variable.
+Mandelstam variable.
 
 \subsection{Identities}
 
@@ -340,7 +340,7 @@ without proof. So they are given by \textcite[49]{Peskin/QFT/1995}:
     \eqnsep
     \sum_s v^s(\tens p) \bar v^s(\tens p) = \slashed{\tens p} - m.
 \]
-In case there is only a blob of ink to see on the inkjet printout, that is a
+In case there is only a blob of ink to see on the ink jet printout, that is a
 slashed four-vector $p$ right after the equality sign.
 
 We start with the first equation. We can move the summation over $s$ in the
@@ -543,6 +543,72 @@ This batch contains of assorted identities, we will just iterate over them.
         diagonal will not be populated. The matrix does not change a trace
         either.
 \end{enumerate}
+
+\subsection{Simplification with Mandelstam variables}
+
+We take the matrix element that we have computed in the first part of this
+problem and take the square of it.
+\begin{align*}
+    \frac 14 \sum_{s,s',r,r'} |\mathscr M|^2
+    &= \frac{e^4}4 \sum_{s,s',r,r'} \eta_{\mu\nu} \eta_{\rho\lambda}
+    \sbr{
+        \frac{1}{s}
+        -
+        \frac{1}{t}
+    }^2
+    \\&\qquad
+    \sbr{\bar v^{s'}(\tens p_2) \, \mat\gamma^\mu \, u^s(\tens p_1) \,
+    \bar u^r(\tens k_1) \, \mat\gamma^\nu \, v^{r'}(\tens k_2)}^*
+    \bar v^{s'}(\tens p_2) \, \mat\gamma^\rho \, u^s(\tens p_1) \,
+    \bar u^r(\tens k_1) \, \mat\gamma^\lambda \, v^{r'}(\tens k_2)
+    \intertext{%
+        We can use the relations from the first batch to remove the complex
+        conjugation.
+    }
+    &= \frac{e^4}4 \sum_{s,s',r,r'} \eta_{\mu\nu} \eta_{\rho\lambda}
+    \sbr{
+        \frac{1}{s}
+        -
+        \frac{1}{t}
+    }^2
+    \\&\qquad
+    \bar u^s(\tens p_1) \, \mat\gamma^\mu \, v^{s'}(\tens p_2) \,
+    \bar v^{r'}(\tens k_2) \, \mat\gamma^\nu \, u^r(\tens k_1) \,
+    \bar v^{s'}(\tens p_2) \, \mat\gamma^\rho \, u^s(\tens p_1) \,
+    \bar u^r(\tens k_1) \, \mat\gamma^\lambda \, v^{r'}(\tens k_2)
+    \intertext{%
+        We need to reorder the three Dirac bilinears in order to use relations
+        we showed in the second batch. We also use the metric tensors to lower
+        the indices.
+    }
+    &= \frac{e^4}4 \sum_{s,s',r,r'}
+    \sbr{
+        \frac{1}{s}
+        -
+        \frac{1}{t}
+    }^2
+    \\&\qquad
+    \bar u^s(\tens p_1) \, \mat\gamma^\mu \, v^{s'}(\tens p_2) \,
+    \underbrace{\bar v^{r'}(\tens k_2) \, \mat\gamma_\mu \, u^r(\tens k_1) \,
+    \bar u^r(\tens k_1) \, \mat\gamma_\rho \, v^{r'}(\tens
+k_2)}_{\tr\del{[\slashed{\tens k}_2 - m] \mat\gamma_\mu [\slashed{\tens k}_1 -
+m] \mat\gamma_\rho}}
+    \bar v^{s'}(\tens p_2) \, \mat\gamma^\rho \, u^s(\tens p_1) \,
+    \intertext{%
+        We have used the identity from the second batch for the middle terms.
+        The two Dirac bilinears that are left can be converted into such a
+        trace as well. Now all the spins are summed over and we do not have any
+        summation signs left.
+    }
+    &= \frac{e^4}4
+    \sbr{
+        \frac{1}{s}
+        -
+        \frac{1}{t}
+    }^2
+    \tr\del{[\slashed{\tens k}_2 - m] \mat\gamma_\mu [\slashed{\tens k}_1 - m] \mat\gamma_\rho}
+    \tr\del{[\slashed{\tens p}_1 + m] \mat\gamma^\mu [\slashed{\tens p}_2 - m] \mat\gamma^\rho}
+\end{align*}
 
 \end{document}
 
