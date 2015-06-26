@@ -704,7 +704,7 @@ Equation~(8) from the problem set.
         We used Mathematica to simplify this expression and arrived at the
         rather simple form
     }
-    &= \frac{\sbr{3 + \cos(\theta)}^2}{2 \sbr{\cos(\theta) - 1}^2}.
+    &= \frac{\sbr{3 + \cos(\theta)}^2}{8 \piup \Ecm^2 \sbr{\cos(\theta) - 1}^2}.
 \end{align*}
 
 Instead of the laborious steps you get an awesome looking graph of the
@@ -715,7 +715,8 @@ differential cross section in Figure~\ref{fig:cross_section}.
     \begin{tikzpicture}
         \begin{axis}[
                 xlabel={$\theta$},
-                ylabel={$\od{\sigma_\mathrm{cm}}{\cos(\theta)}$},
+                ylabel={$\od{\sigma_\mathrm{cm}}{\cos(\theta)}$ in units of
+                $\Ecm^{-2}$},
                 width=0.7\linewidth,
                 grid,
             ]
@@ -723,7 +724,7 @@ differential cross section in Figure~\ref{fig:cross_section}.
             domain=-180:180,
             samples=100,
         ]
-        expression {((3 + cos(x))^2)/(2 (cos(x) - 1)^2)};
+        expression {((3 + cos(x))^2)/(8 * 3.141 (cos(x) - 1)^2)};
         \end{axis}
     \end{tikzpicture}
     \caption{%
