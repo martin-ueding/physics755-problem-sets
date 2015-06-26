@@ -104,6 +104,8 @@ Since we have two different kind of particles, they are distinguishable. This
 limits the number of diagrams that contribute to this process. We take the
 convention that the time goes to the right.
 
+\paragraph{First diagram}
+
 The first diagram has the annihilation of the particles which creates a real
 (because it is time-like) photon. Then this one creates a pair of electron of
 positron again:
@@ -132,9 +134,9 @@ different overall sign.
 The factors that we get for the first diagram are:
 \begin{itemize}
     \item The incoming fermion gives $u^s(\tens p_1)$.
-    \item The incoming antifermion gives $\bar v^s(\tens p_2)$.
+    \item The incoming antifermion gives $\bar v^{s'}(\tens p_2)$.
     \item The outgoing fermion gives $\bar u^r(\tens k_1)$.
-    \item The outgoing antifermion gives $v^r(\tens k_2)$.
+    \item The outgoing antifermion gives $v^{r'}(\tens k_2)$.
     \item The left vertex gives $- \iup e \mat\gamma^\mu$.
     \item The right vertex gives $- \iup e \mat\gamma^\nu$.
     \item The propagator gives $\iup \eta_{\mu\nu}/\tens q^2$.
@@ -147,8 +149,8 @@ tree (graph theory). Is it a Feynman tree, then?
 
 Taking all those terms together we obtain
 \[
-    [-\iup e]^2 \bar v^s(\tens p_2) \mat\gamma^\mu u^s(\tens p_1) \frac{\iup
-    \eta_{\mu\nu}}{\tens q^2} \bar u^r(\tens k_1) \mat\gamma^\nu v^r(\tens
+    [-\iup e]^2 \bar v^{s'}(\tens p_2) \mat\gamma^\mu u^s(\tens p_1) \frac{\iup
+    \eta_{\mu\nu}}{\tens q^2} \bar u^r(\tens k_1) \mat\gamma^\nu v^{r'}(\tens
     k_2).
 \]
 
@@ -185,6 +187,8 @@ None of the contractions intersect, there are no further modifications needed
 to untangle this. This diagram has a no additional sign changes.
 
 There is no symmetry factor to account for in this diagram.
+
+\paragraph{Second diagram}
 
 The second diagram is the more natural way of thinking about scattering. The
 two particles scatter by the exchange of a virtual photon:
@@ -248,6 +252,37 @@ $\deltaup^{(4)}(\tens 0)$ which looks a bit problematic.
 Ignoring those extra commutators, we have the matrix element twice with
 different values for $\tens q$ and the second one with one minus sign with
 respect to the first one.
+
+\paragraph{Both diagrams}
+
+The matrix element then looks like this in full:
+\[
+    \iup \mathscr M
+    = 
+    -\iup e^2 \eta_{\mu\nu} \sbr{
+        \frac{1}{[\tens p_1 + \tens p_2]^2}
+        -
+        \frac{1}{[\tens k_1 - \tens p_1]^2}
+    }
+    \bar v^{s'}(\tens p_2) \mat\gamma^\mu u^s(\tens p_1)
+    \bar u^r(\tens k_1) \mat\gamma^\nu v^{r'}(\tens k_2).
+\]
+
+We can also use the mandelstam variables that will be introduced in the third
+part of this problem and write this more compact as:
+\[
+    \iup \mathscr M
+    = 
+    -\iup e^2 \eta_{\mu\nu} \sbr{
+        \frac{1}{s}
+        -
+        \frac{1}{t}
+    }
+    \bar v^{s'}(\tens p_2) \mat\gamma^\mu u^s(\tens p_1)
+    \bar u^r(\tens k_1) \mat\gamma^\nu v^{r'}(\tens k_2).
+\]
+The $s$ in the index for the spin, whereas the $s$ in the denominator is the
+mandelstam variable.
 
 \subsection{Identities}
 
