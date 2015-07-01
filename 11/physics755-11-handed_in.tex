@@ -60,7 +60,8 @@
     \begin{tabular}{rrr}
         problem & achieved points & possible points \\
         \midrule
-        \nameref{homework:1} & & \punkte{15} \\
+        \nameref{homework:1} & & \punkte{8} \\
+        \nameref{homework:2} & & \punkte{7} \\
         \midrule
         total & & \arabic{totalpoints}
     \end{tabular}
@@ -76,6 +77,199 @@
 
 \section{Muon pair production}
 \label{homework:1}
+
+\subsection{Invariant amplitude}
+
+The only contributing diagram is the following (time to the left):
+
+\begin{fmffile}{feyn-scatter-1}
+    \begin{fmfgraph}(100, 50)
+        \fmfleft{ei,pi}
+        \fmfright{eo,po}
+        \fmfdot{v1,v2}
+
+        \fmf{fermion}{ei,v1}
+        \fmf{fermion}{v1,pi}
+
+        \fmf{fermion}{v2,eo}
+        \fmf{fermion}{po,v2}
+
+        \fmf{photon}{v1,v2}
+    \end{fmfgraph}
+\end{fmffile}
+
+From this diagram we read off:
+\[
+    \iup \mathscr M = [- \iup e]^2
+    \bar u^{r'}(\tens k_1) \, \mat\gamma^\mu v^r(\tens k_2)
+    \frac{1}{[\tens p_1 + \tens p_2]^2}
+    \bar v^{s'}(\tens p_1) \, \mat\gamma_\mu u^s(\tens p_2)
+\]
+The denominator in the photon propagator can be replaced by the Mandelstam
+variable $s$. We go on to compute the appropriately averaged sum over squared
+amplitudes.
+\begin{align*}
+    Z &:= \frac 14 \sum_{s,s',r,r'} |\iup \mathscr M|^2 \\
+    &= \frac 14  \frac{e^4}{s^2} \sum_{s,s',r,r'}
+    \sbr{\bar u^{r'}(\tens k_1) \, \mat\gamma^\mu v^r(\tens k_2)
+    \bar v^{s'}(\tens p_1) \, \mat\gamma_\mu u^s(\tens p_2)}^*
+    \bar u^{r'}(\tens k_1) \, \mat\gamma^\nu v^r(\tens k_2)
+    \bar v^{s'}(\tens p_1) \, \mat\gamma_\nu u^s(\tens p_2)
+    \intertext{%
+        We use the first batch of relations from the previous exercise.
+    }
+    &= \frac 14  \frac{e^4}{s^2} \sum_{s,s',r,r'}
+    \bar v^r(\tens k_2) \, \mat\gamma^\mu u^{r'}(\tens k_1)
+    \bar u^s(\tens p_2) \, \mat\gamma_\mu v^{s'}(\tens p_1)
+    \bar u^{r'}(\tens k_1) \, \mat\gamma^\nu v^r(\tens k_2)
+    \bar v^{s'}(\tens p_1) \, \mat\gamma_\nu u^s(\tens p_2)
+    \intertext{%
+        We reorder the bilinears such that we can use the second batch of
+        relations.
+    }
+    &= \frac 14  \frac{e^4}{s^2} \sum_{s,s',r,r'}
+    \bar v^r(\tens k_2) \, \mat\gamma^\mu u^{r'}(\tens k_1)
+    \bar u^{r'}(\tens k_1) \, \mat\gamma^\nu v^r(\tens k_2)
+    \bar v^{s'}(\tens p_1) \, \mat\gamma_\nu u^s(\tens p_2)
+    \bar u^s(\tens p_2) \, \mat\gamma_\mu v^{s'}(\tens p_1)
+    \intertext{%
+        Now we actually use the relations where $m$ is the electron mass and
+        $M$ is the muon mass.
+    }
+    &= \frac 14  \frac{e^4}{s^2}
+    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 +
+    M] \, \mat\gamma^\mu}
+    \tr\del{[\slashed{\tens p}_1 + m] \, \mat\gamma_\nu [\slashed{\tens p}_2 +
+    m] \, \mat\gamma_\mu}
+    \intertext{%
+        We neglect the mass of the electron. Since traces of an odd number of
+        Dirac matrices vanish, there will not be any terms in first order of
+        $m$. There is are only terms in second order of $m$, which is very
+        small compared to $M^2$.
+    }
+    &= \frac 14  \frac{e^4}{s^2}
+    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 +
+    M] \, \mat\gamma^\mu}
+    \tr\del{\slashed{\tens p}_1 \mat\gamma_\nu \slashed{\tens p}_2 \mat\gamma_\mu}
+    \intertext{%
+        We start with the last trace. We can extract the components of the
+        momenta out of the trace.
+    }
+    &= \frac 14  \frac{e^4}{s^2}
+    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 +
+    M] \, \mat\gamma^\mu}
+    \tens p_1^\alpha \tens p_2^\beta \tr\del{\mat\gamma_\nu \mat\gamma^\alpha
+    \mat\gamma_\mu \mat\gamma^\beta}
+    \intertext{%
+        The trace of four Dirac matrices was computed on the last sheet. We
+        just use this here.
+    }
+    &= \frac{e^4}{s^2}
+    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 +
+    M] \, \mat\gamma^\mu}
+    p_1^\alpha p_2^\beta \sbr{\deltaup_\nu^\alpha
+        \deltaup_\mu^\beta - \eta_{\nu\mu} \eta^{\alpha\beta} +
+    \deltaup^\beta_\nu \deltaup^\alpha_\mu} \\
+    &= \frac{e^4}{s^2}
+    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 +
+    M] \, \mat\gamma^\mu}
+    \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - p_1^\alpha p_{2\alpha}
+    \eta_{\mu\nu}}
+    \intertext{%
+        Now we tend to the first trace. When we factor out the terms inside, we
+        will get an order $M^0$ and an order $M^2$ term. The $M^1$ term will
+        not contribute due to an odd number of Dirac matrices.
+    }
+    &= \frac{e^4}{s^2}
+    \sbr{
+        \tr\del{\slashed{\tens k}_1 \mat\gamma^\nu \slashed{\tens k}_2 \mat\gamma^\mu}
+        + M^2 \tr\del{\mat\gamma^\nu\mat\gamma^\mu}
+    }
+    \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - p_1^\alpha p_{2\alpha}
+    \eta_{\mu\nu}}
+    \intertext{%
+        The trace has the same structure we had with $\tens p_1$ and $\tens
+        p_2$ before. The second trace is just a multiple of the metric tensor.
+    }
+    &= \frac{e^4}{s^2}
+    \sbr{
+        \sbr{k_1^\mu k_2^\nu + k_1^\nu k_2^\mu - k_1^\alpha k_{2\alpha}
+        \eta^{\mu\nu}}
+        + M^2 \eta^{\mu\nu}
+    }
+    \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - p_1^\alpha p_{2\alpha}
+    \eta_{\mu\nu}}
+    \intertext{%
+        Then we can expand the left bracket and perform the contractions over
+        $\mu$ and $\nu$ in the second term which we then get.
+    }
+    &= \frac{e^4}{s^2}
+    \sbr{k_1^\mu k_2^\nu + k_1^\nu k_2^\mu - k_1^\alpha k_{2\alpha}
+    \eta^{\mu\nu}}
+    \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - p_1^\alpha p_{2\alpha}
+    \eta_{\mu\nu}}
+    +
+    \frac{M^2 e^4}{s^2}
+    \sbr{2 \tens p_1 \cdot \tens p_2 - 4 \tens p_1 \cdot \tens p_2}
+    \intertext{%
+        Now we look at the three terms that we will get when we expand the
+        first bracket.
+    }
+    &= \frac{e^4}{s^2} \Bigg[
+    k_1^\mu k_2^\nu
+    \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - p_1^\alpha p_{2\alpha} \eta_{\mu\nu}}
+    + k_1^\nu k_2^\mu
+    \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - p_1^\alpha p_{2\alpha} \eta_{\mu\nu}}
+    \\&\qquad
+    - k_1^\alpha k_{2\alpha} \eta^{\mu\nu}
+    \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - p_1^\alpha p_{2\alpha} \eta_{\mu\nu}}
+    +
+    M^2
+    \sbr{2 \tens p_1 \cdot \tens p_2 - 4 \tens p_1 \cdot \tens p_2}
+    \Bigg] \\
+    \intertext{%
+        The third bracket can already be contracted.
+    }
+    &= \frac{e^4}{s^2} \Bigg[
+    k_1^\mu k_2^\nu
+    \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - \tens p_1 \cdot \tens p_2 \eta_{\mu\nu}}
+    + k_1^\nu k_2^\mu
+    \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - \tens p_1 \cdot \tens p_2 \eta_{\mu\nu}}
+    \\&\qquad
+    + 2 \tens k_1 \cdot \tens k_2 \, \tens p_1 \cdot \tens p_2
+    -
+    2 M^2 \tens p_1 \cdot \tens p_2
+    \Bigg]
+    \intertext{%
+        The remaining terms which are not contracted are symmetric in their
+        indices. We can combine those.
+    }
+    &= 2 \frac{e^4}{s^2} \sbr{
+        k_1^\mu k_2^\nu
+        \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - \tens p_1 \cdot \tens p_2 \eta_{\mu\nu}}
+        + \tens k_1 \cdot \tens k_2 \, \tens p_1 \cdot \tens p_2
+        - M^2 \tens p_1 \cdot \tens p_2
+    }
+    \intertext{%
+        And now we need to do the contractions.
+    }
+    &= 2 \frac{e^4}{s^2} \sbr{
+        \tens k_1 \cdot \tens p_2 \, \tens k_2 \cdot \tens p_1
+        + \tens k_1 \cdot \tens p_1 \, \tens k_2 \cdot \tens p_2
+        - \tens k_1 \cdot \tens k_2 \, \tens p_1 \cdot \tens p_2
+        + \tens k_1 \cdot \tens k_2 \, \tens p_1 \cdot \tens p_2
+        - M^2 \tens p_1 \cdot \tens p_2
+    }
+    \intertext{%
+        The middle terms cancel, so we only have three terms left.
+    }
+    &= 2 \frac{e^4}{s^2} \sbr{
+        \tens k_1 \cdot \tens p_2 \, \tens k_2 \cdot \tens p_1
+        + \tens k_1 \cdot \tens p_1 \, \tens k_2 \cdot \tens p_2
+        - M^2 \tens p_1 \cdot \tens p_2
+    }
+\end{align*}
+
 
 \section{Decay of the charged pion}
 \label{homework:1}
