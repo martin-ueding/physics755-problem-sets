@@ -351,6 +351,85 @@ compute the following scalar products of the four-momenta.
         \]
 \end{itemize}
 
+We can take those terms to express the invariant matrix element in this
+coordinate system. We will use the version from
+\textcite[(5.10)]{Peskin/QFT/1995} to have a chance to get the correct answer.
+\begin{align*}
+    \frac 14 \sum_\text{spins} |\mathscr M|^2
+    &= \frac{8 e^4}{q^4} \sbr{
+        [\tens p_1 \cdot \tens k_1] [\tens p_2 \cdot \tens k_2]
+        + [\tens p_1 \cdot \tens k_2] [\tens p_2 \cdot \tens k_1]
+        + M^2 \tens p_1 \cdot \tens p_2
+    } \\
+    &= \frac{8 e^4}{16 E^4} \sbr{
+            E^4 \sbr{1 - \frac{|\vec k|}{E} \cos(\theta)}^2
+            + E^4 \sbr{1 + \frac{|\vec k|}{E} \cos(\theta)}^2
+        + 2 E^2 M^2
+    }
+    \intertext{%
+        We expand the squares. The middle terms will just cancel due to the
+        opposing signs.
+    }
+    &= \frac{e^4}{2 E^4} \sbr{
+    2 E^4 +
+    2 E^4 \sbr{\frac{|\vec k|}{E} \cos(\theta)}^2
+        + 2 E^2 M^2
+    } \\
+    &= e^4 \sbr{1 + \frac{|\vec k|^2}{E^2} \cos(\theta)^2 + \frac{M^2}{E^2}}
+    \intertext{%
+        We know that $E^2 = |\vec k^2| + M^2$ and therefore we can write this
+        as
+    }
+    &= e^4 \sbr{1 + \frac{E^2 - M^2}{E^2} \cos(\theta)^2 + \frac{M^2}{E^2}}.
+    \intertext{%
+        We expand the fraction.
+    }
+    &= e^4 \sbr{
+        1
+        + \cos(\theta)^2
+        - \frac{M^2}{E^2} \cos(\theta)^2
+        + \frac{M^2}{E^2}
+    }
+    \intertext{%
+        Then we can factor out the cosine squared and obtain the result also
+        given by \textcite[(5.11)]{Peskin/QFT/1995}.
+    }
+    &= e^4 \sbr{
+    1 + \frac{M^2}{E^2}
+    + \sbr{1 - \frac{M^2}{E^2}} \cos(\theta)^2
+    }
+\end{align*}
+
+From here we can plug this into Equation~(2) given on the problem set and
+obtain the differential cross section.
+\begin{align*}
+    \od{\sigma_\mathrm{cm}}{\cos \theta}
+    &= \frac{1}{2 E_\mathrm{cm}^2} \frac{|\vec k|}{16 \piup^2 E_\mathrm{cm}}
+    \frac 14 \sum_\text{spins} |\mathscr M|^2 \\
+    &= \frac{1}{2 E_\mathrm{cm}^2} \frac{|\vec k|}{16 \piup^2 E_\mathrm{cm}}
+    e^4 \sbr{1 + \frac{M^2}{E^2} + \sbr{1 - \frac{M^2}{E^2}} \cos(\theta)^2}
+    \intertext{%
+        We can simplify the first term a bit.
+    }
+    &= \frac{e^4}{32 \piup^2 E_\mathrm{cm}^3} \sqrt{E^2 - M^2}
+    \sbr{1 + \frac{M^2}{E^2} + \sbr{1 - \frac{M^2}{E^2}} \cos(\theta)^2}
+    \intertext{%
+        We extract one factor of the energy $E$ out of the square root to make
+        it look like the other factors in the large bracket.
+    }
+    &= \frac{e^4}{32 \piup^2 E_\mathrm{cm}^3} E \sqrt{1 - \frac{M^2}{E^2}}
+    \sbr{1 + \frac{M^2}{E^2} + \sbr{1 - \frac{M^2}{E^2}} \cos(\theta)^2}
+    \intertext{%
+        The relation between single particle energy $E$ and the center of mass
+        energy is $E_\mathrm{cm} = 2 E$. The fine structure constant is $\alpha
+        = e^2 / [4 \piup]$ We cancel the one factor of $E$, introduce the fine
+        structure constant and obtain the final result.
+    }
+    &= \frac{\alpha^2}{4 E_\mathrm{cm}^2} \sqrt{1 - \frac{M^2}{E^2}}
+    \sbr{1 + \frac{M^2}{E^2} + \sbr{1 - \frac{M^2}{E^2}} \cos(\theta)^2}
+\end{align*}
+
+This result matched the one given by \textcite[(5.12)]{Peskin/QFT/1995}.
 
 \subsection{Electron muon scattering}
 
