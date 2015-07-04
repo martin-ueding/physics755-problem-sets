@@ -505,7 +505,10 @@ momentum $\tens q$ is now the difference of the electron momenta.
 
 This also changes the kinematics which are now shown in
 Figure~\ref{fig:center_of_mass2}. The scalar products need to be evaluated
-again.
+again as the masses changes in the respective terms. In the center of mass
+frame the three-momenta of the two incident particles sum to zero. This also
+holds true when their mass differs. The energy of the particles is not the
+same, however.
 
 \begin{figure}[hbp]
     \centering
@@ -526,6 +529,46 @@ again.
     }
     \label{fig:center_of_mass2}
 \end{figure}
+
+\begin{itemize}
+    \item
+        The electrons are massless, so the norm of the momentum is their
+        energy.
+        \[
+            \tens p_1 \cdot \tens p_2
+            = E_\eup^2 - |\vec p|^2 \cos(\theta)
+            = E_\eup^2 \sbr{1 -  \cos(\theta)}
+        \]
+
+    \item
+        Similarly, we get the same result for the muon momenta.
+        \[
+            \tens k_1 \cdot \tens k_2
+            = E_\muup^2 \sbr{1 - \cos(\theta)}
+        \]
+
+    \item
+        The mixed one now indirectly contains the mass $M$ of the muon.
+        \[
+            \tens k_1 \cdot \tens p_1
+            = E_\eup E_\muup - |\vec k_1| \, |\vec p_1| \cos(\piup)
+            = E_\eup E_\muup + E_\eup |\vec k|
+            = E_\eup E_\muup \sbr{1 + \frac{|\vec k|}{E_\muup}}
+        \]
+        In the limit $M \to 0$ and with that $|\vec k| \to E_\muup$ this will
+        give the same $2E^2$ we had when we looked at the collision of two
+        massless electrons.
+
+    \item
+        The mixed one now indirectly contains the mass $M$ of the muon.
+        \[
+            \tens k_1 \cdot \tens p_2
+            = E_\eup E_\muup + |\vec k_1| \, |\vec p_2| \cos(\theta)
+            = E_\eup E_\muup + E_\eup |\vec k| \cos(\theta)
+            = E_\eup E_\muup \sbr{1 + \frac{|\vec k|}{E_\muup} \cos(\theta)}
+        \]
+
+\end{itemize}
 
 \section{Decay of the charged pion}
 \label{homework:1}
