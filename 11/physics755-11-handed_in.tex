@@ -152,9 +152,9 @@ amplitudes.
         $M$ is the muon mass.
     }
     &= \frac 14  \frac{e^4}{s^2}
-    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 +
+    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 -
     M] \, \mat\gamma^\mu}
-    \tr\del{[\slashed{\tens p}_1 + m] \, \mat\gamma_\nu [\slashed{\tens p}_2 +
+    \tr\del{[\slashed{\tens p}_1 - m] \, \mat\gamma_\nu [\slashed{\tens p}_2 +
     m] \, \mat\gamma_\mu}
     \intertext{%
         We neglect the mass of the electron. Since traces of an odd number of
@@ -163,7 +163,7 @@ amplitudes.
         small compared to $M^2$.
     }
     &= \frac 14  \frac{e^4}{s^2}
-    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 +
+    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 -
     M] \, \mat\gamma^\mu}
     \tr\del{\slashed{\tens p}_1 \mat\gamma_\nu \slashed{\tens p}_2 \mat\gamma_\mu}
     \intertext{%
@@ -171,7 +171,7 @@ amplitudes.
         momenta out of the trace.
     }
     &= \frac 14  \frac{e^4}{s^2}
-    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 +
+    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 -
     M] \, \mat\gamma^\mu}
     \tens p_1^\alpha \tens p_2^\beta \tr\del{\mat\gamma_\nu \mat\gamma^\alpha
     \mat\gamma_\mu \mat\gamma^\beta}
@@ -180,13 +180,13 @@ amplitudes.
         just use this here.
     }
     &= \frac{e^4}{s^2}
-    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 +
+    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 -
     M] \, \mat\gamma^\mu}
     p_1^\alpha p_2^\beta \sbr{\deltaup_\nu^\alpha
         \deltaup_\mu^\beta - \eta_{\nu\mu} \eta^{\alpha\beta} +
     \deltaup^\beta_\nu \deltaup^\alpha_\mu} \\
     &= \frac{e^4}{s^2}
-    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 +
+    \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 -
     M] \, \mat\gamma^\mu}
     \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - p_1^\alpha p_{2\alpha}
     \eta_{\mu\nu}}
@@ -198,7 +198,7 @@ amplitudes.
     &= \frac{e^4}{s^2}
     \sbr{
         \tr\del{\slashed{\tens k}_1 \mat\gamma^\nu \slashed{\tens k}_2 \mat\gamma^\mu}
-        + M^2 \tr\del{\mat\gamma^\nu\mat\gamma^\mu}
+        - M^2 \tr\del{\mat\gamma^\nu\mat\gamma^\mu}
     }
     \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - p_1^\alpha p_{2\alpha}
     \eta_{\mu\nu}}
@@ -210,7 +210,7 @@ amplitudes.
     \sbr{
         \sbr{k_1^\mu k_2^\nu + k_1^\nu k_2^\mu - k_1^\alpha k_{2\alpha}
         \eta^{\mu\nu}}
-        + M^2 \eta^{\mu\nu}
+        - M^2 \eta^{\mu\nu}
     }
     \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - p_1^\alpha p_{2\alpha}
     \eta_{\mu\nu}}
@@ -223,7 +223,7 @@ amplitudes.
     \eta^{\mu\nu}}
     \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - p_1^\alpha p_{2\alpha}
     \eta_{\mu\nu}}
-    +
+    -
     \frac{M^2 e^4}{s^2}
     \sbr{2 \tens p_1 \cdot \tens p_2 - 4 \tens p_1 \cdot \tens p_2}
     \intertext{%
@@ -238,7 +238,7 @@ amplitudes.
     \\&\qquad
     - k_1^\alpha k_{2\alpha} \eta^{\mu\nu}
     \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - p_1^\alpha p_{2\alpha} \eta_{\mu\nu}}
-    +
+    -
     M^2
     \sbr{2 \tens p_1 \cdot \tens p_2 - 4 \tens p_1 \cdot \tens p_2}
     \Bigg] \\
@@ -252,7 +252,7 @@ amplitudes.
     \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - \tens p_1 \cdot \tens p_2 \eta_{\mu\nu}}
     \\&\qquad
     + 2 [\tens k_1 \cdot \tens k_2] [\tens p_1 \cdot \tens p_2]
-    -
+    +
     2 M^2 \tens p_1 \cdot \tens p_2
     \Bigg]
     \intertext{%
@@ -263,7 +263,7 @@ amplitudes.
         k_1^\mu k_2^\nu
         \sbr{p_{1\mu} p_{2\nu} + p_{1\nu} p_{2\mu} - \tens p_1 \cdot \tens p_2 \eta_{\mu\nu}}
         + [\tens k_1 \cdot \tens k_2] [\tens p_1 \cdot \tens p_2]
-        - M^2 \tens p_1 \cdot \tens p_2
+        + M^2 \tens p_1 \cdot \tens p_2
     }
     \intertext{%
         And now we need to do the contractions.
@@ -273,7 +273,7 @@ amplitudes.
         + [\tens k_1 \cdot \tens p_1] \, [\tens k_2 \cdot \tens p_2]
         - [\tens k_1 \cdot \tens k_2] \, [\tens p_1 \cdot \tens p_2]
         + [\tens k_1 \cdot \tens k_2] \, [\tens p_1 \cdot \tens p_2]
-        - M^2 \tens p_1 \cdot \tens p_2
+        + M^2 \tens p_1 \cdot \tens p_2
     }
     \intertext{%
         The middle terms cancel, so we only have three terms left.
@@ -281,7 +281,7 @@ amplitudes.
     &= 2 \frac{e^4}{s^2} \sbr{
         [\tens k_1 \cdot \tens p_2] [\tens k_2 \cdot \tens p_1]
         + [\tens k_1 \cdot \tens p_1] [\tens k_2 \cdot \tens p_2]
-        - M^2 \tens p_1 \cdot \tens p_2
+        + M^2 \tens p_1 \cdot \tens p_2
     }
 \end{align*}
 
@@ -294,8 +294,7 @@ The actual result should be: \parencite[(5.10)]{Peskin/QFT/1995}
         + M^2 \tens p_1 \cdot \tens p_2
     }.
 \]
-So we have a minus sign in front of the mass term and are missing a factor of
-four.
+So we are missing a factor of four.
 
 \subsection{Differential cross section}
 
