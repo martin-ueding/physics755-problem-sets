@@ -85,22 +85,22 @@ The only contributing diagram is the following (time to the left):
 \begin{fmfwrapper}
     \begin{fmffile}{feyn-scatter-1}
         \begin{fmfgraph*}(150, 100)
-            \fmfleft{p1,p2}
-            \fmfright{k1,k2}
+            \fmfleft{P2,P1}
+            \fmfright{K2,K1}
             \fmfdot{v1,v2}
 
-            \fmf{fermion,label=$\tens p_1$}{p1,v1}
-            \fmf{fermion,label=$\tens p_2 \circlearrowleft$}{v1,p2}
+            \fmf{fermion,label=$\tens p_2$}{P2,v1}
+            \fmf{fermion,label=$\tens p_1 \circlearrowleft$}{v1,P1}
 
-            \fmf{fermion,label=$\tens k_1$}{v2,k1}
-            \fmf{fermion,label=$\tens k_2 \circlearrowleft$}{k2,v2}
+            \fmf{fermion,label=$\tens k_2$}{v2,K2}
+            \fmf{fermion,label=$\tens k_1 \circlearrowleft$}{K1,v2}
 
             \fmf{photon,label=$\tens q$}{v1,v2}
 
-            \fmflabel{$\mathrm e^-$}{p1}
-            \fmflabel{$\mathrm{e^+}$}{p2}
-            \fmflabel{$\mathrm{\mu^-}$}{k1}
-            \fmflabel{$\mathrm{\mu^+}$}{k2}
+            \fmflabel{$\mathrm e^-$}{P2}
+            \fmflabel{$\mathrm{e^+}$}{P1}
+            \fmflabel{$\mathrm{\mu^-}$}{K2}
+            \fmflabel{$\mathrm{\mu^+}$}{K1}
 
             \fmflabel{$\mu$}{v1}
             \fmflabel{$\nu$}{v2}
@@ -109,7 +109,9 @@ The only contributing diagram is the following (time to the left):
 \end{fmfwrapper}
 
 The symbol “$\circlearrowleft$” says that the momentum is direction opposing to
-the particle number flow.
+the particle number flow. This was easier than to figure out the direction of
+the actual fermion propagator in the FeynMP diagram and choosing an arrow from
+the symbols list or creating one with Ti\textit{k}Z.
 
 From this diagram we read off:
 \[
@@ -132,18 +134,18 @@ amplitudes.
         We use the first batch of relations from the previous exercise.
     }
     &= \frac 14  \frac{e^4}{s^2} \sum_{s,s',r,r'}
-    \bar v^r(\tens k_2) \, \mat\gamma^\mu u^{r'}(\tens k_1)
-    \bar u^s(\tens p_2) \, \mat\gamma_\mu v^{s'}(\tens p_1)
-    \bar u^{r'}(\tens k_1) \, \mat\gamma^\nu v^r(\tens k_2)
+    \bar v^r(\tens k_2) \, \mat\gamma^\mu u^{r'}(\tens k_1) \quad
+    \bar u^s(\tens p_2) \, \mat\gamma_\mu v^{s'}(\tens p_1) \quad
+    \bar u^{r'}(\tens k_1) \, \mat\gamma^\nu v^r(\tens k_2) \quad
     \bar v^{s'}(\tens p_1) \, \mat\gamma_\nu u^s(\tens p_2)
     \intertext{%
         We reorder the bilinears such that we can use the second batch of
         relations.
     }
     &= \frac 14  \frac{e^4}{s^2} \sum_{s,s',r,r'}
-    \bar v^r(\tens k_2) \, \mat\gamma^\mu u^{r'}(\tens k_1)
-    \bar u^{r'}(\tens k_1) \, \mat\gamma^\nu v^r(\tens k_2)
-    \bar v^{s'}(\tens p_1) \, \mat\gamma_\nu u^s(\tens p_2)
+    \bar v^r(\tens k_2) \, \mat\gamma^\mu u^{r'}(\tens k_1) \quad
+    \bar u^{r'}(\tens k_1) \, \mat\gamma^\nu v^r(\tens k_2) \quad
+    \bar v^{s'}(\tens p_1) \, \mat\gamma_\nu u^s(\tens p_2) \quad
     \bar u^s(\tens p_2) \, \mat\gamma_\mu v^{s'}(\tens p_1)
     \intertext{%
         Now we actually use the relations where $m$ is the electron mass and
@@ -451,21 +453,21 @@ The scattering process looks like this (time to the right):
 \begin{fmfwrapper}
     \begin{fmffile}{feyn-scatter-2}
         \begin{fmfgraph*}(150, 100)
-            \fmfleft{p1,k1}
-            \fmfright{p2,k2}
+            \fmfleft{P2,K2}
+            \fmfright{P1,K1}
             \fmfdot{v1,v2}
 
-            \fmf{fermion,label=$\tens p_1$}{p1,v1}
-            \fmf{fermion,label=$\tens p_2$}{v1,p2}
-            \fmf{fermion,label=$\tens k_1$}{k1,v2}
-            \fmf{fermion,label=$\tens k_2$}{v2,k2}
+            \fmf{fermion,label=$\tens p_2$}{P2,v1}
+            \fmf{fermion,label=$\tens p_1$}{v1,P1}
+            \fmf{fermion,label=$\tens k_2$}{K2,v2}
+            \fmf{fermion,label=$\tens k_1$}{v2,K1}
 
             \fmf{photon,label=$\tens q$}{v1,v2}
 
-            \fmflabel{$\mathrm e^-$}{p1}
-            \fmflabel{$\mathrm{e^-}$}{p2}
-            \fmflabel{$\mathrm{\mu^-}$}{k1}
-            \fmflabel{$\mathrm{\mu^-}$}{k2}
+            \fmflabel{$\mathrm e^-$}{P2}
+            \fmflabel{$\mathrm{e^-}$}{P1}
+            \fmflabel{$\mathrm{\mu^-}$}{K2}
+            \fmflabel{$\mathrm{\mu^-}$}{K1}
 
             \fmflabel{$\mu$}{v1}
             \fmflabel{$\nu$}{v2}
@@ -476,9 +478,9 @@ The scattering process looks like this (time to the right):
 We now have to group the terms by vertex again. Now it is not the creation and
 annihilation that make up a vertex but the electron and a muon coupling to the
 exchanged virtual photon. We will keep the assignment of the momenta such that
-the electron and positron are labeled with $\tens p_1$ and $\tens p_2$ and the
-muon and antimuon with $\tens k_1$ and $\tens k_2$. Now we have incoming
-particles with index 1 and outgoing particles with index 2.
+the electrons are labeled with $\tens p_1$ and $\tens p_2$ and the muons with
+$\tens k_1$ and $\tens k_2$. Now we have incoming particles with index 2 and
+outgoing particles with index 1.
 
 To give some comparison, here are the invariant matrix elements for both
 processes:
@@ -491,13 +493,40 @@ processes:
     %
     \iup \mathscr M_\text{scattering}
     &= [- \iup e]^2 \,
-    \bar u^{r'}(\tens p_2) \, \mat\gamma^\mu u^r(\tens p_1)
-    \frac{1}{[\tens p_1 - \tens k_1]^2}
-    \bar u^{s'}(\tens k_2) \, \mat\gamma_\mu u^s(\tens k_1)
+    \bar u^{r'}(\tens k_1) \, \mat\gamma_\mu u^r(\tens k_2)
+    \frac{1}{[\tens p_1 - \tens p_1]^2}
+    \bar u^{s'}(\tens p_1) \, \mat\gamma^\mu u^s(\tens p_2)
 \end{align*}
 
 There is only $u$ and no $v$ since we only look at particles and there are no
-anti-particles around.
+anti-particles around. The couplings are still the same, the electrons and the
+muons never coupled directly to each other. So each vertex only has one lepton
+flavor. Since the direction of the momentum have changed, the transfered
+momentum $\tens q$ is now the difference of the electron momenta.
+
+This also changes the kinematics which are now shown in
+Figure~\ref{fig:center_of_mass2}. The scalar products need to be evaluated
+again.
+
+\begin{figure}[hbp]
+    \centering
+    \begin{tikzpicture}
+        \draw (0, 0) circle (3);
+
+        \draw[<-, thick] (90:.1) -- (90:3) node[midway, left] {$\vec p_1$};
+        \draw[<-, thick] (270:.1) -- (270:3) node[midway, right] {$\vec k_1$};
+        \draw[->, thick] (210:.1) -- (210:3) node[midway, above left] {$\vec p_2$};
+        \draw[->, thick] (30:.1) -- (30:3) node[midway, above left] {$\vec k_2$};
+
+        \draw[<-] (210:.7) arc (210:270:.7);
+        \node at (240:1) {$\theta$};
+    \end{tikzpicture}
+    \caption{%
+        Same as Figure~\ref{fig:center_of_mass2}, just with exchanged
+        particles.
+    }
+    \label{fig:center_of_mass2}
+\end{figure}
 
 \section{Decay of the charged pion}
 \label{homework:1}
