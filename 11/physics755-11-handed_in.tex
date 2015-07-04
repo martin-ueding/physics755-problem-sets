@@ -9,7 +9,7 @@
 
 \usepackage{feynmp-auto}
 \usepackage{adjustbox}
-\newenvironment{fmwrapper}{\begin{adjustbox}{margin=5mm}}{\end{adjustbox}}
+\newenvironment{fmfwrapper}{\begin{adjustbox}{margin=5mm}}{\end{adjustbox}}
 
 \usepackage{multicol}
 \usepackage{lastpage}
@@ -82,21 +82,34 @@
 
 The only contributing diagram is the following (time to the left):
 
-\begin{fmffile}{feyn-scatter-1}
-    \begin{fmfgraph}(100, 50)
-        \fmfleft{ei,pi}
-        \fmfright{eo,po}
-        \fmfdot{v1,v2}
+\begin{fmfwrapper}
+    \begin{fmffile}{feyn-scatter-1}
+        \begin{fmfgraph*}(150, 100)
+            \fmfleft{p1,p2}
+            \fmfright{k1,k2}
+            \fmfdot{v1,v2}
 
-        \fmf{fermion}{ei,v1}
-        \fmf{fermion}{v1,pi}
+            \fmf{fermion,label=$\tens p_1$}{p1,v1}
+            \fmf{fermion,label=$\tens p_2 \circlearrowleft$}{v1,p2}
 
-        \fmf{fermion}{v2,eo}
-        \fmf{fermion}{po,v2}
+            \fmf{fermion,label=$\tens k_1$}{v2,k1}
+            \fmf{fermion,label=$\tens k_2 \circlearrowleft$}{k2,v2}
 
-        \fmf{photon}{v1,v2}
-    \end{fmfgraph}
-\end{fmffile}
+            \fmf{photon,label=$\tens q$}{v1,v2}
+
+            \fmflabel{$\mathrm e^-$}{p1}
+            \fmflabel{$\mathrm{e^+}$}{p2}
+            \fmflabel{$\mathrm{\mu^-}$}{k1}
+            \fmflabel{$\mathrm{\mu^+}$}{k2}
+
+            \fmflabel{$\mu$}{v1}
+            \fmflabel{$\nu$}{v2}
+        \end{fmfgraph*}
+    \end{fmffile}
+\end{fmfwrapper}
+
+The symbol “$\circlearrowleft$” says that the momentum is direction opposing to
+the particle number flow.
 
 From this diagram we read off:
 \[
@@ -432,6 +445,59 @@ obtain the differential cross section.
 This result matched the one given by \textcite[(5.12)]{Peskin/QFT/1995}.
 
 \subsection{Electron muon scattering}
+
+The scattering process looks like this (time to the right):
+
+\begin{fmfwrapper}
+    \begin{fmffile}{feyn-scatter-2}
+        \begin{fmfgraph*}(150, 100)
+            \fmfleft{p1,k1}
+            \fmfright{p2,k2}
+            \fmfdot{v1,v2}
+
+            \fmf{fermion,label=$\tens p_1$}{p1,v1}
+            \fmf{fermion,label=$\tens p_2$}{v1,p2}
+            \fmf{fermion,label=$\tens k_1$}{k1,v2}
+            \fmf{fermion,label=$\tens k_2$}{v2,k2}
+
+            \fmf{photon,label=$\tens q$}{v1,v2}
+
+            \fmflabel{$\mathrm e^-$}{p1}
+            \fmflabel{$\mathrm{e^-}$}{p2}
+            \fmflabel{$\mathrm{\mu^-}$}{k1}
+            \fmflabel{$\mathrm{\mu^-}$}{k2}
+
+            \fmflabel{$\mu$}{v1}
+            \fmflabel{$\nu$}{v2}
+        \end{fmfgraph*}
+    \end{fmffile}
+\end{fmfwrapper}
+
+We now have to group the terms by vertex again. Now it is not the creation and
+annihilation that make up a vertex but the electron and a muon coupling to the
+exchanged virtual photon. We will keep the assignment of the momenta such that
+the electron and positron are labeled with $\tens p_1$ and $\tens p_2$ and the
+muon and antimuon with $\tens k_1$ and $\tens k_2$. Now we have incoming
+particles with index 1 and outgoing particles with index 2.
+
+To give some comparison, here are the invariant matrix elements for both
+processes:
+\begin{align*}
+    \iup \mathscr M_\text{annihilation}
+    &= [- \iup e]^2 \,
+    \bar u^{r'}(\tens k_1) \, \mat\gamma^\mu v^r(\tens k_2)
+    \frac{1}{[\tens p_1 + \tens p_2]^2}
+    \bar v^{s'}(\tens p_1) \, \mat\gamma_\mu u^s(\tens p_2) \\
+    %
+    \iup \mathscr M_\text{scattering}
+    &= [- \iup e]^2 \,
+    \bar u^{r'}(\tens p_2) \, \mat\gamma^\mu u^r(\tens p_1)
+    \frac{1}{[\tens p_1 - \tens k_1]^2}
+    \bar u^{s'}(\tens k_2) \, \mat\gamma_\mu u^s(\tens k_1)
+\end{align*}
+
+There is only $u$ and no $v$ since we only look at particles and there are no
+anti-particles around.
 
 \section{Decay of the charged pion}
 \label{homework:1}
