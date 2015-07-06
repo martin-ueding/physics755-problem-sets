@@ -111,7 +111,9 @@ The only contributing diagram is the following (time to the left):
 The symbol “$\circlearrowleft$” says that the momentum is direction opposing to
 the particle number flow. This was easier than to figure out the direction of
 the actual fermion propagator in the FeynMP diagram and choosing an arrow from
-the symbols list or creating one with Ti\textit{k}Z.
+the symbols list or creating one with Ti\textit{k}Z. Perhaps one day I will
+look into using Ti\textit{k}Z for Feynman diagrams, but I do not want to spend
+the time on choosing the positions for the internal vertices by hand.
 
 From this diagram we read off:
 \[
@@ -185,6 +187,9 @@ amplitudes.
     p_1^\alpha p_2^\beta \sbr{\deltaup_\nu^\alpha
         \deltaup_\mu^\beta - \eta_{\nu\mu} \eta^{\alpha\beta} +
     \deltaup^\beta_\nu \deltaup^\alpha_\mu} \\
+    \intertext{%
+        We perform the contractions over $\alpha$ and $\beta$.
+    }
     &= \frac{e^4}{s^2}
     \tr\del{[\slashed{\tens k}_1 + M] \, \mat\gamma^\nu [\slashed{\tens k}_2 -
     M] \, \mat\gamma^\mu}
@@ -571,9 +576,234 @@ same, however.
 \end{itemize}
 
 \section{Decay of the charged pion}
-\label{homework:1}
+\label{homework:2}
 
+The diagram given on the problem set looks like time would go in the
+\enquote{$\leftarrow$} direction. Every other time direction would mean that
+the arrows would go against the particle number flow.
 
+\subsection{Momentum space rule}
+
+The \enquote{diagram equals formula} expression on the problem set probably
+means that the vertex has the given form and we are supposed to arrive at this
+form.
+
+The perturbation series is build with the Dyson series and the interacting part
+of the Hamiltonian. We only have the Lagrangian given, so we would need to
+derive the Hamiltonian first. The free Hamiltonian should be same as the
+Lagrangian, just with the derivatives of the fields replaced by the momenta.
+\[
+    H_\text{free} \leadsto \phi^*_{,\mu} \phi^{,\mu} - m_\piup^2 \phi^* \phi
+    + \bar\psi [\iup \slashed\partial - m_\muup] \psi 
+    + \bar\chi \iup \slashed\partial \chi 
+\]
+To derive the interaction Hamiltonian we need to compute the canonical momenta
+and build up the Hamiltonian from that. The momentum for $\phi$ is
+\[
+    \pi_\muup^\phi = \phi^*_{,\mu} + \frac{G}{\sqrt 2} f_\piup \sbr{
+        \bar\psi \mat\gamma^\mu [1 - \mat\gamma^5] \chi
+    }.
+\]
+When building the Hamiltonian with the pattern
+\[
+    H = \Upsilon^{,\mu} \pi^\Upsilon_\mu - L
+\]
+where $\Upsilon \in \{ \psi, \bar\psi, \phi, \phi^*, \chi, \bar\chi \}$, the
+interaction term beginning with $G$ will just cancel. At first sight, there is
+no interaction in this theory, then.
+
+However, the Hamiltonian lives in the cotangent fiber bundle instead of the
+tangent fiber bundle of the states. We need to express terms like
+$\phi^*_{,\mu}$ with the momenta and therefore get the interacting term back:
+\[
+    \phi^*_{,\mu} = \pi_\mu^\phi - \frac{G}{\sqrt 2} f_\piup \sbr{
+        \bar\psi \mat\gamma^\mu [1 - \mat\gamma^5] \chi
+    }.
+\]
+The Hamiltonian contains
+\[
+    \phi^{,\mu} \pi_\mu^\phi + \hc
+\]
+where we need to replace $\phi^{,\mu}$. We have derived the expression for the
+complex conjugate, so we need to insert the complex conjugated of the above
+expression. The interacting term should be something along the lines of
+\[
+    \frac{G}{\sqrt 2} f_\piup \pi_\mu^{\phi} \sbr{
+        \bar\psi \mat\gamma^\mu [1 - \mat\gamma^5] \chi
+    }^* + \hc \, .
+\]
+
+The states that we want to calculate matrix elements with look like
+\[
+    \bra{\muup^-(\tens k) \, \bar\nuup_\muup(\tens p)} \ldots
+    \ket{\piup^-(\tens q)}.
+\]
+For momentum conservation we need to have $\tens q = \tens k + \tens p$.
+
+The only contractions that are allowed are $\psi$ with the muon, $\chi$ with
+the neutrino and $\phi$ with the pion. The $\psi$ and $\bar\psi$ must only be
+contracted with incoming particles and antiparticles, respectively. It is the
+opposite way when looking at out-states. Since we have an outgoing leptons, we
+will need to have $\psi$ and $\bar\chi$ in our interacting term that we can use
+in the matrix element.
+
+We might be able to expand all the fields in terms of ladder operators and
+expand the states in terms of them as well. Then we would see which
+contractions are possible and also get the explicit expression for this matrix
+element. Assuming that the rules for the incoming edges are to be the same for
+fermions and bosons (that is $u(\tens p)$ and so on for fermions and just 1 for
+bosons), we might be able to read off the expression for the vertex.
+
+\subsection{Amplitude for negative pion decay}
+
+We look at the following process:
+
+\begin{fmfwrapper}
+    \begin{fmffile}{feyn-decay}
+        \begin{fmfgraph*}(150, 100)
+            \fmfleft{pi}
+            \fmfright{nu,mu}
+            \fmfdot{v1}
+
+            \fmf{fermion,label=$\tens k$}{v1,mu}
+            \fmf{fermion,label=$\tens p \circlearrowleft$}{nu,v1}
+
+            \fmf{dashes,label=$\tens q$}{pi,v1}
+
+            \fmflabel{$\piup^-$}{pi}
+            \fmflabel{$\muup^-$}{mu}
+            \fmflabel{$\bar\nuup_\muup$}{nu}
+        \end{fmfgraph*}
+    \end{fmffile}
+\end{fmfwrapper}
+
+Assuming that the vertex gives the factor given on the problem set and the
+other rules for fermions do not change, the invariant matrix element is
+\[
+    \iup \mathscr M =
+    \frac{G}{\sqrt 2} f_\piup
+    \bar u^{s'}(\tens k) \, [\slashed{\tens p} + \slashed{\tens k}]
+    [\mat 1 - \mat\gamma^5] \, v^s(\tens p).
+\]
+Using this, we can write down the modulus squared and summed over all the
+spins. There is no factor to divide by since all the spin states are
+out-states.
+\begin{align*}
+    |\mathscr M|^2
+    &= \sum_{s,s'}
+    \frac{G^2 f_\piup^2}{2}
+    \sbr{\bar u^{s'}(\tens k) \, [\slashed{\tens p} + \slashed{\tens k}]
+    [\mat 1 - \mat\gamma^5] \, v^s(\tens p)}^*
+    \bar u^{s'}(\tens k) \, [\slashed{\tens p} + \slashed{\tens k}]
+    [\mat 1 - \mat\gamma^5] \, v^s(\tens p)
+    \intertext{%
+        We use the relations from one of the previous sheets.
+    }
+    &= \sum_{s,s'}
+    \frac{G^2 f_\piup^2}{2}
+    \bar v^s(\tens p) \, [\slashed{\tens p} + \slashed{\tens k}]^*
+    [\mat 1 - \mat\gamma^5] \, u^{s'}(\tens k) \,
+    \bar u^{s'}(\tens k) \, [\slashed{\tens p} + \slashed{\tens k}]
+    [\mat 1 - \mat\gamma^5] \, v^s(\tens p)
+    \intertext{%
+        Now we can perform the spin sums where we already assume the neutrino
+        to be massless.
+    }
+    &= \frac{G^2 f_\piup^2}{2}
+    \tr\del{
+        [\slashed{\tens k} + m_\muup]
+        [\slashed{\tens p} + \slashed{\tens k}]
+        [\mat 1 - \mat\gamma^5]
+        \slashed{\tens p}
+        [\slashed{\tens p} + \slashed{\tens k}]^*
+        [\mat 1 - \mat\gamma^5]
+    }
+    \intertext{%
+        The term with the mass will not contribute since the trace would
+        contain an odd number of Dirac matrices.
+    }
+    &= \frac{G^2 f_\piup^2}{2}
+    \tr\del{
+        \slashed{\tens k}
+        [\slashed{\tens p} + \slashed{\tens k}]
+        [\mat 1 - \mat\gamma^5]
+        \slashed{\tens p}
+        [\slashed{\tens p}^* + \slashed{\tens k}^*]
+        [\mat 1 - \mat\gamma^5]
+    }
+    \intertext{%
+        The fifth Dirac matrix anticommutes with every other one. So we should
+        be able to anticommute it once …
+    }
+    &= \frac{G^2 f_\piup^2}{2}
+    \tr\del{
+        \slashed{\tens k}
+        [\slashed{\tens p} + \slashed{\tens k}]
+        [\mat 1 - \mat\gamma^5]
+        \slashed{\tens p}
+        [\mat 1 + \mat\gamma^5]
+        [\slashed{\tens p}^* + \slashed{\tens k}^*]
+    }
+    \intertext{%
+        … and a second time.
+    }
+    &= \frac{G^2 f_\piup^2}{2}
+    \tr\del{
+        \slashed{\tens k}
+        [\slashed{\tens p} + \slashed{\tens k}]
+        [\mat 1 - \mat\gamma^5]
+        [\mat 1 - \mat\gamma^5]
+        \slashed{\tens p}
+        [\slashed{\tens p}^* + \slashed{\tens k}^*]
+    }
+    \intertext{%
+        Then we use that the bracket is a projection operator, although the
+        factor of 2 will be needed for that as well.
+    }
+    &= G^2 f_\piup^2
+    \tr\del{
+        \slashed{\tens k}
+        [\slashed{\tens p} + \slashed{\tens k}]
+        [\mat 1 - \mat\gamma^5]
+        \slashed{\tens p}
+        [\slashed{\tens p}^* + \slashed{\tens k}^*]
+    }
+    \intertext{%
+        We will move that to the very end such that we get closer to the trace
+        identity with $\mat\gamma^5$ given on the problem set in Equation~(4).
+    }
+    &= G^2 f_\piup^2
+    \tr\del{
+        \slashed{\tens p}
+        [\slashed{\tens p}^* + \slashed{\tens k}^*]
+        \slashed{\tens k}
+        [\slashed{\tens p} + \slashed{\tens k}]
+        [\mat 1 - \mat\gamma^5]
+    }
+\end{align*}
+
+The complex conjugate of a Dirac matrix is not very nice. The application of
+the Hermitian conjugate will give a factor $\eta_{\mu\mu}$. For the transpose
+or complex conjugate alone there is not such a simple formula. We could save
+ourselves (or make it worse) by going back to the formula of complex
+conjugation of a bilinear and argue that the hermitian conjugate should have
+been used all the way. This would introduce this factor $\eta_{\mu\mu}$ which
+would also be a problem. So we are not really sure how to deal with this.
+
+Other than that, we would look at the two terms we get from expanding the
+projection operator. The first term without $\mat\gamma^5$ would vanish since
+it contains an odd number of Dirac matrices (except for the complex conjugated
+Dirac matrices, which might change the whole thing). Then we can tend to the
+remaining term and write $\slashed{\tens p} = p_\mu \mat\gamma^\mu$ and pull
+the component $p_\mu$ out of the trace since the trace is linear in its
+argument. Then we would be left with something where we can use the trace
+identity with.
+
+\subsection{Lifetime}
+
+Well, we cannot do this because we are missing the result from the previous
+problem. If we had, we would plug it into Equation~(5) from the problem set. We
+would need to integrate the resulting expression over the whole solid angle
 
 \end{document}
 
