@@ -1,0 +1,263 @@
+\documentclass[11pt, english, fleqn, DIV=15, headinclude, BCOR=1cm]{scrartcl}
+
+\usepackage[bibatend]{../header}
+\usepackage{../my-boxes}
+
+\usepackage{booktabs}
+\usepackage{slashed}
+\usepackage{simplewick}
+
+\usepackage{feynmp-auto}
+\usepackage{adjustbox}
+\newenvironment{fmfwrapper}{\begin{adjustbox}{margin=5mm}}{\end{adjustbox}}
+
+\usepackage{multicol}
+\usepackage{lastpage}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.10}
+
+\newcommand\timeorder{\mathscr T}
+\newcommand\normorder{\mathscr N}
+
+\hypersetup{
+    pdftitle=
+}
+
+\newcounter{totalpoints}
+\newcommand\punkte[1]{#1\addtocounter{totalpoints}{#1}}
+
+\newcounter{problemset}
+\setcounter{problemset}{12}
+
+\subject{physics755 -- Quantum Field Theory}
+\ihead{physics755 -- Problem Set \arabic{problemset}}
+
+\title{Problem Set \arabic{problemset}}
+
+\newcommand\thegroup{Group Tuesday -- Ripunjay Acharya}
+
+\publishers{\thegroup}
+\ofoot{\thegroup}
+
+\author{
+    Martin Ueding \\ \small{\href{mailto:mu@martin-ueding.de}{mu@martin-ueding.de}}
+    \and
+    Oleg Hamm
+}
+\ifoot{Martin Ueding, Oleg Hamm}
+
+\ohead{\rightmark}
+
+\begin{document}
+
+\maketitle
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{tabular}{rrr}
+        problem & achieved points & possible points \\
+        \midrule
+        \nameref{homework:1} & & \punkte{15} \\
+        \midrule
+        total & & \arabic{totalpoints}
+    \end{tabular}
+\end{center}
+
+\vspace{3ex}
+
+\begin{center}
+    \begin{small}
+        This document consists of \pageref{LastPage} pages.
+    \end{small}
+\end{center}
+
+\section{Dimensional regularization of $\phi^4$ theory at 1-loop}
+\label{homework:1}
+
+\subsection{Substitution}
+
+We perform the Wick rotation by $p^0 \mapsto \iup p^0$.
+\[
+    \int \frac{\dif^d p}{[2\piup]^d} \frac{1}{[\tens p^2 - A]^n}
+    = \int \frac{\dif^d p}{[2\piup]^d} \frac{1}{[[p^0]^2 - \vec p^2 - A]^n}
+    \mapsto \int \frac{\iup \dif^d p}{[2\piup]^d} \frac{1}{[- [p^0]^2 - \vec
+    p^2 - A]^n}.
+\]
+
+One thing \textcite{penrose-road_to_reality} warns to be careful about is that
+the Wick rotation can turn a non-compact group like $\SO(1,3)$ into a compact
+group like $\SO(4)$. Then one works with the compact group and goes back. One
+should be careful.
+
+\subsection{Proof of identity}
+
+This problem is also covered by \textcite[249--250]{Peskin/QFT/1995}.
+
+We will divide this into a couple parts, just like they also do.
+
+\begin{theorem}[Surface of unit sphere]
+    \label{the:surface}
+
+    The surface of the $d$-dimensional unit sphere, i.e. the one where the
+    surface itself has dimension $d-1$ is given by
+    \[
+        \int \dif \Omega_d = \frac{2 \piup^{\frac d2}}{\Gammaup\del{\frac d2}}.
+    \]
+\end{theorem}
+
+\begin{proof}
+    The measure is given by Equation~(3) on the problem set:
+    \[
+        d^d p = P^{d-1} dPd\phi \sin \theta_1 d\theta_1 \sin^2\theta_2 d
+        \theta_2 \ldots \sin^{d-2} \theta_{d-1} d\theta_{d-2}.
+    \]
+    We think that this is unnecessarily hard to read. We write it without
+    the ellipsis and upright exterior derivative operators like so:
+    \[
+        \dif^d p = P^{d-1} \dif P \dif \phi
+        \prod_{k=1}^{d-2} \sin(\theta_k)^k \dif \theta_k
+    \]
+
+    The unit sphere has $P = 1$. We will set $P$ to unity. Then we can
+    integrate over it and will end up with the area of the unit sphere.
+    \[
+        \int \dif \Omega_d = \int_0^{2\piup} \dif \phi
+        \prod_{k=1}^{d-2} \int_0^\piup \sin(\theta_k)^k \dif \theta_k
+    \]
+    The $\phi$ integral will just give $2\piup$, but the other factors are not
+    that easily computed. Mathematica can compute the $\theta_k$ integral and
+    gives expressions with multiple $\Gammaup$-functions.
+
+    Since we are not able to perform the integration of the factors which yield
+    hypergeometric ${}_2F_1$ functions by hand, we will use the derivation by
+    \textcite[249]{Peskin/QFT/1995}. They start by using the simplest Gaussian
+    integral:
+    \begin{align*}
+        [\sqrt{\piup}]^d
+        &= \sbr{\int \dif x \, \exp(-x^2)}^d
+        \intertext{%
+            Then they just factor out the integral and chose $\R^d$ as the
+            domain of integration. The exponential factors are grouped together
+            such that there is a sum in the integration.
+        }
+        &= \int \dif^d x \, \exp\del{- \sum_{i = 1}^d x_i^2}
+        \intertext{%
+            Now they change into those generalized polar coordinates with $P =
+            x$.
+        }
+        &= \int x^{d-1} \dif x \dif \phi \prod_{k=1}^{d-2} \sin(\theta_k)^k
+        \dif \theta_k \exp\del{- \sum_{i = 1}^d x_i^2}
+        \intertext{%
+            Since we are in polar coordinates, we can apply the Pythagorean
+            theorem $d$ times in the argument of the exponential and write it
+            as $- \vec x^2$. We also move the angular dependence to the front
+            of the expression.
+        }
+        &= \int \dif \phi \prod_{k=1}^{d-2} \sin(\theta_k)^k
+        \dif \theta_k \int \dif x \, x^{d-1} \exp\del{- \tens x^2}
+        \intertext{%
+            The first integral is just the surface area of the unit sphere. The
+            second integral needs the substitution $z := x^2$ with $\dif z = 2x
+            \dif x$ and therefore $\dif x = \dif z/ [2x]$.
+        }
+        &= \frac12 \int \dif \Omega_d \int \dif z \, z^{d/2-1} \exp\del{- z}
+        \intertext{%
+            And this $z$ integral is $\Gammaup(d/2)$.
+        }
+        &= \frac12 \Gammaup\del{\frac d2} \int \dif \Omega_d
+    \end{align*}
+
+    We reorder the parts and obtain the equation we wanted to show.
+\end{proof}
+
+Now that we are done with the proof, we realized that Equation~(5) from the
+problem set will help with the sine integrals. We will leave it like it
+currently is.
+
+\begin{theorem}[Radial integration]
+    \label{the:radial}
+
+    The radial integral has the following solution:
+    \[
+        \int_0^\infty \dif P \frac{P^{d-1}}{[P^2 - A]^n}
+        = \frac12 A^{\frac d2 - n} \frac{\Gammaup\del{n-\frac d2}
+        \Gammaup\del{\frac d2}}{\Gamma(n)}.
+    \]
+\end{theorem}
+
+\begin{proof}
+    The trick is to find the right substitution; twice.
+    \Textcite[250]{Peskin/QFT/1995} give them in their account, they just do
+    this for the $n = 2$ case. First one has to substitute
+    \[
+        \rho := P^2
+        \eqnsep
+        \dif \rho = 2 P \dif P.
+    \]
+    Using that, we obtain
+    \begin{align*}
+        \int_0^\infty \dif P \frac{P^{d-1}}{[P^2 - A]^n}
+        &= \int_0^\infty \dif \rho \frac{\rho^{\frac d2-1}}{[\rho - A]^n}.
+        \intertext{%
+            Then we have to substitute again. This time we use
+            \[
+                z := \frac{A}{\rho + A}
+                \eqnsep
+                \dif z := - \frac{A}{[\rho + A]^2} \dif \rho
+            \]
+            Using this, we can rewrite the integral again. The bounds are
+            transformed like $0 \mapsto 1$ and $\infty \mapsto 0$. We exchange
+            the bounds and also get rid of the minus sign in the substation in
+            one step.
+        }
+        &= \frac12 \int_0^1 \dif z \frac{[\rho + A]^2}{A}
+        \frac{\rho^{\frac d2-1}}{[\rho - A]^n}
+        \intertext{%
+            Now we cancel the $[\rho + A]^2$. Then we still need to replace all
+            the $\rho$ by $z$.
+            % TODO Write more steps here, if there is time left.
+        }
+        &= \frac12 \int_0^1 \dif z \, A^{\frac d2-n} [1-z]^{\frac d2 -1} z^{n-\frac d2-1}
+        \intertext{%
+            At this point we can recognize the Beta function.
+        }
+        &= \frac12 A^{\frac d2-n} B\del{n - \frac d2, \frac d2}
+        = \frac12 A^{\frac d2 - n} \frac{\Gammaup\del{n-\frac d2}
+        \Gammaup\del{\frac d2}}{\Gamma(n)}.
+    \end{align*}
+    And that is the final result we want.
+\end{proof}
+
+With those theorems at hand, we can start to prove Equation~(2) from the
+problem set. We start by replacing the measure in the integral. $\tens p^2$
+does not depend on the angles and we can replace that with $P^2$. The angular
+part from the measure is just the surface of the sphere which we know from
+Theorem~\ref{the:surface}.
+\begin{align*}
+    \int \frac{\dif^d p}{[2 \piup]^d} \frac{1}{[\tens p^2 - A]^n}
+    &= \frac{1}{[2 \piup]^d} \frac{2 \piup^{d/2}}{\Gammaup(d/2)} \int_0^\infty \dif P
+    \frac{P^{d-1}}{[P^2 - A]^n}
+    \intertext{%
+        We can directly simplify the fraction.
+    }
+    &= \frac{1}{2^{d - 1} \piup^{d/2} \Gammaup(d/2)} \int_0^\infty \dif P
+    \frac{P^{d-1}}{[P^2 - A]^n}
+    \intertext{%
+        Now can now use Theorem~\ref{the:radial} to replace the integral.
+    }
+    &= \frac{1}{[4\piup]^{d/2}} A^{\frac d2 - n} \frac{\Gammaup\del{n-\frac d2}
+    }{\Gamma(n)}.
+\end{align*}
+
+This matches the result given by \textcite[250]{Peskin/QFT/1995}, which
+means that we copied their results well.
+
+% FIXME P&S have a plus in front of the Delta while we have a minus in front of
+% our A. Go through this again and fix the signs.
+
+\end{document}
+
+% vim: spell spelllang=en tw=79
