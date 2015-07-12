@@ -94,9 +94,13 @@ should be careful.
 
 \subsection{Proof of identity}
 
-This problem is also covered by \textcite[249--250]{Peskin/QFT/1995}.
+This problem is also somewhat covered by \textcite[249--250]{Peskin/QFT/1995}.
+They also cover a similar subject on pp.\ 189--194.
 
 We will divide this into a couple parts, just like they also do.
+% FIXME Remove the next part once the errors are gone.
+Since we were not able to get to the correct results, writing “Theorem” and
+“Proof” next to obviously wrong things looks rather stupid.
 
 \begin{theorem}[Surface of unit sphere]
     \label{the:surface}
@@ -191,7 +195,8 @@ currently is.
 \begin{proof}
     The trick is to find the right substitution; twice.
     \Textcite[250]{Peskin/QFT/1995} give them in their account, they just do
-    this for the $n = 2$ case. First one has to substitute
+    this for the $n = 2$ case and have a plus sign in front of their $A$. First
+    one has to substitute
     \[
         \rho := P^2
         \eqnsep
@@ -216,17 +221,16 @@ currently is.
         &= \frac12 \int_0^1 \dif z \frac{[\rho - A]^2}{A}
         \frac{\rho^{\frac d2-1}}{[\rho - A]^n}
         \intertext{%
-            Now we cancel the $[\rho + A]^2$. Then we still need to replace all
+            Now we cancel the $[\rho - A]^2$. Then we still need to replace all
             the $\rho$ by $z$.
-            % TODO Write more steps here, if there is time left.
         }
         &= \frac12 \int_0^1 \dif z \frac{1}{A}
         \frac{\rho^{\frac d2-1}}{[\rho - A]^{n-2}}
         \intertext{%
             The denominator can be simplified like so:
             \[
-                \frac{1}{[\rho + A]^{n-2}}
-                = \frac{A^{n-2}}{[\rho + A]^{n-2}} A^{2-n}
+                \frac{1}{[\rho - A]^{n-2}}
+                = \frac{A^{n-2}}{[\rho - A]^{n-2}} A^{2-n}
                 = z^{n-2} A^{2-n}.
             \]
             This simplifies the whole expression to
@@ -254,15 +258,38 @@ currently is.
         }
         &= \frac12 \int_0^1 \dif z \,
         A^{\frac d2-n} [z+1]^{\frac d2-1} z^{n-1-\frac d2}
-        &= \frac12 \int_0^1 \dif z \, A^{\frac d2-n} [1-z]^{\frac d2 -1} z^{n-\frac d2-1}
         \intertext{%
-            At this point we can recognize the Beta function.
+            At this point we can recognize the Beta function. We have
+            \[
+                a = \frac d2 - n
+                \eqnsep
+                -2 -a -b = n - \frac d2 -1
+                \iff
+                -a -b = - \sbr{\frac d2 - n} + 1
+                \iff
+                b = -1.
+            \]
+            We can then write the expression using the Beta function.
         }
-        &= \frac12 A^{\frac d2-n} B\del{n - \frac d2, \frac d2}
-        = \frac12 A^{\frac d2 - n} \frac{\Gammaup\del{n-\frac d2}
-        \Gammaup\del{\frac d2}}{\Gamma(n)}.
+        &= \frac12 A^{\frac d2-n} B\del{n - \frac d2 + 1, 0}
     \end{align*}
-    And that is the final result we want.
+    Since $\Gammaup(0) \simeq \infty$, this result does not make any
+    sense.
+
+    \Textcite[250]{Peskin/QFT/1995} get usable $\Gammaup$ functions
+    with their plus sign. We cannot do that since our denominator contains a
+    minus sign. In a previous iteration of this problem we have mixed it up and
+    had a minus sign in the denominator and a plus sign in the $z$
+    substitution. With that we obtain
+    \[
+        \frac12 A^{\frac d2 - n} \frac{\Gammaup\del{n-\frac d2}
+        \Gammaup\del{\frac d2}}{\Gamma(n)}.
+    \]
+    This is the result \textcite[250]{Peskin/QFT/1995} have, it does not lead
+    to the desired expression in Equation~(2) on the problem set.
+
+    Maybe it is possible to smuggle in imaginary unit into there and get a
+    better result.
 \end{proof}
 
 With those theorems at hand, we can start to prove Equation~(2) from the
@@ -279,18 +306,132 @@ Theorem~\ref{the:surface}.
     }
     &= \frac{1}{2^{d - 1} \piup^{d/2} \Gammaup(d/2)} \int_0^\infty \dif P
     \frac{P^{d-1}}{[P^2 - A]^n}
-    \intertext{%
-        Now can now use Theorem~\ref{the:radial} to replace the integral.
-    }
-    &= \frac{1}{[4\piup]^{d/2}} A^{\frac d2 - n} \frac{\Gammaup\del{n-\frac d2}
-    }{\Gamma(n)}.
 \end{align*}
 
-This matches the result given by \textcite[250]{Peskin/QFT/1995}, which
-means that we copied their results well.
+Now we need some expression for this integral. Theorem~\ref{the:radial} should
+give it us, but we were not able to prove it or figure out what it should
+actually be. We do not have it, so we cannot further simplify this.
 
-% FIXME P&S have a plus in front of the Delta while we have a minus in front of
-% our A. Go through this again and fix the signs.
+\subsection{Vertex rule}
+
+In the $\phi^4$ theory we had so far, the interaction term was
+\[
+    \frac \lambda{4!} \phi^4.
+\]
+Now we have
+\[
+    \frac \lambda{4!} \mu^{2 [2-\omega]} \phi^4.
+\]
+Therefore the momentum space Feynman rule changes from $- \iup \lambda$ to $-
+\iup \lambda \mu^{2 [2-\omega]}$.
+
+\subsection{Tadpole diagram}
+
+We iterate through the Feynman rules in momentum space.
+
+\begin{itemize}
+    \item
+        The incoming and outgoing line give us a factor of one.
+
+    \item
+        The vertex gives $- \iup \lambda \mu^{2 [2-\omega]}$ as derived in the
+        previous part of this problem.
+
+    \item
+        The loop will give us one propagator. This is
+        \[
+            \frac{\iup}{p^2 - m^2}.
+        \]
+        We have left the $+ \iup \epsilon$ out.
+
+    \item
+        We impose momentum conservation at each vertex. Let the incoming
+        momentum be $q$. The loop momentum was already chosen to be $p$. From
+        the total momentum conversation we know that the outgoing momentum has
+        to be $q$ again. Keeping the direction in mind we have
+        \[
+            q + p - p - q = 0,
+        \]
+        which means that the momentum is conserved at the vertex if we do those
+        choices. It also means that the momentum is conserved for any value of
+        $p$ which is probably the cause for the singularities.
+
+    \item
+        The momentum $p$ is not determined, so we have to integrate over it.
+        This gives another factor
+        \[
+            \int \frac{\dif^{2\omega} p}{[2\piup]^{2\omega}}.
+        \]
+
+    \item
+        The symmetry factor of this diagram is two due to the loop.
+\end{itemize}
+
+Together we have
+\begin{align*}
+    \iup \mathscr M
+    &= - \frac 12
+    \iup \lambda \mu^{2 [2-\omega]}
+    \int \frac{\dif^{2\omega} p}{[2\piup]^{2\omega}}
+    \frac{\iup}{p^2 - m^2} \\
+    &= \frac 12
+    \lambda \mu^{2 [2-\omega]}
+    \int \frac{\dif^{2\omega} p}{[2\piup]^{2\omega}}
+    \frac{1}{p^2 - m^2}.
+    \intertext{%
+        We already tried and failed to derive the value of this integral. We
+        can just insert Equation~(2) from the problem set. Here $n = 1$ and $d
+        = 2 \omega$.
+    }
+    &= \frac 12
+    \lambda \mu^{2 [2-\omega]}
+    \frac{-\iup}{[4\piup]^\omega} \frac{\Gammaup(1 - \omega)}{\Gamma(1)} m^{2
+    \omega - 1}
+    \intertext{%
+        Since $\Gammaup(1) = 1$ we can simplify further.
+    }
+    &= - 
+    \frac{\iup \lambda \mu^{2 [2-\omega]}}{2 [4\piup]^\omega}
+    \Gammaup(1 - \omega) m^{2 \omega - 1}
+    \intertext{%
+        We write the $\Gammaup$-function such that we can expand it in the next
+        step.
+    }
+    &= - 
+    \frac{\iup \lambda \mu^{2 [2-\omega]}}{2 [4\piup]^\omega}
+    \Gammaup(- [\omega - 1] + \epsilon) m^{2 \omega - 1}
+    \intertext{%
+        Now we can use Equation~(9) from the problem set.
+    }
+    &=
+    \frac{[-1]^\omega \iup \lambda \mu^{2 [2-\omega]}}{2 [4\piup]^\omega
+    [\omega+1]!}
+    \sbr{\frac 1\epsilon + \psi(\omega) + \mathrm O(\epsilon)} m^{2 \omega - 1}
+\end{align*}
+
+The problem statement asks to expand the $\Gammaup$-function. We did that. Now
+we are supposed to expand the term $[\ldots]^{2 - \omega}$ neglecting terms
+$\mathrm O(\omega -2)$ or higher. How is that “$\mathrm O(\omega -2)$” to be
+interpreted? The only factor that looks like $[\ldots]^{2 - \omega}$ is the
+term with the mass $\mu^2$. There is no power series at this point, so we
+cannot expand the sum and ignore terms higher than this.
+
+The Digramma function $\psi$ can be expanded in various ways, for instance the
+harmonic series with the Euler-Mascheroni constant. That would also explain why
+the constant Euler-Mascheroni $\gamma$ is given in the problem statement
+although it does not appear at all in the formulas given there. The harmonic
+series would have factors which are just numbers up to $1/[\omega-1]$. This
+series expansion is finite and does not contain any powers of any dimensionful
+quantity.
+
+\subsection{Symmetry factor}
+
+We hope that we have already included the symmetry factor in the previous
+subsection.
+
+\subsection{Fish diagram}
+
+\subsection{Further expansion}
 
 \end{document}
 

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      5846,        219]
-NotebookOptionsPosition[      5205,        191]
-NotebookOutlinePosition[      5543,        206]
-CellTagsIndexPosition[      5500,        203]
+NotebookDataLength[      6554,        247]
+NotebookOptionsPosition[      5695,        211]
+NotebookOutlinePosition[      6033,        226]
+CellTagsIndexPosition[      5990,        223]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -187,6 +187,26 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"-", "3"}], "-", "n"}]]}]], "Output",
  CellChangeTimes->{{3.645617202129719*^9, 3.645617235604168*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Gamma", "[", "0", "]"}]], "Input",
+ CellChangeTimes->{{3.645671314943347*^9, 3.645671317310411*^9}}],
+
+Cell[BoxData["ComplexInfinity"], "Output",
+ CellChangeTimes->{3.6456713179212427`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Gamma", "[", "1", "]"}]], "Input",
+ CellChangeTimes->{{3.6456756117558527`*^9, 3.6456756126573143`*^9}}],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{3.6456756129992647`*^9}]
 }, Open  ]]
 },
 WindowSize->{1918, 1059},
@@ -220,10 +240,17 @@ Cell[3680, 133, 694, 23, 62, "Output"]
 Cell[CellGroupData[{
 Cell[4411, 161, 380, 12, 32, "Input"],
 Cell[4794, 175, 395, 13, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5226, 193, 124, 2, 32, "Input"],
+Cell[5353, 197, 86, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5476, 203, 128, 2, 32, "Input"],
+Cell[5607, 207, 72, 1, 32, "Output"]
 }, Open  ]]
 }
 ]
 *)
 
 (* End of internal cache information *)
-
