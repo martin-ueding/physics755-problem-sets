@@ -74,23 +74,30 @@
     \end{small}
 \end{center}
 
+We did not get much of the results we should have gotten on this sheet. The
+tutorial on 2015-07-14 will hopefully have cleared things up. This will serve
+as a documentation of our non-understanding in retrospect.
+
 \section{Dimensional regularization of $\phi^4$ theory at 1-loop}
 \label{homework:1}
 
 \subsection{Substitution}
 
 We perform the Wick rotation by $p^0 \mapsto \iup p^0$.
-\[
+\begin{align*}
     \int \frac{\dif^d p}{[2\piup]^d} \frac{1}{[\tens p^2 - A]^n}
-    = \int \frac{\dif^d p}{[2\piup]^d} \frac{1}{[[p^0]^2 - \vec p^2 - A]^n}
-    \mapsto \int \frac{\iup \dif^d p}{[2\piup]^d} \frac{1}{[- [p^0]^2 - \vec
-    p^2 - A]^n}.
-\]
+    &= \int \frac{\dif^d p}{[2\piup]^d} \frac{1}{[[p^0]^2 - \vec p^2 - A]^n} \\
+    &\mapsto \int \frac{\iup \dif^d p}{[2\piup]^d} \frac{1}{[- [p^0]^2 - \vec
+    p^2 - A]^n} \\
+    &= [-1]^n \iup \int \frac{\dif^d p}{[2\piup]^d} \frac{1}{[[p^0]^2 + \vec
+    p^2 + A]^n}.
+\end{align*}
 
 One thing \textcite{penrose-road_to_reality} warns to be careful about is that
 the Wick rotation can turn a non-compact group like $\SO(1,3)$ into a compact
 group like $\SO(4)$. Then one works with the compact group and goes back. One
-should be careful.
+should check whether the results one got in the Euclidean space still makes
+sense in the Minkowski space.
 
 \subsection{Proof of identity}
 
@@ -190,7 +197,7 @@ Since we were not able to get to the correct result for the next thing, writing
     The radial integral has the following solution:
     \[
         \int_0^\infty \dif P \frac{P^{d-1}}{[P^2 - A]^n}
-        = \frac{[-1]^n \iup}{2^{d+1} \piup^d} \frac{\Gammaup\del{n-\frac d2}
+        = \frac{[-1]^n \iup}{2} \frac{\Gammaup\del{n-\frac d2}
         \Gammaup\del{\frac d2}}{\Gamma(n)} A^{\frac d2 - n}.
     \]
 \end{theorem}
@@ -214,7 +221,7 @@ Since we were not able to get to the correct result for the next thing, writing
             \[
                 z := \frac{A}{\rho - A}
                 \eqnsep
-                \dif z := - \frac{A}{[\rho - A]^2} \dif \rho
+                \dif z := - \frac{A}{[\rho - A]^2} \dif \rho.
             \]
             Using this, we can rewrite the integral again. The bounds are
             transformed like $0 \mapsto 1$ and $\infty \mapsto 0$. We exchange
@@ -260,24 +267,28 @@ Since we were not able to get to the correct result for the next thing, writing
             allows us to cancel some of the $z$ and we obtain some $[1+z]$.
         }
         &= \frac12 \int_0^1 \dif z \,
-        A^{\frac d2-n} [z+1]^{\frac d2-1} z^{n-1-\frac d2}
+        A^{\frac d2-n}
+        z^{n-1-\frac d2}
+        [z+1]^{\frac d2-1}
         \intertext{%
             At this point we can recognize the Beta function. We have
             \[
-                a = \frac d2 - n
+                a = n - 1 - \frac d2
                 \eqnsep
-                -2 -a -b = n - \frac d2 -1
+                -2 -a -b = \frac d2 -1
                 \iff
-                -a -b = - \sbr{\frac d2 - n} + 1
+                -a -b = \frac d2 + 1
                 \iff
-                b = -1.
+                b = - n
             \]
             We can then write the expression using the Beta function.
         }
-        &= \frac12 A^{\frac d2-n} B\del{n - \frac d2 + 1, 0}
+        &= \frac12 A^{\frac d2-n} B\del{n - \frac d2, 1 - n}
+        \intertext{%
+            And then we can expand the Beta function.
+        }
+        &= \frac12 A^{\frac d2-n} \frac{\Gammaup\del{n - \frac d2}\Gammaup\del{1 - n}}{\Gammaup\del{1 - \frac d2}}
     \end{align*}
-    Since $\Gammaup(0) \simeq \infty$, this result does not make any
-    sense.
 
     \Textcite[250]{Peskin/QFT/1995} get usable $\Gammaup$ functions
     with their plus sign. We cannot do that since our denominator contains a
@@ -291,11 +302,11 @@ Since we were not able to get to the correct result for the next thing, writing
     This is the result \textcite[250]{Peskin/QFT/1995} have, it does not lead
     to the desired expression in Equation~(2) on the problem set.
 
-    Maybe it is possible to smuggle in imaginary unit into there and get a
+    Maybe it is possible to smuggle an imaginary unit into there and get a
     better result.
 \end{proof}
 
-With those theorems at hand, we can start to prove Equation~(2) from the
+With those theorems at hand, we can attempt to prove Equation~(2) from the
 problem set. We start by replacing the measure in the integral. $\tens p^2$
 does not depend on the angles and we can replace that with $P^2$. The angular
 part from the measure is just the surface of the sphere which we know from
@@ -382,9 +393,10 @@ Together we have
     \int \frac{\dif^{2\omega} p}{[2\piup]^{2\omega}}
     \frac{1}{p^2 - m^2}.
     \intertext{%
-        We already tried and failed to derive the value of this integral. We
-        can just insert Equation~(2) from the problem set. Here $n = 1$ and $d
-        = 2 \omega$.
+        Except for the sign, this matches the diagram given by
+        \textcite[(9.15)]{Ryder/QFT/2}. We already tried and failed to derive
+        the value of this integral. We can just insert Equation~(2) from the
+        problem set. Here $n = 1$, $d = 2 \omega$ and $A = m^2$.
     }
     &= \frac 12
     \lambda \mu^{2 [2-\omega]}
